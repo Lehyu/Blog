@@ -1,7 +1,7 @@
 # Blog
 
 ## Machine Learning
-[PRML读书笔记(一)](posts/ML/PRML读书笔记(一).md)
+[PRML读书笔记(一)](posts/ML/PRML读书笔记\(一\).md)
 
 [贝叶斯概念学习](posts/ML/贝叶斯概念学习.md)
 $$\begin{equation}
