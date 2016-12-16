@@ -1,0 +1,27 @@
+#+TITLE: Progressive Markup and Techniques
+#+AUTHOR: mlhy
+#+EMAIL: 951908719@qq.com
+#+DESCRIPTION:
+#+CATEGORIES: HTML5
+#+KEYWORDS: HTML5,
+#+LANGUAGE:
+#+OPTIONS: H:3 num:t toc:nil \n:t @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: Tex:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP: /mlhy
+#+LINK_HOME: /mlhy
+#+XSLT:
+
+* Adding More Semantic Meaning
+You want to mark up content correctly.Semantic markup is markup that describes the content it contains, rather than what the content should look like.
+
+* Picking a Markup Style
+One of the core changes HTML5 brings is a more relaxed syntax. That being said, it is worth noting that valid syntax doesn’t necessarily equal good syntax, and that many developers still tout certain “best practices” that lend clarity to your .
+1. Code your tag names in lowercase.
+2. Enclose all attribute values in quotes.
+3. Close all elements with content.
+
+* Understanding Browser Support for HTML5
+You want to find out if a browser or specific browser version supports a feature of HTML5.

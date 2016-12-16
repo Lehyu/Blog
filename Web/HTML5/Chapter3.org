@@ -1,0 +1,196 @@
+#+TITLE: Forms
+#+AUTHOR: mlhy
+#+EMAIL: 951908719@qq.com
+#+DESCRIPTION:
+#+CATEGORIES: HTML5
+#+KEYWORDS: HTML5,Forms
+#+LANGUAGE:
+#+OPTIONS: H:3 num:t toc:nil \n:t @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: Tex:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP: /mlhy
+#+LINK_HOME: /mlhy
+#+XSLT:
+* Displaying a Search Input Field
+You want to present a user with a search form field.
+#+BEGIN_SRC HTML5
+<form>
+ <p><label>Search <input type="search" name="query"></label></p>
+ <p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+#+BEGIN_SRC CSS
+input[type="search"]{
+    border-radius:10px;
+}
+#+END_SRC
+* Contact Information Input Fields
+You want to present a user with a form to provide contact information, such as an email address, a URL, and a telephone number.
+Use the /input/ element with HTML5 /type/ with *email,url*,and *tel*.
+#+BEGIN_SRC HTML5
+<form>
+   <fieldset>
+   <legend>Contact Information</legend>
+    <p><label>E-mail address <input type="email" name="email"></label></p>
+    <p><label>Web site <input type="url" name="website"></label></p>
+    <p><label>Telephone number <input type="tel" name="phone"></label></p>
+  </fieldset>
+<p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+It can warn you if you enter a invaild email or url.
+* Utilizing Date and Time Input Fields
+You want to provide a user with a form to specify a date and/or time—for example,when scheduling an appointment.
+#+BEGIN_SRC HTML5
+<fieldset>
+  <legend>Appointment Request</legend>
+  <p><label>Date <input type="date" name="date" min="2011-03-15"
+                        max="2012-03-14"></label></p>
+  <p><label>Time <input type="time" name="time" min="08:00"
+                        max="18:00"></label></p>
+</fieldset>
+#+END_SRC
+* Number Inputs
+input type is number.
+#+BEGIN_SRC HTML5
+ <p><label>Quantity <input type="number" name="quantity"></label></p>
+<p><label>Quantity (must order in pairs of 2) <input type="number"
+name="quantity" min="2" max="20" step="2"></label></p>
+#+END_SRC
+* Selecting from a Range of Numbers
+You want to present a user with a form to select a number from a range—for example, to adjust the volume on a video.
+#+BEGIN_SRC HTML5
+<form>
+<p><label>Volume <input type="range" name="volume"
+min="0" max="10" step=".5" value="5"></label></p>
+</form>
+#+END_SRC
+* Selecting Colors
+#+BEGIN_SRC HTML5
+<form>
+   <p><label>Background color <input type="color" name="bg"></label></p>
+   <p><label>Foreground color <input type="color" name="fg"></label></p>
+</form>
+#+END_SRC
+* Creating an Editable Drop-Down
+You want to give the user the ability to enter text but also prompt her with some suggestions to choose from. This is sometimes known as an editable drop-down or a combo box.
+#+BEGIN_SRC HTML5
+<form>
+  <p><label>Donation amount <input type="text" name="donation" list="donations"></label></p>
+  <datalist id="donations">
+  <option value="10.00">10.00</option>
+  <option value="25.00">25.00</option>
+  <option value="50.00">50.00</option>
+</datalist>
+#+END_SRC
+* Requiring a Form Field
+You want to require a form field’s completion prior to form submission.
+#+BEGIN_SRC HTML5
+<form>
+<fieldset>
+<legend>Login</legend>
+<p><label>Username <input type="text" name="username" required></label></p>
+<p><label>Password <input type="password" name="pwd" required></label></p>
+</fieldset>
+<p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+* Autofocusing a Form Field
+You want to place the focus in a particular form field when a page loads.
+#+BEGIN_SRC HTML5
+<form>
+<p><label>Search <input type="search" name="query" autofocus></label></p>
+<p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+* Displaying Placeholder Text
+You want to display some hint or help text within a form field.
+#+BEGIN_SRC HTML5
+<form>
+<fieldset>
+<legend>Contact Information</legend>
+<p><label>E-mail address <input type="email" name="email"
+placeholder="user@domain.com"></label></p>
+<p><label>Web site <input type="url" name="website"
+placeholder="http://www.domain.com/"></label></p>
+<p><label>Telephone number <input type="tel" name="phone"
+placeholder="123-123-1234"></label></p>
+</fieldset>
+<p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+* Disabling Autocomplete
+You want to prevent autocompletion tools from populating a form field.
+#+BEGIN_SRC HTML5
+<form>
+<fieldset>
+<legend>Login</legend>
+<p><label>Username <input type="text" name="username"></label></p>
+<p><label>Password <input type="password" name="pwd"
+autocomplete="off"></label></p>
+</fieldset>
+<p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+* Restricting Values
+You want to restrict the value of an input field according to a set of rules you specify.Use the HTML5 *pattern* attribute to specify a regular expression that will be used tovalidate the user’s input:
+#+BEGIN_SRC HTML5
+<form>
+<p><label>Telephone number <input type="tel" name="phone"
+pattern="[2-9][0-9]{2}-[0-9]{3}-[0-9]{4}"
+title="North American format: XXX-XXX-XXXX"></label></p>
+<p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+* Making HTML5 Work in Older Browsers
+You want to make HTML5 input types and attributes work in browsers that do not support HTML5. Use the Modernizr JavaScript library (see http://www.modernizr.com) to detect support for specific HTML5 attributes, then develop or use alternate solutions, such as jQuery UI (see http://jqueryui.com), for instances where features are not supported.
+#+BEGIN_SRC HTML5
+<head>
+<script src="modernizer.js"></script>
+</head>
+
+<form>
+<p><label>Search <input type="search" name="query" id="query"
+autofocus></label></p>
+<p><button type="submit">Submit</button></p>
+</form>
+#+END_SRC
+#+BEGIN_SRC js
+<script>
+if (!Modernizr.input.autofocus) {
+document.getElementById("query").focus();
+}
+</script>
+#+END_SRC
+* Validating Form Data in Older Browsers with JavaScript
+You want to validate form data in browsers that do not support HTML5.
+#+BEGIN_SRC js
+<script>
+if (!Modernizr.input.required || !Modernizr.input.pattern) {
+$('form').submit(function() {
+var validData = true;
+$('[required], [pattern]').each(function() {
+if (($(this).attr('required') !== false) && ($(this).val() == "")){
+$(this).focus();
+alert("The " + $(this).attr('name') + " field is required!");
+validData = false;
+return false;
+}
+if ($(this).attr('pattern')){
+var regexp = new RegExp($(this).attr('pattern'));
+if (!regexp.test($(this).val())){
+$(this).focus();
+alert("The data in the " + $(this).attr('name') +
+" field isn't in the right format!");
+validData = false;
+return false;
+}
+}
+});
+return validData;
+});
+}
+</script>
+#+END_SRC

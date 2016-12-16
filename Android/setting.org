@@ -1,0 +1,18 @@
+#+TITLE: Install Android-SDK in Archlinux
+#+AUTHOR: mlhy
+#+EMAIL: 951908719@qq.com
+#+DESCRIPTION:
+#+CATEGORIES: DM
+#+KEYWORDS: DM,classification,ID3,C4.5
+#+LANGUAGE:
+#+OPTIONS: H:3 num:t toc:nil \n:t @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: Tex:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP: /mlhy
+#+LINK_HOME: /mlhy
+#+XSLT:
+
+* KVM
+Check if your computer enable virtualization setting. This change isn't on your archlinux, but your bios!

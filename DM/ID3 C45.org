@@ -1,0 +1,107 @@
+#+TITLE: ID3/C4.5/Gini Index
+#+AUTHOR: mlhy
+#+EMAIL: 951908719@qq.com
+#+DESCRIPTION:
+#+CATEGORIES: DM
+#+KEYWORDS: DM,classification,ID3,C4.5
+#+LANGUAGE:
+#+OPTIONS: H:3 num:t toc:nil \n:t @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: Tex:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP: /mlhy
+#+LINK_HOME: /mlhy
+#+XSLT:
+
+* ID3
+Select the attribute with the highest information gain.
+** Formula
+Let pi be the probability that an arbitrary tuple in D belongs to class Ci, estimated by |C(i,D)|/|D|.
+Expected information need to classify a tuple in D:
+$$Info(D) = -\sum\limits_{i=1}^n{P_i}log_2P_i$$
+Information needed (after using A to split D into v partitions)to classify D:
+$$Info_A(D) = \sum\limits_{j=1}^v\frac{|D_j|}{|D|}Info(D_j)$$
+So, information gained by branching on attribute A:
+$$Gain(A) = Info(D)-Info_A(D)$$
+** Example
+| age     | income | Student | credit_rating | buys_computer |
+|---------+--------+---------+---------------+---------------|
+| <= 30   | high   | no      | fair          | no            |
+| <=30    | high   | no      | excellent     | no            |
+| 31...40 | high   | no      | fair          | yes           |
+| >40     | medium | no      | fair          | yes           |
+| >40     | low    | yes     | fair          | yes           |
+| >40     | low    | yes     | excellent     | no         |
+| 31...40 | low    | yes     | excellent     | yes           |
+| <=30    | medium | no      | fair          | no            |
+| <=30    | low    | yes     | fair          | yes           |
+| >40     | medium | yes     | excellent     | yes           |
+| <=30    | medium | yes     | excellent     | yes           |
+| 31...40 | medium | no      | excellent     | yes           |
+| 31...40 | high   | yes     | fair          | yes           |
+| >40     | medium | no      | excellent     | no            |
+Class P:buys_computer = "yes"
+Class N:buys_computer = "no"
+the number of classs P is 9,while the number of class N is 5.
+
+So,$$Info(D) = -\frac{9}{14}log_2\frac{9}{14} - \frac{5}{14}log_2\frac{5}{14} = 0.940$$
+
+In Attribute age, the number of class P is 2,while the number of class N is 3.
+So,$$Info(D_{<=30}) = -\frac{3}{5}log_2\frac{3}{5} - \frac{2}{5}log_2\frac{2}{5} = 0.971$$
+Similarly,
+$$Info(D_{31...40}) = 0$$,$$Info(D_{>40}) = 0.971$$
+Then,$$Info_{age}(D) = \frac{5}{14}Info(D_{<=30}) + \frac{4}{14}Info(D_{31...40}) +  \frac{5}{14}Info(D_{>40}) = 0.694$$
+Therefore,$$Gain(age) = Info(D) - Info_age(D) = 0.246$$
+Similarly,
+$$Gain(income) = 0.029$$
+$$Gain(Student) = 0.151$$
+$$Gain(credit_rating) = 0.048$$
+** Question
+What if the attribute's value is continuous? How can we handle it?
+1.The /best split point/ for A
+ +Sort the value A in increasing order
+ +Typically, the midpoint between each pair of adjacent values is considered as a possible split point
+ -(a i +a i+1 )/2 is the midpoint between the values of a i and a i+1
+ +The point with the minimum expected information requirement for A is selected as the split-point for A
+2.Split:
+ +D1 is the set of tuples in D satisfying A ≤ split-point, and D2 is the set of tuples in D satisfying A > split-point.
+* C4.5
+*C4.5* is a successor of *ID3*.
+** Formula
+$$SpiltInfo_A(D) = -\sum\limits_{j=1}^v\frac{|D_j|}{|D|}*log_2\frac{|D_j|}{|D|}$$
+Then the GainRatio equals to,
+$$GainRatio(A=Gain(A)/SplitInfo(A)$$
+The attribute with the maximun gain ratio is selected as the splitting attribute.
+* Gini Index
+** Formula
+If a data set D contains examples from /n/ classes, gini index /gini(D)/ is defined as
+$$gini(D) = 1 - \sum\limits_{j=1}^nP_j^2$$
+where /p_j/ is the relative frequency of class j in D.
+If Data set /D/ is split on A which have /n/ classes.Then
+$$gini_A(D) = \sum\limits_{i=1}^n\frac{D_i}{D}gini(D_i)$$
+Reduction in Impurity
+$$\Delta gini(A) = gini(D)-gini_A(D)$$
+* Summary
+*ID3/C4.5* isn't suitable for large amount of trainning set,because they have to repeat to sort and scan training set for many times. That will cost much time than other classification alogrithms.
+The three measures,in general, return good results but
+1.Information gain:
+-biased towards multivalued attributes
+2.Gain ratio:
+-tends to prefer unbalanced splits in which one partition is much smaller than the other.
+3.Gini index:
+-biased towards multivalued attributes
+-has difficulty when # of classes is large
+-tends to favor tests that result in equal-sized partitions and purity in both partitions.
+* Other Attribute Selection Measures
+1.CHAID: a popular decision tree algorithm, measure based on χ 2 test for independence
+2.C-SEP: performs better than info. gain and gini index in certain cases
+3.G-statistics: has a close approximation to χ 2 distribution
+4.MDL (Minimal Description Length) principle (i.e., the simplest solution
+is preferred):
+The best tree as the one that requires the fewest # of bits to both
+(1) encode the tree, and (2) encode the exceptions to the tree
+5.Multivariate splits (partition based on multiple variable combinations)
+CART: finds multivariate splits based on a linear comb. of attrs.
+Which attribute selection measure is the best?
+Most give good results, none is significantly superior than others

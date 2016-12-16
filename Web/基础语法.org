@@ -1,0 +1,101 @@
+#+TITLE: PHP基础
+#+AUTHOR: mlhy
+#+EMAIL: 951908719@qq.com
+#+DESCRIPTION:
+#+CATEGORIES: PHP
+#+KEYWORDS: PHP,语法,基础
+#+LANGUAGE:
+#+OPTIONS: H:3 num:t toc:nil \n:t @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: Tex:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP: /mlhy
+#+LINK_HOME: /mlhy
+#+XSLT:
+
+*  类型
+#+BEGIN_SRC PHP
+<?pp
+$foo = True;
+if($foo)
+
+$str = ""
+?>
+#+END_SRC
+
+
+* foreach
+#+BEGIN_SRC PHP
+<?php
+$arr = ["one","two",3];
+reset($arr);
+while (list(, $value) = each ($arr))
+{
+    echo "Value:$value<br>\n";
+}
+
+foreach($arr as $value){
+    echo "Value:$value<br>\n";
+}
+
+foreach ($arr as $key => $value) {
+    echo "Key: $key; Value: $value<br>\n";
+}
+?>
+
+#+END_SRC
+
+* declare
+declare 结构用来设定一段代码的执行指令。declare 的语法和其它流程控制结构相似：
+declare 代码段中的 statement 部分将被执行 － 怎样执行以及执行中有什么副作用出现取决于 directive 中设定的指令。
+Tick 是一个在 declare 代码段中解释器每执行 N 条低级语句就会发生的事件。N 的值是在 declare 中的 directive 部分用 ticks=N 来指定的。
+在每个 tick 中出现的事件是由 register_tick_function() 来指定的。更多细节见下面的例子。注意每个 tick 中可以出现多个事件。
+#+BEGIN_SRC PHP
+function do_tick($dump = FALSE)
+{
+    echo "Tick ";
+}
+
+register_tick_function("do_tick");
+declare(ticks = 1)
+{
+    for($x = 1; $x < 50; $x++)
+    {
+	echo $x*$x."<br>\n";//similar_text(md5($x),md5($x*$x)),"<br>\n";
+    }
+}
+#+END_SRC
+
+
+* require/include
+包括并运行指定文件。include产生一个警告，require产生一个致命错误。
+#+BEGIN_SRC PHP
+<?php
+require 'a.php';
+?>
+#+END_SRC
+
+
+* 函数名可赋予变量/变量函数
+#+BEGIN_SRC 
+<?php
+function foo()
+{
+    echo "In foo<br>\n";
+}
+
+function bar($arg = "")
+{
+    echo "In bar();arg was '$arg'<br>\n";
+}
+
+$func = 'foo';
+$func();
+
+$func = 'bar';
+$func('test');
+?>
+
+#+END_SRC
+

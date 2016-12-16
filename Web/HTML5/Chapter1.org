@@ -1,0 +1,134 @@
+#+TITLE: HTML5 Fundamental Syntax
+#+AUTHOR: mlhy
+#+EMAIL: 951908719@qq.com
+#+DESCRIPTION:
+#+CATEGORIES: HTML5
+#+KEYWORDS: HTML5, fundamental syntax
+#+LANGUAGE:
+#+OPTIONS: H:3 num:t toc:nil \n:t @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: Tex:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP: /mlhy
+#+LINK_HOME: /mlhy
+#+XSLT:
+* Adding Document Structure with HTML5’s New Elements
+** header
+Is used to contain the headline(s) for a page and/or section . It can also contain
+supplemental information such as logos and navigational aids.
+** footer
+Contains information about a page and/or section , such as who wrote it, links to
+related information, and copyright statements.
+** nav
+Contains the major navigation links for a page and, while not a requirement, is
+often contained by header .
+** aside
+Contains information that is related to the surrounding content but also exists
+independently, such as a sidebar or pull-quotes.
+** section
+The section element is not a generic container element. When an element is needed only for styling purposes or as a convenience for scripting, authors are encouraged to use the div element instead. A general rule is that the section element is appropriate only if the element's contents would be listed explicitly in the document's outline.
+** article
+Is used for self-contained content that could be consumed independently of the page as a whole, such as a blog entry.
+** Modifying the Document Outline
+You have a primary page title and tagline marked up with headings ( h1 and h2 , respec-tively), but you don’t want the tagline included in your document outline.
+#+BEGIN_SRC HTML5
+<hgroup>
+<h1>HTML5, for Fun &amp; Profit</h1>
+<h2>Tips, Tricks and Resources</h2>
+</hgroup>
+#+END_SRC
+In this example, only /h1/(the largest headline of those headlines) will be shown on the Document Outline.
+* Text
+** Emphasizing Text
+You want to add emphasis or emphatic stress to text content.
+#+BEGIN_SRC HTML5
+<p>My name is <em>Jane</em>, not John.</p>
+#+END_SRC
+** Adding Importance to Text
+You want to indicate a span of text that is important.
+#+BEGIN_SRC HTML5
+<p><strong>Adding Importance to Text</strong></p>
+#+END_SRC
+** Highlighting Text for Reference
+You want to highlight the search term(s) in a list of search results.
+#+BEGIN_SRC HTML5
+<p><mark>Highlighting Text</mark></p>
+#+END_SRC
+** Marking Up Small Print
+You want to offset a legal disclaimer and copyright statement as small print.
+#+BEGIN_SRC HTML5
+<p><small>Small Print</small></p>
+#+END_SRC
+** Defining Acronyms and Abbreviations
+You want to provide expanded definitions for acronyms and abbreviations.
+#+BEGIN_SRC HTML5
+<p>I love working with <abbr title="Accessible Rich Internet Applications">ARIA</abbr> Roles</p>
+<p>I love working with <acronym title="Accessible Rich Internet Applications">ARIA</acronym> Roles</p><!--Not Support-->
+#+END_SRC
+* Adding Links to Block-Level Content
+You want to wrap your site logo and main heading with a single hyperlink.
+#+BEGIN_SRC HTML5
+ <a href="http://www.baidu.com">
+     <h1>HTML5, for Fun &amp; Profit</h1>
+     <img src="img/logo.png" alt="HTML5 for Fun and Profit" />
+ </a>
+#+END_SRC
+* Marking Up Figures and Captions
+You want to include an illustration with a caption on your web page.
+#+BEGIN_SRC HTML5
+ <figure>
+   <img src="img/logo.png" alt="The logo of HTML5" />
+   <figcaption>The logo of HTML5</figcaption>
+</figure>
+#+END_SRC
+* Marking Up Dates and Times
+You want to encode date-time content for machines, but still retain human readability.
+#+BEGIN_SRC HTML5
+<p>Published: <time datetime="2011-01-15" pubdate>January 15, 2011</time></p>
+<p>The class starts at <time datetime="08:00">8:00 am</time>.</p>
+<p>Registration opens on <time datetime="2011-01-15T08:00-07:00">January 15, 2011 at 8:00 am, Mountain Time</time>.</p>
+<p>Published: <time>2011-01-15</time></p>
+#+END_SRC
+I don't see what the diffience within an without /<time>/.
+* Setting the Stage for Native Expanding and Collapsing
+You want to provide content that can expand and collapse with user focus (once browsers support it).
+#+BEGIN_SRC HTML5
+<details>
+<summary>Upcoming Topics</summary>
+<p>For the new year, we have a great line up of articles!</p>
+<ul>
+<li>Understanding the Outline Algorithm</li>
+<li>When to Use <code>hgroup</code></li>
+<li>Machine Semantics with Microdata</li>
+</ul>
+</details>
+#+END_SRC
+* Controlling the Numbering of Your Lists
+You want an ordered list to have numbering different than the default of starting with 1.
+#+BEGIN_SRC HTML5
+<ol start="2">
+   <li>Apple</li>
+   <li>Bananas</li>
+   <li>Oranges</li>
+ </ol>
+#+END_SRC
+* Hiding Content to Show Later
+You have content that you want to hide until after a user logs in.
+#+BEGIN_SRC HTML5
+<p hidden>You wouldn't see me if  you don't log in.</p>
+#+END_SRC
+* Making Portions of a Page Editable
+You want to allow users to directly edit content in the browser.
+#+BEGIN_SRC HTML5
+ <article contenteditable>
+  <h2>Stop <code>section</code> Abuse!</h2>
+    <p>As the most generic of the HTML5 structural elements, <code>section</code>
+      is often incorrectly used as a styling container, when <code>div</code> is more appropriate.</p>
+ </article>
+#+END_SRC
+* Setting the Stage for Native Drag-and-Drop
+You want to allow users to drag and drop content on your web page.
+#+BEGIN_SRC HTML5
+<h2 draggable="true">Block-Level Links</h2>
+#+END_SRC
