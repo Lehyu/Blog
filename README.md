@@ -9,3 +9,5 @@ $$\begin{equation}
 p(\mathcal{D}|\mu) &=& \prod_{n=1}^N{\mu^{x_n}(1-\mu)^{1-x_n} }
 \end{array}
 \end{equation} \tag{1}$$
+
+test $f(x)=x$ 这是一个函数
