@@ -1,15 +1,8 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
-# Site settings
+theme: jekyll-theme-dinky
 title: Lehyu's Blog
 email: 951908719@qq.com
 description: > # this means to ignore newlines until "baseurl:"
-   What you lost today would be what you want tomorrow. Treasure the present and live in the moment.     
+   What you lost today would be what you want tomorrow. Treasure the present and live in the moment.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.Lehyu.cn" # the base hostname & protocol for your site
 #twitter_username: jekyllrb
@@ -20,8 +13,3 @@ encoding: UTF-8
 
 markdown: kramdown
 markdown_ext: md
-
-paginate: 5
-paginate_path: "blog/page:num"
-gems: [jekyll-paginate]
-port: 3000
