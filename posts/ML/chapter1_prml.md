@@ -1,10 +1,10 @@
-## Machine Learning 步骤
+## 1. Machine Learning 步骤
 
 整个机器学习大致可以分为4个步骤：数据分析，数据预处理，模型选择以及训练和优化。比较宏观的流程如下图所示。
 
-![ML flow](image/PRML/chap1/ML-flow.png)
+![ML flow](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/ML-flow.png?raw=true)
 
-## 栗子：Polynomial Curve Fitting
+## 2. 栗子：Polynomial Curve Fitting
 
 假设我们现在有一组从 $f(x)=sin(2\pi x)+\epsilon(x)$ 生成的数据，其中 $\epsilon(x)=N(x\vert 0,\beta)$ 表示噪声。那么我们就得到原始数据为
 
@@ -14,7 +14,7 @@ $\mathbb{x}=(x_1,x_2,\dots,x_N)^T,x_i\in(0,1)$，相对应的函数值 $\mathbb{
 
 我们得到的只有 $\mathbb{x},\mathbb{t}$ ，并不知道 $f(x)$ 的形式。
 
-### 数据分析(Data Analysis)
+### 2.1 数据分析(Data Analysis)
 
 由于训练数据由输入向量与其对应的输出向量组成，因此这是一个监督学习(supervised learning)的问题，并且由于输出向量是一组连续的变量，故又可以细分成回归问题(regression)。那么我们可以用以下函数取逼近
 
@@ -22,7 +22,7 @@ $y(x,\mathbb{w})=w_0+w_1x+w_2x^2+\dots+w_Mx^M=\sum_{j=0}^{M}w_jx^j \tag{1}$
 
 [理论]()
 
-### 数据预处理(Preprocess)
+### 2.2 数据预处理(Preprocess)
 
 数据预处理具有以后优点：
 
@@ -41,9 +41,9 @@ X=\left[\begin{matrix}1&x_0^1&\dots&x_0^M \\ 1&x_1^1&\dots&x_1^M \\  \vdots & \v
 
 如果是在训练的时候计算 $x_i^j$ 的话，会消耗大量的计算资源。
 
-### 模型选择
+### 2.3 模型选择
 
-#### 损失函数
+#### 2.3.1 损失函数
 
 由数据分析步骤，我们已经得到了基础的模型，我们希望我们的预测值 $y(x,\mathbb{w})$ 与 $t$ 尽量相近，那么我们可以用以下度量来表示
 
@@ -73,7 +73,7 @@ E(\mathbb{w}) &=& \frac{1}{N}\sum_{n=1}^NL(y,t)\tag{4}
 
 需要注意的是公式(3)与公式(4)表达的意思并不是一样的，式(3)是期望风险(模型关于联合分布的期望损失)，式(4)是经验风险(模型关于训练样本的平均损失)，当 $P(x,t)=\frac{1}{N}$ 或者样本容量N趋向于无穷时，经验风险趋向于期望风险。
 
-#### 超参数
+#### 2.3.2 超参数
 
 式(1)里的参数M是不能在训练中直接学到的，需要在训练之前设置，因此称为超参数(hyperparameter)，一个方法是令 $M=1,2,3,\dots$，但是在经验风险下  $E(\mathbb{w})=\frac{1}{2}\sum_{n=1}^NL(y(x,\mathbb{w}),t)$，M的不同会使模型的较大的性能差；另一个方法是采用正则化方法
 
@@ -85,13 +85,13 @@ $$\begin{equation}
 
 之后会详细介绍这两种损失函数的概率意义。
 
-### 训练与优化
+### 2.4 训练与优化
 
 在本例中可以用[最小二乘法]()，直接求解。
 
-### 实验结果
+### 2.5 实验结果
 
-#### E(W)下的结果
+#### 2.5.1 E(W)下的结果
 
 ![comparison_M](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/comparison_M.png?raw=true)
 
@@ -106,7 +106,7 @@ $$\begin{equation}
 
 ![comparison_N](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/comparison_N_M.png?raw=true)
 
-#### $\tilde{E}(W)$ 下的结果
+#### 2.5.2 $\tilde{E}(W)$ 下的结果
 
 ![comparison_lambda](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/comparison_lambda.png?raw=true)
 
@@ -116,13 +116,13 @@ $$\begin{equation}
 
 由上述三图可以知道，在 $\tilde{E}(W)$ 的情况下，模型能够达到相当好的效果，这是因为正则项能够使权值收缩。从而能够降低噪声造成的震荡幅度。
 
-## 损失函数
+## 3. 损失函数
 
-### 损失函数的概率意义
+### 3.1 损失函数的概率意义
 
 ![probability_viewpoint](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/probability_viewpoint.png?raw=true)
 
-#### 最大似然
+#### 3.1.1 最大似然
 
 对于训练样本 $(\mathbb{x}, \mathbb{t})$，我们希望 $p(\mathbb{t}\vert \mathbb{x}, \mathbb{w}) =\prod_{i=1}^N N(t_i\vert y(x_i, \mathbb{w}), \beta)$ 达到最大，那么等价于
 
@@ -134,7 +134,7 @@ $$\begin{equation}
 
 即最小化 $E(W)$ 等价于最大化 $\ln{p(\mathbb{t}\vert \mathbb{x}, \mathbb{w})}$，即 $E(W)$ 具有最大似然的性质。
 
-#### 最大后验
+#### 3.1.2 最大后验
 
 前面的假设是对于任意的 $\mathbb{w}$ 具有相同的选择概率，但是如果我们引入先验知识，即
 
@@ -161,7 +161,7 @@ $$\begin{equation}
 
 即等价于最小化 $\frac{\beta}{2}\sum_{n=1}^N\{y(x_n, \mathbb{w})-t_n\}^2+\frac{\alpha}{2}\vert \vert \mathbb{w}\vert \vert ^2$，也就是最小化 $\tilde{E}(W)$ 等价于最大化后验概率。
 
-### bias和variance
+### 3.2 bias和variance
 
 $$\begin{equation}
 \begin{array}{rcl}

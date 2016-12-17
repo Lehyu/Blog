@@ -1,6 +1,6 @@
-## 二值变量
+## 1. 二值变量
 
-### 伯努利分布
+### 1.1 伯努利分布
 
 对于 $x\in\{0,1\},p(x=1\vert \mu)=\mu$，$x$ 的概率分布有
 
@@ -41,7 +41,7 @@ $$\begin{equation}
 
 假设我们抛一枚有损的硬币 $p(x=1\vert \mu)=\mu$ 可以不为0.5，如果 $\mathcal{D}$ 有3个观测值，而且全部为1，即头部向上，那么我们由最大似然函数得到的结果就是 $\mu_{ML}=1$，如果我们用这个值去预测以后的结果，明显准确率会十分差，这就是所谓的过拟合。
 
-### 二项分布
+### 1.2 二项分布
 
 假设我们已经知道观测值中总共有 $m$ 个值为1的观测值，那么对 $m$ 的概率分布有
 
@@ -61,7 +61,7 @@ var[m] &=& N\mu(1-\mu)
 
 以上关于期望与方差的计算可以重新计算，或者用第一章习题1.10的结论直接得出。
 
-### 贝塔分布
+### 1.3 贝塔分布
 
 前面我们知道最大似然函数会容易过拟合，那么可以用贝叶斯分析来减小这个问题，但是之前我们先介绍一下贝塔分布
 
@@ -83,7 +83,7 @@ var[\mu] &=& \frac{ab}{(a+b)^2(a+b+1)}
 
 ![beta plot](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/beta_plot.png?raw=true)
 
-### 贝叶斯分析
+### 1.4 贝叶斯分析
 
 贝叶斯公式：$p(y\vert x)\propto p(x\vert y)p(y)$
 
@@ -129,7 +129,7 @@ p(\mu\vert m_1,l_1,m_0,l_0,a_0,b_0) &=& \frac{\Gamma(a_0+b_0+l_0+m_0+l_1+m_1)}{\
 在贝叶斯学习中，当我们观测的数据越来越多的时候，后验分布的不确定性就会越来越小。
 **todo**
 
-## 多元变量
+## 2. 多元变量
 
 前面一节我们介绍的是变量只有两个状态(要么是1，要么是0)，当变量有多个状态的时候，我们可以扩展成 $\mathbb{x} = (0,\dots,1,\dots,0)^T,\sum_{k=1}^Kx_k=1,p(x_k)=\mu_k$，那么
 
@@ -173,7 +173,7 @@ Mult(m_1,m_2,\dots,m_K\vert \mathbb{\mu},N) &=& \binom{N}{m_1m_2\dotsm_K}\prod_{
 \end{array}
 \end{equation}$$
 
-###　狄利克雷(Dirichlet)分布
+###　2.1 狄利克雷(Dirichlet)分布
 
 多项分布的共轭先验是狄利克雷分布，如下
 
@@ -196,7 +196,7 @@ p(\mathbb{\mu}\vert \mathcal{D},\mathbb{\alpha}) &=& \frac{\Gamma(\alpha_0+N)}{\
 
 以上都是离散变量的分布，下面介绍连续型变量中最常用的分布，高斯(Gaussian)分布
 
-## 高斯分布
+## 3. 高斯分布
 
 对于单一变量：$\mathcal{N}(x\vert \mu,\sigma^2) =\frac{1}{\sqrt{2\pi \sigma^2}}\exp\{-\frac{(x-\mu)^2}{2\sigma^2}\}$
 
@@ -251,7 +251,7 @@ p(\mathbb{y}) &=& p(\mathbb{x})\vert \mathbb{J}\vert =\prod_{j=1}^D\frac{1}{\sqr
 \end{array}
 \end{equation}$$
 
-### 多元高斯分布的期望与协方差
+### 3.1 多元高斯分布的期望与协方差
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -279,7 +279,7 @@ $\mathbb{\mu},\Sigma$共同控制了高斯分布的形态，在D维空间中，�
 
 由上图知道，虽然限制协方差矩阵的形态能够使计算协方差矩阵的逆更加快速，但是这也限制了高斯函数的分布从而影响高斯分布拟合数据的能力。
 
-### 条件高斯分布与边缘高斯分布
+### 3.2 条件高斯分布与边缘高斯分布
 
 条件高斯分布与边缘高斯分布的推导可以参考PRML p86。
 
@@ -347,7 +347,7 @@ p(\mathbb{y}\vert \mathbb{x}) &=& \mathcal{N}(\mathbb{y}\vert \mathbb{A}\mathbb{
 
 需要注意的是，书中的推导是先求出 $p(\mathbb{x},\mathbb{y})$ ，然后再根据高斯条件分布与高斯边缘分布的结论直接得出 $p(\mathbb{y}),p(\mathbb{x}\vert \mathbb{y})$
 
-### 高斯分布的最大似然
+### 3.3 高斯分布的最大似然
 
 $\mathbb{X}=\{\mathbb{x}_1,\dots,\mathbb{x}_N\},\{\mathbb{x}_n\}$ 独立同分布。
 
@@ -375,7 +375,7 @@ E[\Sigma_{ML}] &=& \frac{N-1}{N}\Sigma
 \end{array}
 \end{equation}$$
 
-### 顺序估计(sequential estimation)
+### 3.4 顺序估计(sequential estimation)
 
 首先对于高斯分布的均值(mean)估计：$\mathbb{\mu}_{ML} = \frac{1}{N}\sum_{n=1}^N\mathbb{x}_n$
 
@@ -398,7 +398,7 @@ $$\begin{equation}
 
 如单一变量的高斯分布，$\frac{\partial{}}{\partial{\mu_{ML}}}\ln{p(x\vert \mu_{ML},\sigma^2)}=\frac{1}{\sigma^2}(x-\mu_{ML})$，此时令 $a_{N}=\sigma^2/N$
 
-### 高斯分布的贝叶斯推理
+### 3.5 高斯分布的贝叶斯推理
 
 前面我们大致介绍了在贝叶斯推理中，最重要的是选择共轭先验。在高斯分布中，共轭先验的选择相对于多项分布更复杂，主要分为以下三种情况，先考虑单一变量的高斯分布
 
@@ -443,7 +443,7 @@ p(\mu,\lambda) &=& \mathcal{N}(\mu\vert \mu_0,(\beta\Lambda)^{-1})\mathcal{W}(\L
 \end{array}
 \end{equation}$$
 
-### Student's t-distribution
+### 3.6 Student's t-distribution
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -470,7 +470,7 @@ mode[\mathbb{x}] &=& \mathbb{\mu}
 \end{array}
 \end{equation}$$
 
-### 周期变量
+### 3.7 周期变量
 
 从笛卡尔坐标系转到极坐标系。von Mises分布
 
@@ -481,7 +481,7 @@ I_0(m) &=& \frac{1}{2\pi}\int_0^{2\pi}{\exp(m\cos\theta) }d\theta
 \end{array}
 \end{equation}$$
 
-### 混合高斯(Mixtures of Gaussians)
+### 3.8 混合高斯(Mixtures of Gaussians)
 
 我们知道高斯分布是一个单峰分布，对于实际应用如果用单一高斯分布会存在很大的限制
 
@@ -511,7 +511,7 @@ p(\mathbb{x}) &=& \sum_{k=1}^Kp(k)p(\mathbb{x}\vert k) \\
 
 对混合高斯模型的最大化似然函数采用[EM模型](todo)
 
-## 指数族分布
+## 4. 指数族分布
 
 加入一个分布满足以下条件，则称其属于指数族分布
 
@@ -524,7 +524,7 @@ p(\mathbb{x}\vert \boldsymbol{\eta}) &=& h(\mathbb{x})g(\boldsymbol{\eta})\exp\{
 
 下面从指数族分布来考虑先前我们介绍过的一些分布
 
-### 伯努利分布
+### 4.1 伯努利分布
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -548,7 +548,7 @@ g(\eta) &=& \sigma(-\eta)
 
 这就是为什么我在二分类的逻辑回归问题中我们用logistics sigmoid function的原因。
 
-### 多项式分布
+### 4.2 多项式分布
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -577,7 +577,7 @@ g(\eta) &=& (1+\sum_{j=1}^{K-1}\exp(\eta_j))^{-1}
 
 $\mu_k = \frac{\exp(\eta_k)}{1+\sum_{j=1}^{K-1}\exp(\eta_j)}$ 即softmax函数。
 
-### 高斯分布
+### 4.3 高斯分布
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -590,7 +590,7 @@ g(\eta) &=& (-2\eta_2)^{1/2}\exp(\frac{\eta_1^2}{4\eta_2})
 \end{array}
 \end{equation}$$
 
-### 指数族分布的最大似然
+### 4.4 指数族分布的最大似然
 
 在介绍指数族分布的最大似然之前，我们先求一下指数族分布的真实 $\boldsymbol{\eta}$
 
@@ -620,7 +620,7 @@ p(\mathbb{X}\vert \boldsymbol{\eta}) &=& \{\prod_{n=1}^Nh(\mathbb{x}_n)\}g(\bold
 \end{equation}$$
 从而当 $N\to\infty$时，$\boldsymbol{\eta}_{ML}$ 等于真实的  $\boldsymbol{\eta}$ 。
 
-### 共轭先验
+### 4.5 共轭先验
 
 由似然函数的形式我们得到指数族的共轭先验
 
@@ -638,11 +638,11 @@ p(\boldsymbol{\eta}\vert \mathbb{X},\mathbb{\chi},\nu) &\propto& g(\boldsymbol{\
 \end{array}
 \end{equation}$$
 
-### 无信息(noninformative)先验
+### 4.6 无信息(noninformative)先验
 
 由于 $p(y\vert x)\propto p(x\vert y)p(y)$ ，如果先验在某些点上概率为0，就算我们之后观测到这些点，但是后验的概率也为0。而通常情况下，我们并不知道数据的概率分布函数，因此为解决上述问题，引入了noninformative prior。(也没太理解PRML这节的组织形式，先放着之后再看)
 
-## 非参数(nonparametric)法
+## 5. 非参数(nonparametric)法
 
 之前的概率分布都是一些具有特定形式的函数，并且能有少数的参数来控制这个函数的形态，但是采用这种方法会很大的局限性，因为我们选取的概率分布函数有可能不能捕捉数据的潜在概率分布。比如说高斯分布中，数据的潜在概率分布可能具有多个峰值，但是高斯分布是个单峰函数，因此在预测新的数据的时候，预测性能会很差，这种问题可以用混合高斯分布等扩展方法来解决。我们下面介绍另一个方法：非参数法。
 
@@ -668,7 +668,7 @@ var[K/N] &=& P(1-P)/N &(var[K]=NP(1-P)) \\
 
 当 $\mathcal{R}$ 足够小，那么在这个区域上 $p(\mathbb{x})$ 近似为一个常数，那么 $P\simeq p(\mathbb{x})V$。从而有 $p(\mathbb{x})=\frac{K}{NV}$ (两个假设，在实际应用中会不会导致结果相差太大?)。这个估计公式主要由 $K,V$ 两个值决定
 
-### 核密度估计(kernel density estimation)
+### 5.1 核密度估计(kernel density estimation)
 
 固定 $V$，从数据中决定 $K$。为了简化，我们使 $\mathcal{R}$ 是待估计值 $\mathbb{x}$ 上的边长为h超立方体(hypercube)在。当 $\mathbb{x}_n$ 与 $\mathbb{x}$ 满足一定条件时，$\mathbb{x}_n$ 就落在该超立方体里。我们介绍Parzen window
 
@@ -701,7 +701,7 @@ p(\mathbb{x}) &=& \frac{1}{N\sqrt{2\pi h^2}}\sum_{n=1}^N \exp(-\frac{\vert \vert
 
 我们可以看到从现在的超参数就变成了 $h$ 。
 
-### 最邻近法(Nearest-neighbour methods)
+### 5.2 最邻近法(Nearest-neighbour methods)
 
 核方法的一个局限性是，它对于大部分空间上具有相同的密度，但是有些数据集可能在某些区域密度较为集中，而另一些区域密度相对较小，那么核方法中的 $h$ 就难以选择。此时我们考虑固定 $K$，而使用数据去找到合适的 $V$.
 

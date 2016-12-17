@@ -3,7 +3,7 @@
 ## Machine Learning
 [PRML读书笔记(一)](posts/ML/chapter1_prml.md)
 
-[PRML读书笔记(二)](posts/ML/chapter1_prml.md)
+[PRML读书笔记(二)](posts/ML/chapter2_prml.md)
 
 [最小二乘法](posts/ML/最小二乘法.md)
 
