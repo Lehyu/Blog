@@ -1,13 +1,14 @@
- 前面几篇文章大致讲了卷积神经网络的基本构成，其中最难的就是卷积层的方向推导过程，但是这应该不是问题，因为现在很多架构都已经实现好了，只需要我们去配置模型就可以，当然，如果能够自己理解然后推导出来更加好。
+前面几篇文章大致讲了卷积神经网络的基本构成，其中最难的就是卷积层的方向推导过程，但是这应该不是问题，因为现在很多架构都已经实现好了，只需要我们去配置模型就可以，当然，如果能够自己理解然后推导出来更加好。
 
- 下面介绍几个卷积神经网络的模型：AlexNet,GoogLeNet,VGG
+下面介绍几个卷积神经网络的模型：AlexNet,GoogLeNet,VGG
 
- ## AlexNet
- AlexNet是一个具有5层卷积层和3层全连接层的神经网络模型。这个模型的提出推动了深度学习的发展进程。AlexNet的结构如图所示：
+### AlexNet
 
- ![AlexNet](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/DL/CNNs/AlexNet.png)
+AlexNet是一个具有5层卷积层和3层全连接层的神经网络模型。这个模型的提出推动了深度学习的发展进程。AlexNet的结构如图所示：
 
- 从上图我们可以知道，这个模型的训练分布在两块GPU上，只有在第三层卷积层和全连接层中才会有GPU之间的数据传递。
+![AlexNet](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/DL/CNNs/AlexNet.png)
+
+从上图我们可以知道，这个模型的训练分布在两块GPU上，只有在第三层卷积层和全连接层中才会有GPU之间的数据传递。
 
 ### 第一层卷积层
 
@@ -20,23 +21,31 @@
 同理在经过非线性变换。
 
 ### 第三层卷积层
+
 第二层经Max-pooling后输出为 $13 \times 13 \times 256$。需要注意的是在第三层卷积层中，一共有 *384* 个 $3 \times 3 \times 256$ 的卷积核，这说明在第三层卷积层两块GPU之间有数据交互。而跟第二层有点类型，在输入的feature map外添加一个大小为 *1* 的pad，因此输出为 $13 \times 13 \times 384$。
 
 同理在经过非线性变换。
 
 ### 第四层卷积层
+
 需要注意的是在第三层与第四层卷积中间没用经过池化操作。其他的差不多。
 
 具体细节可以参考caffe中的AlexNet的[配置文件](https://github.com/BVLC/caffe/blob/master/models/bvlc_alexnet/deploy.prototxt)
 
 ### Local Response Normalization
+
 LRN操作在ReLu后执行，有利于泛化。假设 $a_{x,y}^{i}$ 是一个神经元在 $(x,y)$ 经kernel i计算而得的结果再通过ReLU变换而得，那么执行LRN操作后为 $b_{x,y}^{i}$
 
-$$b_{x,y}^{i} = a_{x,y}^{i}/(k+\alpha \sum_{j=max(0, i-n/2)}^{min(N-1,i+n/2)} (a_{x,y}^{j})^{2})^{\beta}$$
+$$\begin{equation}
+\begin{array}{rcl}
+b_{x,y}^{i} = a_{x,y}^{i}/(k+\alpha \sum_{j=max(0, i-n/2)}^{min(N-1,i+n/2)} (a_{x,y}^{j})^{2})^{\beta}
+\end{array}
+\end{equation}$$
 
 N是kernel的总数，n是参与一般化的相邻的kernel的数量，$k,n,\alpha,\beta$ 都是hyper-parameters，AlexNet中设置 $k=2,n=5,\alpha=10^{-4},\beta=0.75$。
 
 ### 其他一些设置
+
 采用Dropout，随机梯度下降训练，GPU加速训练...
 
 ## GoogLeNet
@@ -58,7 +67,9 @@ GoogLetNet是相对于[NIN](http://blog.csdn.net/lehyu/article/details/52315206)
 我们可以看到在 $3\times3$ 和 $5\times5$ 卷积之前添加了 $1\times1$ 的卷积，这样不仅可以降低参数的数量，而且 $1\times1$ 卷积之后做ReLu非线性变换。
 
 ### Details
+
 如果想了解GoogLeNet的caffe配置，可以看[这里](https://github.com/BVLC/caffe/blob/master/models/bvlc_googlenet/train_val.prototxt)，下面稍微介绍一下其他细节
+
 1. GoogLeNet的参数设置如下表：
 
 ![parameters](https://raw.githubusercontent.com/Lehyu/lehyu.github.com/master/image/DL/CNNs/parameters.png)

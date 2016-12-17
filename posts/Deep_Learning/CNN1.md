@@ -1,9 +1,3 @@
----
-layout:  post
-title:  "Convolutional Neural Networks"
-date:	2016-08-11 16:30:43 +0800
-categories: [Deep Learning]
----
 ## Convolutions
 
 ### Why We Use Convolutions

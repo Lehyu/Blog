@@ -1,11 +1,5 @@
----
-layout:  post
-title:  "Deep Feedforward Networks"
-date:	2016-05-27 16:30:43 +0800
-categories: [Deep Learning]
----
-
 ## Hidden Units
+
 Issue: how to choose the type of hidden unit to use in the hidden layers of the model.
 
 **Rectified linear units** are an excellent default choice of hidden unit. But many other types of hidden units are available. It's usually impossible to predict in advance which will work best.
@@ -13,6 +7,7 @@ Issue: how to choose the type of hidden unit to use in the hidden layers of the 
 ### Rectified Linear Units and Their Generalizations
 
 #### Rectified Linear Units
+
 **ReLu** use the activation function g(z)=max{0,z}.
 
 ////
@@ -31,13 +26,14 @@ Three generalizations: h=g(z,a)=max(0,z)+a*min(0,z)
 Maxout Units generalize ReLu further. Maxout Units divide **z** into groups of k values. Each maxout unit then outputs then maximum element of one of these groups:
 
 ### Logistic Sigmoid and Hyperbolic Tangent
+
 Their use as hidden units in **feedforward network** is now discouraged. But their use as output units is compatible with the use of gradient-based learning when an appropriate cost function can undo the saturation of the sigmoid in the output layer.
 
 The reason why sigmoidal activation function is discouraged using as hidden units in feedforward network is that sigmoidal activation function saturate when input is very positive or very negative(their gradient are 0). But sigmoidal units more appealing in **RNN** than linear activation functions.
 
 ### Other Hidden Units
-1. linear hidden uni
 
+1. linear hidden uni
 2. Softmax units(used as output but may sometimes used as hidden units)
 
 ## Architecture Design
