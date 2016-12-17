@@ -1,6 +1,6 @@
 # Blog
 
-[Machine Learning](posts/ML/README.md)
+[Machine Learning](posts/ML/index.md)
 
 
-[Math](posts/Math/README.md)
+[Math](posts/Math/index.md)
