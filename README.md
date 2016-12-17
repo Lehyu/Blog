@@ -1,5 +1,3 @@
-# Blog
-
 ## Machine Learning
 [PRML读书笔记\(一\)](posts/ML/PRML读书笔记\(一\).md)
 
