@@ -1,10 +1,3 @@
----
-layout:  post
-title:  "The Dynamic Typing Interlude"
-date:	2016-03-24 20:54:43 +0800
-categories: [Python]
----
-
 ## The Case of the Missing Declaration Statements
 As we can see, we have been using variables without declaring their types. This feature is different from other languages which we have to declare variables' type before using them. In Python, types are determined automatically at runtime, not in response to declarations in our code.
 

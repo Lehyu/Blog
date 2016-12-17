@@ -1,10 +1,3 @@
----
-layout:  post
-title:  " Create a Desktop for our software"
-date:	2016-03-27 14:05:00 +0800
-categories: [Ubuntu, Settings]
----
-
 There is an example for pycharm
 
 {%highlight shell%}

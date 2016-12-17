@@ -1,10 +1,3 @@
----
-layout:  post
-title:  "ImportError: No module named MySQLdb"
-date:	2016-03-27 14:05:00 +0800
-categories: [Python, Mysql, Error, Settings]
----
-
 ## Installing MySQL for ubuntu
 
 {%highlight shell%}

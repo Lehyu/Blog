@@ -1,9 +1,3 @@
----
-layout:  post
-title:  "Github Pages"
-date:	2016-03-26 20:54:43 +0800
-categories: [GitHub Pages, Help, Settings]
----
 # Setting Github pages
 
 ## Preparing to install Github pages Gem

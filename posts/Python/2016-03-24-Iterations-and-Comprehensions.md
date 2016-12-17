@@ -1,10 +1,3 @@
----
-layout:  post
-title:  "Iterations and Comprehensions"
-date:	2016-03-24 20:54:43 +0800
-categories: [Python]
----
-
 Both of these tools are related to both the *for* loop and function.
 
 ## Iterators
@@ -52,7 +45,7 @@ Dictionary
 D = {'a':1, 'b':2, 'c':3}
 for key in D.keys():
     print key, D[key]
-    
+
 
 I = iter(D)
 while True:

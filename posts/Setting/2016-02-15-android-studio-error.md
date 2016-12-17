@@ -1,10 +1,3 @@
----
-layout:  post
-title:  "Android Studio Failed to start emulator"
-date:	2015-09-16 20:54:43 +0800
-categories: [Android Studio, Error]
----
-
 I'm running a 64-bit system, but the emulator is 32-bit, you can solve this problem
 
 ## Solution 1

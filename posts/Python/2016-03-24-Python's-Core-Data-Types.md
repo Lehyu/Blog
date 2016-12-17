@@ -1,10 +1,3 @@
----
-layout:  post
-title:  "Python's Core Data Type"
-date:	2016-03-24 20:54:43 +0800
-categories: [Python]
----
-
 |Object type|Example literals/creation
 |-----|:----:|
 |Numbers  | 1234, 3.1415, 9999L, Decimal, 3+4j|
@@ -37,6 +30,7 @@ print S*8      #SpamSpamSpamSpamSpamSpamSpamSpam
 Note: S[left:right] will print S[left]~S[right-1]
 
 ### Immutability
+
 We cannot change a string by assigning to one of its position, but we can build a new one and assign it to the same name.Becase Python cleans up old objects as we go, this isn't as inefficient as it may sound.
 
 {%highlight Python%}

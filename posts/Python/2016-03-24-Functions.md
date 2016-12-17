@@ -1,9 +1,3 @@
----
-layout:  post
-title:  "Functions"
-date:	2016-03-24 20:54:43 +0800
-categories: [Python]
----
 ## An Example
 
 {%highlight Python%}
