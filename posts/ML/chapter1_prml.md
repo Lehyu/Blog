@@ -2,7 +2,7 @@
 
 整个机器学习大致可以分为4个步骤：数据分析，数据预处理，模型选择以及训练和优化。比较宏观的流程如下图所示。
 
-![ML flow](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/ML-flow.png?raw=true)
+![ML flow](image/PRML/chap1/ML-flow.png)
 
 ## 栗子：Polynomial Curve Fitting
 
@@ -30,7 +30,14 @@ $y(x,\mathbb{w})=w_0+w_1x+w_2x^2+\dots+w_Mx^M=\sum_{j=0}^{M}w_jx^j \tag{1}$
 2. 加速计算，例如归一化处理，能够输入向量转换到均值为0的特征空间，从而减小划分曲面的偏置搜索
 3. 其他
 
-在curve fitting中，我们需要将输入向量转换成 $X=\left[\begin{matrix}1&x_0^1&\dots&x_0^M \\ 1&x_1^1&\dots&x_1^M \\  \vdots & \vdots & \ddots & \vdots \\ 1&x_N^1&\dots&x_N^M \end{matrix}\right]$
+在curve fitting中，我们需要将输入向量转换成
+
+$$\begin{equation}
+\begin{array}{rcl}
+X=\left[\begin{matrix}1&x_0^1&\dots&x_0^M \\ 1&x_1^1&\dots&x_1^M \\  \vdots & \vdots & \ddots & \vdots \\ 1&x_N^1&\dots&x_N^M \end{matrix}\right]
+\end{array}
+\end{equation}$$
+
 
 如果是在训练的时候计算 $x_i^j$ 的话，会消耗大量的计算资源。
 
