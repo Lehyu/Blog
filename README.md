@@ -6,3 +6,5 @@
 [Math](posts/Math/index.md)
 
 [Deep Learning](posts/Deep_Learning/index.md)
+
+[Notes of Paper](posts\paper\index.md)
