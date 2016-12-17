@@ -1,7 +1,7 @@
 ## Solution
 1. Download **create_ap**
 
-{%highlight%}
+{%highlight C++%}
 git clone https://github.com/oblique/create_ap
 or
 yaourt -S create_ap
@@ -9,7 +9,7 @@ yaourt -S create_ap
 
 2. Install
 
-{%highlight%}
+{%highlight C++%}
 cd create_ap
 make install
 {%endhighlight%}
@@ -17,7 +17,7 @@ make install
 3. Create AP
 choose one
 
-{%highlight%}
+{%highlight C++%}
 create_ap wlan0 eth0 MyAccessPoint  #no passpharse
 create_ap wlan0 eth0 MyAccessPoint MyPassPhrase #WPA+WPA2 passphrase
 create_ap -n wlan0 MyAccessPoint MyPassPhrase  #AP without Internet sharing

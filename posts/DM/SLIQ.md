@@ -6,7 +6,7 @@ Most decision-tree classifiers perform classification in two phases: **Tree Buil
 
 ## Tree Building
 
-{%highlight%}
+{%highlight C++%}
 MakeTree(Training Data T)
    Partition(T);
 
