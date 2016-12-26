@@ -2,7 +2,7 @@
 
 整个机器学习大致可以分为4个步骤：数据分析，数据预处理，模型选择以及训练和优化。比较宏观的流程如下图所示。
 
-![ML flow](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/ML-flow.png?raw=true)
+![ML flow](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/ML-flow.png?raw=true)
 
 ## 2. 栗子：Polynomial Curve Fitting
 
@@ -10,7 +10,7 @@
 
 $\mathbb{x}=(x_1,x_2,\dots,x_N)^T,x_i\in(0,1)$，相对应的函数值 $\mathbb{t}=(t_1,t_2,\dots,t_N)^T$。我们要预测，一个新的数据 $\tilde{x}$ 相对应的函数值。
 
-![training data set](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/curve-fitting-points.png?raw=true)
+![training data set](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/curve-fitting-points.png?raw=true)
 
 我们得到的只有 $\mathbb{x},\mathbb{t}$ ，并不知道 $f(x)$ 的形式。
 
@@ -53,7 +53,7 @@ L(y,t) &=& \{y(x,\mathbb{w})-t\}^2\tag{2}
 \end{array}
 \end{equation}$$
 
-![error function](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/polynomial_curve_fitting_error_function.png?raw=true)
+![error function](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/polynomial_curve_fitting_error_function.png?raw=true)
 
 那么对于整体训练数据的度量就可以由(2)得到，
 
@@ -93,26 +93,26 @@ $$\begin{equation}
 
 #### 2.5.1 E(W)下的结果
 
-![comparison_M](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/comparison_M.png?raw=true)
+![comparison_M](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/comparison_M.png?raw=true)
 
-![generalization](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/generalization.png?raw=true)
+![generalization](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/generalization.png?raw=true)
 
 我们可以从上图看到，当 $M=0,1,3,9$ 的时候，随着M的增加，曲线能很好更好的拟合训练数据，在 $M=9$ 的时候 $E(W)=0$，但是很明显如果来了一个新的测试数据，$M=3$ 的效果是最好的，这是因为 $M=0,1$ 时，曲线处于欠拟合(underfitting)的状态，而 $M=9$ 时则过拟合(overfitting)。
 
 直觉上，我们认为 $M=9$ 的模型会比 $M<9$ 的模型要好，至少 $M=9$ 的模型的性能不会低于 $M<9$ 的模型，因为 $M=9$ 的模型可以产生 $M<9$ 的特殊子集(如 $M=3$时 令 $w_i=0, i = 4,\dots,9$)。下表是相应的权值 $w^*$。*
-![weights](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/weights.png?raw=true)
+![weights](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/weights.png?raw=true)
 
 我们可以看到，随着M的增加，其相应的权值也会变得非常大。但是由于训练数据存在噪声，从而使整个曲线的震荡幅度变大。数据量越大，噪声的影响就越小。
 
-![comparison_N](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/comparison_N_M.png?raw=true)
+![comparison_N](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/comparison_N_M.png?raw=true)
 
 #### 2.5.2 $\tilde{E}(W)$ 下的结果
 
-![comparison_lambda](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/comparison_lambda.png?raw=true)
+![comparison_lambda](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/comparison_lambda.png?raw=true)
 
-![generalization_lambda](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/generalization_lambda.png?raw=true)
+![generalization_lambda](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/generalization_lambda.png?raw=true)
 
-![weights_lambda](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/weights_lambda.png?raw=true)
+![weights_lambda](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/weights_lambda.png?raw=true)
 
 由上述三图可以知道，在 $\tilde{E}(W)$ 的情况下，模型能够达到相当好的效果，这是因为正则项能够使权值收缩。从而能够降低噪声造成的震荡幅度。
 
@@ -120,7 +120,7 @@ $$\begin{equation}
 
 ### 3.1 损失函数的概率意义
 
-![probability_viewpoint](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/probability_viewpoint.png?raw=true)
+![probability_viewpoint](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/probability_viewpoint.png?raw=true)
 
 #### 3.1.1 最大似然
 
@@ -206,4 +206,4 @@ E(L) &=& \int{\{y(\mathbb{x})-E[t\vert \mathbb{x}]\}^2p(\mathbb{x})}\mathrm{d}\m
 
 第二项与 $y(x)$ 无关，是数据的噪声的固定误差，即不管怎么优化， $E(L) \ge \int{\{t-E[t\vert \mathbb{x}]\}^2p(x,t)}\mathrm{d}x\mathrm{d}t$ 。[第三章]()会详细介绍第一项的意义。
 
-![bias vs variance](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap1/bias_variance.png?raw=true)
+![bias vs variance](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/bias_variance.png?raw=true)

@@ -6,7 +6,7 @@
 
 AlexNet是一个具有5层卷积层和3层全连接层的神经网络模型。这个模型的提出推动了深度学习的发展进程。AlexNet的结构如图所示：
 
-![AlexNet](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/DL/CNNs/AlexNet.png)
+![AlexNet](https://raw.githubusercontent.com/lehyu/lehyu.cn/master/image/DL/CNNs/AlexNet.png)
 
 从上图我们可以知道，这个模型的训练分布在两块GPU上，只有在第三层卷积层和全连接层中才会有GPU之间的数据传递。
 
@@ -52,17 +52,17 @@ N是kernel的总数，n是参与一般化的相邻的kernel的数量，$k,n,\alp
 
 GoogLetNet是相对于[NIN](http://blog.csdn.net/lehyu/article/details/52315206)更稀疏的结构，而且在[ILSVRC2014](http://image-net.org/challenges/LSVRC/2014/)的目标分类与检测上夺冠。GoogLeNet的结构如图所示：
 
-![GoogLeNet](https://raw.githubusercontent.com/Lehyu/lehyu.github.com/master/image/DL/CNNs/googlenet.png)
+![GoogLeNet](https://raw.githubusercontent.com/Lehyu/lehyu.cn/master/image/DL/CNNs/googlenet.png)
 
 ### Inception
 
 与NIN由mlpconv堆积而成类似，GoogLeNet主要有Inception堆积而成。初始版本由下图所示：
 
-![Inception_naive](https://raw.githubusercontent.com/Lehyu/lehyu.github.com/master/image/DL/CNNs/Inception_navie.png)
+![Inception_naive](https://raw.githubusercontent.com/Lehyu/lehyu.cn/master/image/DL/CNNs/Inception_navie.png)
 
 我们可以知道Inception用卷积层代替了原始mlpconv层中的全连接层，这样就可以使结构更稀疏，但是在这种情况下，为了能够并行计算，所以将 *Previous layer* 的所有feature map 全连接到一块进行卷积，因此会导致卷积核过大(假设pervious layer为 $192 \times 28 \times 28$ , 128是feature map的个数，那么卷积核为 $192 \times k \times k$)，那么会在高层Inception中计算量会十分大，因此提出了第二个version
 
-![Inception_v2](https://raw.githubusercontent.com/Lehyu/lehyu.github.com/master/image/DL/CNNs/Inception_v2.png)
+![Inception_v2](https://raw.githubusercontent.com/Lehyu/lehyu.cn/master/image/DL/CNNs/Inception_v2.png)
 
 我们可以看到在 $3\times3$ 和 $5\times5$ 卷积之前添加了 $1\times1$ 的卷积，这样不仅可以降低参数的数量，而且 $1\times1$ 卷积之后做ReLu非线性变换。
 
@@ -72,7 +72,7 @@ GoogLetNet是相对于[NIN](http://blog.csdn.net/lehyu/article/details/52315206)
 
 1. GoogLeNet的参数设置如下表：
 
-![parameters](https://raw.githubusercontent.com/Lehyu/lehyu.github.com/master/image/DL/CNNs/parameters.png)
+![parameters](https://raw.githubusercontent.com/Lehyu/lehyu.cn/master/image/DL/CNNs/parameters.png)
 
 2. 由于GoogLeNet是一个22层(不计pooling)的深度结构，因此有可能在BP的时候会出现梯度弥散的情况，所以为了解决这个问题，GoogLeNet增加了两个辅助分类器softmax0、softmax1，在训练的时候，他们的损失误差乘以一个权值(GoogLeNet里设置为0.3)加到整体损失中。在应用的时候，这两个辅助分类器会被丢掉。GoogLeNet的实验表明，只需要一个辅助分类器就可以达到同样的效果(提升0.5%)。
 

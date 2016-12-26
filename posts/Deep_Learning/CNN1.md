@@ -8,7 +8,7 @@ Learning features with large features that span the entire image(fully connected
 
 Given some large $r \times c$ images, learning $k$ $a \times b$ features map.Then we will have a $k \times (r-a+1) \times (c-b+1)$ array of convolved features.
 
-![Convolutions](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/DL/CNNs/Convolution_schematic.gif)
+![Convolutions](https://raw.githubusercontent.com/lehyu/lehyu.cn/master/image/DL/CNNs/Convolution_schematic.gif)
 
 ## Pooling
 
@@ -26,4 +26,4 @@ Images have the stationarity property which implies that features that are usefu
 
 There are several kinds of ways to do this thing. In fact, we can treat it as a non-overlap convolution.
 
-![Pooling](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/DL/CNNs/Pooling_schematic.gif)
+![Pooling](https://raw.githubusercontent.com/lehyu/lehyu.cn/master/image/DL/CNNs/Pooling_schematic.gif)

@@ -2,7 +2,7 @@
 
 首先卷积神经网络(CNNs)是由一层或多层卷积层然后再连接一个或多层全连接层组成。通常情况下，卷积层后会跟着一个池化层/下采样层。当然也有很多人将卷积操作与池化操作组合起来看做是一个卷积层，如下图。
 
-![layer_terminology](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/DL/CNNs/layer_terminology.png)
+![layer_terminology](https://raw.githubusercontent.com/lehyu/lehyu.cn/master/image/DL/CNNs/layer_terminology.png)
 
 CNNs能够很好的处理二维数据(比如说图片)，我们[前面](http://blog.csdn.net/lehyu/article/details/52266090)已经说过了，使用卷积层而不是全连接层能够使训练更加容易而且整个网络的参数也会减少。
 
@@ -18,7 +18,7 @@ z_{ij}^{l} = \sum_{a = 0}^{m-1} \sum_{b=0}^{n-1} w_{ab} y_{(i+a)(j+b)}^{l-1} + b
 
 更形象的操作如下图
 
-![Convolutions](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/DL/CNNs/Convolution_schematic.gif)
+![Convolutions](https://raw.githubusercontent.com/lehyu/lehyu.cn/master/image/DL/CNNs/Convolution_schematic.gif)
 
 再经非线性变换后得到：$y_{ij}^{l} = f_{l-1}(z_{ij}^{l})$ 。这里的非线性变换就是detector stage。
 

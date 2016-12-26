@@ -81,7 +81,7 @@ var[\mu] &=& \frac{ab}{(a+b)^2(a+b+1)}
 
 其中 $a,b$ 是超参数，当 $a,b$ 取不同值时，分布图如下所示：
 
-![beta plot](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/beta_plot.png?raw=true)
+![beta plot](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/beta_plot.png?raw=true)
 
 ### 1.4 贝叶斯分析
 
@@ -204,7 +204,7 @@ p(\mathbb{\mu}\vert \mathcal{D},\mathbb{\alpha}) &=& \frac{\Gamma(\alpha_0+N)}{\
 
 对于单一变量，使其熵最大化的分布是高斯分布(PRML p54)，这个性质同样适用于多元(multivariate)高斯分布。[中心极限定理](http://baike.baidu.com/link?url=eu7GA-AAQONj-xzc01eMKpiM6zuLpBQPrSFfQXKKG0fhJ0lAJNB_7zkMYINL1Gw_3mEmh2d9XZ5uyAtyo37r-WlX8ddEsMI5sXKnOkHjbSIZdXiIsk87XohFBWLWbzhWvulkaaF2mSPLYDcyt3N7u_)告诉我们独立同分布的随机变量序列的和近似高斯分布。
 
-![central limit theorem](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/central_limit_theorem.png?raw=true)
+![central limit theorem](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/central_limit_theorem.png?raw=true)
 
 下面考虑一下高斯分布的几何形态
 
@@ -229,7 +229,7 @@ $$\begin{equation}
 
 其中: $\mathbb{U}$ 第i行为 $\mathbb{u}_i^T$，$\mathbb{U}^T\mathbb{U}=\mathbb{I}$
 
-![gaussian_geo_form](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/gaussian_geo_form.png?raw=true)
+![gaussian_geo_form](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/gaussian_geo_form.png?raw=true)
 
 对于当前的高斯分布，协方差矩阵的特征值 $\lambda_i$ 必须严格正(全部大于0)，否则不能够合适地规范化，之后我们可能会遇到有些特征值为0的高斯分布，这些分布能够限制在更低的维度空间上。
 
@@ -275,7 +275,7 @@ $\mathbb{\mu},\Sigma$共同控制了高斯分布的形态，在D维空间中，�
 
 一个方法是**限制**协方差矩阵的形态：1. $\Sigma=diag(\sigma_i^2)$，此时只有 $2D$ 个参数；2. $\Sigma=\sigma^2\mathbb{I}$，此时有 $D+1$ 个参数。
 
-![confined_gaussian](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/confined_gaussian.png?raw=true)
+![confined_gaussian](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/confined_gaussian.png?raw=true)
 
 由上图知道，虽然限制协方差矩阵的形态能够使计算协方差矩阵的逆更加快速，但是这也限制了高斯函数的分布从而影响高斯分布拟合数据的能力。
 
@@ -454,11 +454,11 @@ p(x\vert \mu,a,b)&=&\int_0^\infty{\mathcal{N}(x\vert \mu,\tau^{-1})Gam(\tau\vert
 
 t-分布是由无穷个具有相同 $\mu$ 不同 $\lambda$ 的高斯分布累加而成的，t-分布比高斯分布具有更长的尾巴，从而使其对离群点更加鲁棒。
 
-![gaussian_vs_t-dist](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/gaussian_vs_t-dist.png?raw=true)
+![gaussian_vs_t-dist](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/gaussian_vs_t-dist.png?raw=true)
 
 当 $\nu\to\infty$ 时，t-分布就变成了 $\mathcal{N}(x\vert \mu,\lambda^{-1})$
 
-![t-dist_plot](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/t-dist_plot.png?raw=true)
+![t-dist_plot](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/t-dist_plot.png?raw=true)
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -485,7 +485,7 @@ I_0(m) &=& \frac{1}{2\pi}\int_0^{2\pi}{\exp(m\cos\theta) }d\theta
 
 我们知道高斯分布是一个单峰分布，对于实际应用如果用单一高斯分布会存在很大的限制
 
-![pld_faithful_plot](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/odl_faithful_plot.png?raw=true)
+![pld_faithful_plot](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/odl_faithful_plot.png?raw=true)
 
 上图中的左子图明显不能捕捉到数据的真实分布，我们希望能得到右子图的模型。因此提出混合高斯模型
 
@@ -498,7 +498,7 @@ p(\mathbb{x}) &=& \sum_{k=1}^K\pi_k\mathcal{N}(\mathbb{x}\vert \mathbb{\mu}_k,\S
 
 下图是3个高斯分布的混合模型
 
-![mixtures_gaussian_1](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/mixtures_gaussian_1.png?raw=true)
+![mixtures_gaussian_1](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/mixtures_gaussian_1.png?raw=true)
 
 假如我们将混合系数 $\pi_k$ 泛化
 
@@ -697,7 +697,7 @@ p(\mathbb{x}) &=& \frac{1}{N\sqrt{2\pi h^2}}\sum_{n=1}^N \exp(-\frac{\vert \vert
 \end{array}
 \end{equation}$$
 
-![gaussian_kernel](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/gaussian_kernel.png?raw=true)
+![gaussian_kernel](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/gaussian_kernel.png?raw=true)
 
 我们可以看到从现在的超参数就变成了 $h$ 。
 
@@ -705,7 +705,7 @@ p(\mathbb{x}) &=& \frac{1}{N\sqrt{2\pi h^2}}\sum_{n=1}^N \exp(-\frac{\vert \vert
 
 核方法的一个局限性是，它对于大部分空间上具有相同的密度，但是有些数据集可能在某些区域密度较为集中，而另一些区域密度相对较小，那么核方法中的 $h$ 就难以选择。此时我们考虑固定 $K$，而使用数据去找到合适的 $V$.
 
-![nearest_neighbour](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/nearest_neighbour.png?raw=true)
+![nearest_neighbour](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/nearest_neighbour.png?raw=true)
 
 假设一个数据集一共有N个实例，其中有 $N_k$ 个属于类 $C_k$，$\sum_{k}N_k=N$。如果我们想分类一个新的实例 $\mathbb{x}$ ，我们以 $\mathbb{x}$ 为中心选取 $K$ 个实例。那么在这里面有 $K_k$ 个实例属于类 $C_k$。
 
@@ -719,6 +719,6 @@ p(C_k) &=& \frac{K_k}{N_k} \\
 \end{equation}$$
 K-近邻算法的概率解释，通俗解释就是选取与测试实例最近的 $K$ 个实例，如果这 $K$ 个实例大多数都属于某个类 $C_k$，就讲测试实例分类到 $C_k$。
 
-![KNN_example](https://github.com/Lehyu/lehyu.github.com/blob/master/image/PRML/chap2/KNN_example.png?raw=true)
+![KNN_example](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/KNN_example.png?raw=true)
 
 从上图的例子我们知道，$K$ 值选取会决定分类算法的性能。K-近邻算法需要保存整个数据集，当数据量很大时，计算十分昂贵，所以为了解决这个问题，可以构造[树形搜索结构](todo)来加速计算。

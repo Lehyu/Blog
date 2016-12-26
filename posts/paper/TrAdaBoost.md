@@ -29,7 +29,7 @@ For diff-distribution training instances which are wrongly predicted due to dist
 
 if a diff-distribution training instance is mistakenly predicted, the instance may likely conflict with the same-distribution training data. Then, we decrease its training weight to reduce its effect through multiplying its weight by $\beta^{|h_t(x_i)−c(x_i)|}$. Note that $\beta^{|h_t(x_i)−c(x_i)|} \in (0, 1]$. Thus, in the next round, the misclassified diff-distribution training instances, which are dissimilar to the same-distribution ones, will affect the learning process less than the current round. After several iterations, the diff-distribution training instances that fit the same-distribution ones better will have larger training weights, while the diff-distribution training instances that are dissimilar to the samedistribution ones will have lower weights.
 
-![TrAdaBoost_algorithm](https://raw.githubusercontent.com/lehyu/lehyu.github.com/master/image/TL/TrAdaBoost_algorithm.png)
+![TrAdaBoost_algorithm](https://raw.githubusercontent.com/lehyu/lehyu.cn/master/image/TL/TrAdaBoost_algorithm.png)
 
 ## Theoretical Analysis
 

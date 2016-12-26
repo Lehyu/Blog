@@ -8,7 +8,7 @@ Network In Network(NIN)模型要由于AlexNet，NIN只用了AlexNet十分之一�
 
 既然传统的GLM存在这样的缺陷，那么是否可以用一个非线性模型来代替GLM从而达到使用非线性数据/特征的效果？NIN提出了一个新的模型mlpconv，该模型使用MLP(multilayer perceptron)代替了传统CNN中的GLM，选择MLP有两个原因：一是MLP本身也是一个深度模型，可以符合[特征复用](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6472238)的思路，并具有非线性的性质；二是MLP也可以用BP算法进行训练。所以对于mlpconv组成的NIN模型，一个是每层可以使用较少的kernel/filter(MLP)，另一个是深度可以比AlexNet更浅。
 
-![L-CNN_VS_Mlpconv](https://raw.githubusercontent.com/Lehyu/lehyu.github.com/master/image/DL/NIN/mlpconv.png)
+![L-CNN_VS_Mlpconv](https://raw.githubusercontent.com/Lehyu/lehyu.cn/master/image/DL/NIN/mlpconv.png)
 
 mlpconv由多层跟着非线性激活函数(ReLu)的全连接层组成，那么对于一个具有n层全连接层的MLP kernel/filter 而言：
 
@@ -26,4 +26,4 @@ f_{i,j,k_{n}}^{n} &=& \max({w_{k_{n}}^{n}}^{T} f_{i,j}^{n-1} + b_{k_{n}}, 0)
 
 ## NIN结构
 
-![NIN](https://raw.githubusercontent.com/Lehyu/lehyu.github.com/master/image/DL/NIN/NIN.png)
+![NIN](https://raw.githubusercontent.com/Lehyu/lehyu.cn/master/image/DL/NIN/NIN.png)
