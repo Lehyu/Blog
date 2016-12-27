@@ -381,7 +381,7 @@ $$\begin{equation}
 \end{array}
 \end{equation}$$
 
-此时模型的复杂性由M控制，当M增加时，第一项增加，当模型越复杂，它能更好的拟合数据，从而 $p(\mathcal{D}\vert \mathbb{w}_{MAP})$ 增加，故第一项增加；第二项减小，这是因为 $\ln\left(\frac{\Delta w_{posterior}}{\Delta w_{prior}}\right)$ 为负，故M增加，第二项减小，从而最优解是这两项的平衡点(trade-off)。
+此时模型的复杂性由M控制，当M增加时，第一项增加，当模型越复杂，它能更好的拟合数据，从而 $p(\mathcal{D}\vert \mathbb{w_{MAP}})$ 增加，故第一项增加；第二项减小，这是因为 $\ln\left(\frac{\Delta w_{posterior}}{\Delta w_{prior}}\right)$ 为负，故M增加，第二项减小，从而最优解是这两项的平衡点(trade-off)。
 
 ![models comparison which have different complexity](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/three_models_comparison.png?raw=true)
 
@@ -484,9 +484,9 @@ $$\begin{equation}
 
 ![parameters measurement](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/interpretation_alpha.png?raw=true)
 
-当 $\alpha\to0$ 时，此时的模是似然函数的解，而 $A=\beta \boldsymbol{\Phi}^T\boldsymbol{\Phi}$，也就是说 $\lambda_i$ 是一个参数被数据决定的程度( $\lambda_i$ measures how strongly one parameter is determined by the data)。那么 $\alpha$ 就是所有参数被先验决定的程度。 $\mathbb{w}_{MAP_i} = \frac{\lambda_i}{\lambda_i+\alpha}\mathbb{w}_{ML_i}$，如果 $\lambda_i\ll\alpha$，那么 $w_i\to0$ ，即数据对这个参数不敏感，由上面分析可以知道 $\gamma_i=\frac{\lambda_i}{\lambda_i+\alpha}$ 能够估量有效参数的数量。
+当 $\alpha\to0$ 时，此时的模是似然函数的解，而 $A=\beta \boldsymbol{\Phi}^T\boldsymbol{\Phi}$，也就是说 $\lambda_i$ 是一个参数被数据决定的程度( $\lambda_i$ measures how strongly one parameter is determined by the data)。那么 $\alpha$ 就是所有参数被先验决定的程度。 $\mathbb{w_{MAP_i}} = \frac{\lambda_i}{\lambda_i+\alpha}\mathbb{w_{ML_i}}$，如果 $\lambda_i\ll\alpha$，那么 $w_i\to0$ ，即数据对这个参数不敏感，由上面分析可以知道 $\gamma_i=\frac{\lambda_i}{\lambda_i+\alpha}$ 能够估量有效参数的数量。
 
-现在我们考虑 $\beta$，在贝叶斯分析中 $\frac{1}{\beta_{MAP}} = \frac{1}{N-\gamma}\sum_{n=1}^N\{\mathbb{t}_n-\mathbb{m}_N^T\boldsymbol{\phi}(\mathbb{x}_n)\}^2$，而在最大似然估计中 $\frac{1}{\beta_{ML}} = \frac{1}{N}\sum_{n=1}^N\{\mathbb{t}_n-\mathbb{w}_{ML}^T\boldsymbol{\phi}(\mathbb{x}_n)\}^2$，因为在贝叶斯分析中的参数有效数量取决于 $\gamma$，因此要补偿最大似然估计从而使其无偏。
+现在我们考虑 $\beta$，在贝叶斯分析中 $\frac{1}{\beta_{MAP}} = \frac{1}{N-\gamma}\sum_{n=1}^N\{\mathbb{t_n}-\mathbb{m_N^T}\boldsymbol{\phi}(\mathbb{x_n})\}^2$，而在最大似然估计中 $\frac{1}{\beta_{ML}} = \frac{1}{N}\sum_{n=1}^N\{\mathbb{t_n}-\mathbb{w_{ML}^T}\boldsymbol{\phi}(\mathbb{x_n})\}^2$，因为在贝叶斯分析中的参数有效数量取决于 $\gamma$，因此要补偿最大似然估计从而使其无偏。
 
 当 $N\gg M$ 时，$r=M$，此时
 
