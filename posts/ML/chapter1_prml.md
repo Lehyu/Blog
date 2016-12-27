@@ -204,6 +204,6 @@ E(L) &=& \int{\{y(\mathbb{x})-E[t\vert \mathbb{x}]\}^2p(\mathbb{x})}\mathrm{d}\m
 
 ~~式(13)中的第一项可以表示为bias，第二项可以表示为variance，$E(L)=bias+variance$，在polynomial curve fitting中，损失函数只优化了bias项，而variance项则相当于固定误差(对于特定的M)。在其他例子中，我们可以看到，函数的优化相当于trade-off between bias and variance。~~
 
-第二项与 $y(x)$ 无关，是数据的噪声的固定误差，即不管怎么优化， $E(L) \ge \int{\{t-E[t\vert \mathbb{x}]\}^2p(x,t)}\mathrm{d}x\mathrm{d}t$ 。[第三章]()会详细介绍第一项的意义。
+第二项与 $y(x)$ 无关，是数据的噪声的固定误差，即不管怎么优化， $E(L) \ge \int{\{t-E[t\vert \mathbb{x}]\}^2p(x,t)}\mathrm{d}x\mathrm{d}t$ 。[第三章](chapter3_prml)会详细介绍第一项的意义。
 
 ![bias vs variance](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/bias_variance.png?raw=true)

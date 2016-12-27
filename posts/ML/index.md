@@ -2,6 +2,8 @@
 
 [PRML读书笔记(二)](chapter2_prml.md)
 
+[PRML读书笔记(三)](chapter3_prml.md)
+
 [最小二乘法](最小二乘法.md)
 
 [生成模型与判别模型](生成模型与判别方法.md)
