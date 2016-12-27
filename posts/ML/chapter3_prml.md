@@ -285,7 +285,7 @@ $\sigma^2_N(\mathbb{x})$ 的第二项表示相对于参数 $\mathbb{w}$ 的不�
 
 下图是从后验概率抽取参数，并且画出它们的曲线
 
-![bayesian curve sample](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/beyasian_sample.png?raw=true)
+![bayesian curve sample](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/bayesian_weight_samples.png?raw=true)
 
 ### 3.3.3 等价核(Equivalent Kernel)
 
