@@ -25,8 +25,11 @@ y(\mathbb{x},\mathbb{w}) = \sum_{j=0}^Mw_j\phi_j(\mathbb{x})=\mathbb{w}^T\boldsy
 [第一章](chapter1_prml.md)中的曲线拟合，我们令 $\phi_j(x)=x^j$ ，多项式基函数是输入变量的全局函数，如果一个输入变量的区域改变会影响其他的输入区域，比如 $(2,1,1,1)\to(2,1,1,9)$，但是如果采用如高斯基函数等局部函数的话，就不会出现这种情况。
 
 常见的几类基函数:
-1. 多项基函数：$\phi_j(x)=x^j$
-2. 高斯基函数：$\phi_j(x)=\exp\left\{-\frac{(x-\mu_j)^2}{2s^2}\right\}$
+
+1. 多项基函数： $\phi_j(x)=x^j$
+
+2. 高斯基函数： $\phi_j(x)=\exp\left\{-\frac{(x-\mu_j)^2}{2s^2}\right\}$
+
 3. sigmoid：$\phi_j(x)=\sigma\left(\frac{x-\mu_j}{s}\right),\sigma(a)=\frac{1}{1+\exp(-a)}$
 
 ![basis_function](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/basis_function.png?raw=true)
@@ -225,7 +228,7 @@ p(t\vert \mathbb{x},\mathbb{w},\beta)=\mathcal{N}(t\vert y(\mathbb{x},\mathbb{w}
 
 ### 3.3.1 参数分布
 
-[第二章](chapter2_prml.md)中我们介绍了在贝叶斯方法中最重要的是共轭先验，在线性回归中我们知道似然函数为 $p(\mathbb{t}\vert \mathbb{w},\beta) = \prod_{n=1}^N\mathcal{N}(t\vert \mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n),\beta^{-1})$ 是关于 $\mathbb{w}$ 二项式的指数函数，那么共轭先验是
+[第二章](chapter2_prml.md)中我们介绍了在贝叶斯方法中最重要的是共轭先验，在线性回归中我们知道似然函数为 $p(\mathbb{t}\vert \mathbb{w},\beta)=\prod_{n=1}^N\mathcal{N}(t\vert \mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n),\beta^{-1})$ 是关于 $\mathbb{w}$ 二项式的指数函数，那么共轭先验是
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -236,7 +239,7 @@ p(\mathbb{w}\vert \mathbb{t}) &=& \mathcal{N}(\mathbb{w} \vert \mathbb{m}_N,\bol
 \end{array}
 \end{equation}$$
 
-上述后验概率的推导可以利用 completing the square方法得出。由于后验概率是高斯分布，因此它的模(mode)即均值(mean)，所以 $\mathbb{w}_{MAP}=\mathbb{m}_N$ 。如果 $\boldsymbol{S}_0=\alpha^{-1}\boldsymbol{I}$，当 $\alpha\to0$ 时，先验概率就表示对整个空间上的参数没有偏向，那么 $\mathbb{m}_N$ 就变成了 $\mathbb{w}_{ML}$ 。
+上述后验概率的推导可以利用 completing the square方法得出。由于后验概率是高斯分布，因此它的模(mode)即均值(mean)，所以 $\mathbb{w}_{MAP}=\mathbb{m}_N$ 。如果 $\boldsymbol{S}_0=\alpha^{-1} \boldsymbol{I}$ ，当 $\alpha \to 0$ 时，先验概率就表示对整个空间上的参数没有偏向，那么 $\mathbb{m}_N$ 就变成了 $\mathbb{w}_{ML}$ 。
 
 考虑一个特殊共轭先验 $p(\mathbb{w}\vert \alpha)=\mathcal{N}(\mathbb{w}\vert \boldsymbol{0},\alpha^{-1}\boldsymbol{I})$ ，那么
 
