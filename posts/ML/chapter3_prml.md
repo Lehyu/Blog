@@ -239,7 +239,7 @@ p(\mathbb{w}\vert \mathbb{t}) &=& \mathcal{N}(\mathbb{w} \vert \mathbb{m}_N,\bol
 \end{array}
 \end{equation}$$
 
-上述后验概率的推导可以利用 completing the square方法得出。由于后验概率是高斯分布，因此它的模(mode)即均值(mean)，所以 $\mathbb{w}_{MAP}=\mathbb{m}_N$ 。如果 $\boldsymbol{S}_0=\alpha^{-1} \boldsymbol{I}$ ，当 $\alpha \to 0$ 时，先验概率就表示对整个空间上的参数没有偏向，那么 $\mathbb{m}_N$ 就变成了 $\mathbb{w}_{ML}$ 。
+上述后验概率的推导可以利用 completing the square方法得出。由于后验概率是高斯分布，因此它的模(mode)即均值(mean)，所以 $\mathbb{w_{MAP}}=\mathbb{m_N}$ 。如果 $\boldsymbol{S_0}=\alpha^{-1} \boldsymbol{I}$ ，当 $\alpha \to 0$ 时，先验概率就表示对整个空间上的参数没有偏向，那么 $\mathbb{m_N}$ 就变成了 $\mathbb{w_{ML}}$ 。
 
 考虑一个特殊共轭先验 $p(\mathbb{w}\vert \alpha)=\mathcal{N}(\mathbb{w}\vert \boldsymbol{0},\alpha^{-1}\boldsymbol{I})$ ，那么
 
@@ -360,7 +360,7 @@ p(\mathbb{w} \vert \mathcal{D} , \mathcal{M}_i) =\frac{p(\mathcal{D} \vert \math
 \end{array}
 \end{equation}$$
 
-下面我们考虑在模型 $\mathcal{M}_i$ 情况下，并且只有一个参数 $w$ ，后验概率 $p(w \vert \mathcal{D}) \propto p(\mathcal{D} \vert w ) p(w)$ ，假设后验概率分布集中分布在 $w_{MAP}$ ，宽度为 $\Delta w_{posterior}$，假如我们进一步假设先验为 $p(w)=1/\Delta w_{prior}$
+下面我们考虑在模型 $\mathcal{M_i}$ 情况下，并且只有一个参数 $w$ ，后验概率 $p(w \vert \mathcal{D}) \propto p(\mathcal{D} \vert w ) p(w)$ ，假设后验概率分布集中分布在 $w_{MAP}$ ，宽度为 $\Delta w_{posterior}$，假如我们进一步假设先验为 $p(w)=1/\Delta w_{prior}$
 
 ![Bayesian model assumption](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/bayesian_model_comparison.png?raw=true)
 
