@@ -492,7 +492,7 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-\beta &=& \frac{N}{2E_D(\mathbb{m}_N)} =  \frac{N}{\sum_{n=1}^N\{\mathbb{t}_n-\mathbb{w}_{ML}^T\boldsymbol{\phi}(\mathbb{x}_n)\}^2}\\
-\alpha &=& \frac{M}{2E_W(\mathbb{m}_N)} = \frac{M}{\mathbb{w}^T\mathbb{w}} \\
+\beta &=& \frac{N}{2E_D(\mathbb{m}_N)} =  \frac{N}{\sum_{n=1}^N\{\mathbb{t}_n-\mathbb{m}_N^T\boldsymbol{\phi}(\mathbb{x}_n)\}^2}\\
+\alpha &=& \frac{M}{2E_W(\mathbb{m}_N)} = \frac{M}{\mathbb{m}_N^T\mathbb{m}_N} \\
 \end{array}
 \end{equation}$$
