@@ -479,9 +479,120 @@ erf(a) &=&\frac{2}{\sqrt{\pi}}\int_0^a\exp(-\theta^2/2)d\theta \\
 
 ## 4.4 拉普拉斯逼近(The Laplace Approximation)
 
+在线性回归的时候我们讨论了贝叶斯分析的形式如下
 
+$$\begin{equation}
+\begin{array}{rcl}
+p(t\vert \mathbb{t},\alpha,\beta) &=& \int p(t\vert \mathbb{w},\beta)p(\mathbb{w}\vert \mathbb{t},\alpha,\beta) d\mathbb{w} \\
+\end{array}
+\end{equation}$$
 
+但是在logistics回归中，后验概率不再是高斯分布函数，因此我们希望能够寻求一个高斯分布来近似后验分布。
 
+对于任意一个分布，我们有
+
+$$\begin{equation}
+\begin{array}{rcl}
+p(z)=\frac{1}{Z}f(z),Z=\int f(z)dz
+\end{array}
+\end{equation}$$
+
+Laplace逼近的目标就是找到一个高斯函数 $q(z)$ ，使其均值为 $p(z)$ 的模。第一步是找到模 $z_0$，由于高斯分布的对数是变量的二项式函数，那么 $\ln f(z)$ 在 $z_0$ 附近的泰勒展开式如下
+
+$$\begin{equation}
+\begin{array}{rcl}
+\ln f(z) &\simeq& \ln f(z_0)-\frac{1}{2}A(z-z_0)^2 \\
+A &=& -\frac{d^2}{dz^2}\ln f(z)\Big|_{z=z_0}\\
+\Rightarrow f(z) &\simeq& f(z_0)\exp\left\{-\frac{A}{2}(z-z_0)^2 \right\}\\
+\Rightarrow q(z) &=& \left(\frac{A}{2\pi}\right)^{1/2}\exp\left\{-\frac{A}{2}(z-z_0)^2 \right\}
+\end{array}
+\end{equation}$$
+
+![Laplace Approximation](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap4/laplace_approximation.png?raw=true)
+同理对于M为变量也是如此求解
+$$\begin{equation}
+\begin{array}{rcl}
+\ln f(\mathbb{z}) &\simeq& \ln f(\mathbb{z}_0)-\frac{1}{2}(\mathbb{z}-\mathbb{z}_0)^T\boldsymbol{A}(\mathbb{z}-\mathbb{z}_0) \\
+A &=& -\frac{d^2}{d\mathbb{z}^2}\ln f(\mathbb{z})\Big|_{\mathbb{z}=\mathbb{z}_0}\\
+\Rightarrow f(\mathbb{z}) &\simeq& f(\mathbb{z}_0)\exp\left\{-\frac{1}{2}(\mathbb{z}-\mathbb{z}_0)^T\boldsymbol{A}(\mathbb{z}-\mathbb{z}_0) \right\}\\
+\Rightarrow q(\mathbb{z}) &=& \frac{\vert A\vert^{1/2}}{(2\pi)^{M/2}}\exp\left\{-\frac{1}{2}(\mathbb{z}-\mathbb{z}_0)^T\boldsymbol{A}(\mathbb{z}-\mathbb{z}_0)\right\}
+\end{array}
+\end{equation}$$
+
+laplace逼近只适用于实数变量。当数据集很大时，Laplace逼近有很好地效果。
+
+### 4.4.1 模型比较
+
+对于模型 $\mathcal{M}_i$ 有参数集 $\{\boldsymbol\theta_i\}$，那么这个模型的model evidence为
+
+$$\begin{equation}
+\begin{array}{rcl}
+p(\mathcal{D}) &=& \int p(\mathcal{D}\vert \boldsymbol\theta)p(\boldsymbol\theta)d\boldsymbol\theta \\
+\ln p(\mathcal{D}) &=& \ln p(\mathcal{D}\vert \boldsymbol\theta_{MAP}) +\ln p(\boldsymbol\theta)+\frac{M}{2}\ln2\pi-\frac{1}{2}\ln\boldsymbol{A}
+\end{array}
+\end{equation}$$
+
+如果我们假设高斯先验概率的参数是平(broad)的话，那么
+
+$$\begin{equation}
+\begin{array}{rcl}
+\ln p(\mathcal{D}) &=& \ln p(\mathcal{D}\vert \boldsymbol\theta_{MAP}) -\frac{1}{2}M\ln N
+\end{array}
+\end{equation}$$
+
+## 4.5 Bayesian Logistic Regression
+
+### 4.5.1 拉普拉斯逼近
+
+高斯先验 $p(\mathbb{w})=\mathcal{N}(\mathbb{w}\vert \mathbb{m}_0,\boldsymbol{S}_0)$，那么后验为
+
+$$\begin{equation}
+\begin{array}{rcl}
+\ln p(\mathbb{w}\vert \mathbb{t}) = -\frac{1}{2}(\mathbb{w}-\mathbb{m}_0)^T\boldsymbol{S}_0^{-1}(\mathbb{w}-\mathbb{m}_0) + \sum_{n=1}^N\{ t_n\ln y_n+(1-t_n)\ln(1-y_n)\} +const
+\end{array}
+\end{equation}$$
+
+为了获得一个近似后验概率的高斯分布，我们首先求上式的模，即 $\mathbb{w}_{MAP}$，然后求后验概率对数在  $\mathbb{w}_{MAP}$ 的二阶导，得
+
+$$\begin{equation}
+\begin{array}{rcl}
+\boldsymbol{S}_N &=& -\nabla\nabla\ln p(\mathbb{w}\vert \mathbb{t}) = \boldsymbol{S}_0^{-1}+\sum_{n=1}^Ny_n(1-y_n)\boldsymbol\phi_n\boldsymbol\phi_n^T \\
+\Rightarrow q(\mathbb{w}) &=& \mathcal{N}(\mathbb{w}\vert\mathbb{w}_{MAP},\boldsymbol{S}_N)
+\end{array}
+\end{equation}$$
+
+### 4.5.2 预测分布
+
+上一小节我们已经采用Laplace逼近找到一个高斯分布近似后验概率分布。那么预测分布为
+
+$$\begin{equation}
+\begin{array}{rcl}
+p(\mathcal{C}_1\vert \boldsymbol\phi,\mathbb{t}) &=& \int p(\mathcal{C}_1\vert \boldsymbol\phi,\mathbb{w})p(\mathbb{w}\vert \mathbb{t}) d\mathbb{w}=\int \sigma(\mathbb{w}^T\boldsymbol\phi)q(\mathbb{w})d\mathbb{w}\\
+\sigma(\mathbb{w}^T\boldsymbol\phi) &=& \int \delta_a(\mathbb{w}^T\boldsymbol\phi)\sigma(a)da \\
+\Rightarrow p(\mathcal{C}_1\vert \boldsymbol\phi,\mathbb{t}) &=& \int \sigma(a)p(a)da \\
+p(a)&=& \int \delta_a(\mathbb{w}^T\boldsymbol\phi)q(\mathbb{w})d\mathbb{w}
+\end{array}
+\end{equation}$$
+
+我们知道 $q(\mathbb{w})$ 是高斯分布，从而 $p(a)$ 也服从高斯分布
+
+$$\begin{equation}
+\begin{array}{rcl}
+\mu_a &=& E[a]=\int p(a)ada = \int q(\mathbb{w})\mathbb{w}^T\boldsymbol\phi d\mathbb{w} = \mathbb{w}_{MAP}\boldsymbol\phi \\
+\sigma_a^2 &=& var[a] = \int p(a)(a-\mu_a)da=\int q(\mathbb{w})\{(\mathbb{w}^T\boldsymbol\phi)^2 - (\mathbb{m}_N^T\boldsymbol\phi)^2\} = \boldsymbol\phi^T\boldsymbol{S}_N\boldsymbol\phi\\
+\Rightarrow p(\mathcal{C}_1\vert \boldsymbol\phi,\mathbb{t}) &=& \int \sigma(a)\mathcal{N}(a\vert \mu_a,\sigma_a^2)da
+\end{array}
+\end{equation}$$
+
+此时由于 $\sigma(a)$ 是logistics sigmoid，因此上述公式还是不可评估的，因此我们又用 $\sigma(a)\simeq \Phi(\lambda a),\lambda^2=\pi/8$ 去逼近。那么上式就等于
+
+$$\begin{equation}
+\begin{array}{rcl}
+\int \Phi(\lambda a)\mathcal{N}(a\vert \mu,\sigma)da &=& \Phi\left(\frac{\mu}{(\lambda^{-2}+\sigma^2)^{1/2}}\right)\simeq \sigma(\kappa(\sigma^2)a) \\
+\kappa(\sigma^2) &=& (1+\pi\sigma^2/8)^{-1/2} \\
+\Rightarrow p(\mathcal{C}_1\vert \boldsymbol\phi,\mathbb{t}) &=& \sigma(\kappa(\sigma_a^2)\mu_a)
+\end{array}
+\end{equation}$$
 
 
 
