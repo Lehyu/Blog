@@ -8,17 +8,17 @@
 
 假设我们现在有一组从 $f(x)=sin(2\pi x)+\epsilon(x)$ 生成的数据，其中 $\epsilon(x)=N(x\vert 0,\beta)$ 表示噪声。那么我们就得到原始数据为
 
-$\mathbb{x}=(x_1,x_2,\dots,x_N)^T,x_i\in(0,1)$，相对应的函数值 $\mathbb{t}=(t_1,t_2,\dots,t_N)^T$。我们要预测，一个新的数据 $\tilde{x}$ 相对应的函数值。
+$\mathbf{x}=(x_1,x_2,\dots,x_N)^T,x_i\in(0,1)$，相对应的函数值 $\mathbf{t}=(t_1,t_2,\dots,t_N)^T$。我们要预测，一个新的数据 $\tilde{x}$ 相对应的函数值。
 
 ![training data set](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/curve-fitting-points.png?raw=true)
 
-我们得到的只有 $\mathbb{x},\mathbb{t}$ ，并不知道 $f(x)$ 的形式。
+我们得到的只有 $\mathbf{x},\mathbf{t}$ ，并不知道 $f(x)$ 的形式。
 
 ### 2.1 数据分析(Data Analysis)
 
 由于训练数据由输入向量与其对应的输出向量组成，因此这是一个监督学习(supervised learning)的问题，并且由于输出向量是一组连续的变量，故又可以细分成回归问题(regression)。那么我们可以用以下函数取逼近
 
-$y(x,\mathbb{w})=w_0+w_1x+w_2x^2+\dots+w_Mx^M=\sum_{j=0}^{M}w_jx^j \tag{1}$
+$y(x,\mathbf{w})=w_0+w_1x+w_2x^2+\dots+w_Mx^M=\sum_{j=0}^{M}w_jx^j \tag{1}$
 
 [理论]()
 
@@ -45,11 +45,11 @@ X=\left[\begin{matrix}1&x_0^1&\dots&x_0^M \\ 1&x_1^1&\dots&x_1^M \\  \vdots & \v
 
 #### 2.3.1 损失函数
 
-由数据分析步骤，我们已经得到了基础的模型，我们希望我们的预测值 $y(x,\mathbb{w})$ 与 $t$ 尽量相近，那么我们可以用以下度量来表示
+由数据分析步骤，我们已经得到了基础的模型，我们希望我们的预测值 $y(x,\mathbf{w})$ 与 $t$ 尽量相近，那么我们可以用以下度量来表示
 
 $$\begin{equation}
 \begin{array}{rcl}
-L(y,t) &=& \{y(x,\mathbb{w})-t\}^2\tag{2}
+L(y,t) &=& \{y(x,\mathbf{w})-t\}^2\tag{2}
 \end{array}
 \end{equation}$$
 
@@ -59,7 +59,7 @@ L(y,t) &=& \{y(x,\mathbb{w})-t\}^2\tag{2}
 
 $$\begin{equation}
 \begin{array}{rcl}
-E(\mathbb{w}) &=& \int_{\mathbb{x}\times\mathbb{t}}{P(x,t)L(y(x,\mathbb{w}),t)}\mathrm{d}x\mathrm{d}t \tag{3}
+E(\mathbf{w}) &=& \int_{\mathbf{x}\times\mathbf{t}}{P(x,t)L(y(x,\mathbf{w}),t)}\mathrm{d}x\mathrm{d}t \tag{3}
 \end{array}
 \end{equation}$$
 
@@ -67,7 +67,7 @@ E(\mathbb{w}) &=& \int_{\mathbb{x}\times\mathbb{t}}{P(x,t)L(y(x,\mathbb{w}),t)}\
 
 $$\begin{equation}
 \begin{array}{rcl}
-E(\mathbb{w}) &=& \frac{1}{N}\sum_{n=1}^NL(y,t)\tag{4}
+E(\mathbf{w}) &=& \frac{1}{N}\sum_{n=1}^NL(y,t)\tag{4}
 \end{array}
 \end{equation}$$
 
@@ -75,11 +75,11 @@ E(\mathbb{w}) &=& \frac{1}{N}\sum_{n=1}^NL(y,t)\tag{4}
 
 #### 2.3.2 超参数
 
-式(1)里的参数M是不能在训练中直接学到的，需要在训练之前设置，因此称为超参数(hyperparameter)，一个方法是令 $M=1,2,3,\dots$，但是在经验风险下  $E(\mathbb{w})=\frac{1}{2}\sum_{n=1}^NL(y(x,\mathbb{w}),t)$，M的不同会使模型的较大的性能差；另一个方法是采用正则化方法
+式(1)里的参数M是不能在训练中直接学到的，需要在训练之前设置，因此称为超参数(hyperparameter)，一个方法是令 $M=1,2,3,\dots$，但是在经验风险下  $E(\mathbf{w})=\frac{1}{2}\sum_{n=1}^NL(y(x,\mathbf{w}),t)$，M的不同会使模型的较大的性能差；另一个方法是采用正则化方法
 
 $$\begin{equation}
 \begin{array}{rcl}
-\tilde{E}(\mathbb{w}) &=& \frac{1}{2}\sum_{n=1}^NL(y(x,\mathbb{w}),t)+\frac{\lambda}{2}\vert \vert \mathbb{w}\vert \vert ^2\tag{5}
+\tilde{E}(\mathbf{w}) &=& \frac{1}{2}\sum_{n=1}^NL(y(x,\mathbf{w}),t)+\frac{\lambda}{2}\vert \vert \mathbf{w}\vert \vert ^2\tag{5}
 \end{array}
 \end{equation}$$
 
@@ -124,48 +124,48 @@ $$\begin{equation}
 
 #### 3.1.1 最大似然
 
-对于训练样本 $(\mathbb{x}, \mathbb{t})$，我们希望 $p(\mathbb{t}\vert \mathbb{x}, \mathbb{w}) =\prod_{i=1}^N N(t_i\vert y(x_i, \mathbb{w}), \beta)$ 达到最大，那么等价于
+对于训练样本 $(\mathbf{x}, \mathbf{t})$，我们希望 $p(\mathbf{t}\vert \mathbf{x}, \mathbf{w}) =\prod_{i=1}^N N(t_i\vert y(x_i, \mathbf{w}), \beta)$ 达到最大，那么等价于
 
 $$\begin{equation}
 \begin{array}{rcl}
-\ln{p(\mathbb{t}\vert \mathbb{x}, \mathbb{w})} &=& -\frac{N}{2}\ln{2\pi}+\frac{N}{2}\ln{\beta}-\frac{\beta}{2}\sum_{n=1}^N\{y(x_n, \mathbb{w})-t_n\}^2
+\ln{p(\mathbf{t}\vert \mathbf{x}, \mathbf{w})} &=& -\frac{N}{2}\ln{2\pi}+\frac{N}{2}\ln{\beta}-\frac{\beta}{2}\sum_{n=1}^N\{y(x_n, \mathbf{w})-t_n\}^2
 \end{array}
 \end{equation}\tag{6}$$
 
-即最小化 $E(W)$ 等价于最大化 $\ln{p(\mathbb{t}\vert \mathbb{x}, \mathbb{w})}$，即 $E(W)$ 具有最大似然的性质。
+即最小化 $E(W)$ 等价于最大化 $\ln{p(\mathbf{t}\vert \mathbf{x}, \mathbf{w})}$，即 $E(W)$ 具有最大似然的性质。
 
 #### 3.1.2 最大后验
 
-前面的假设是对于任意的 $\mathbb{w}$ 具有相同的选择概率，但是如果我们引入先验知识，即
+前面的假设是对于任意的 $\mathbf{w}$ 具有相同的选择概率，但是如果我们引入先验知识，即
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{w}\vert \alpha) &=& N(\mathbb{w}\vert 0,\alpha^{-1}\boldsymbol{I}) \tag{7}
+p(\mathbf{w}\vert \alpha) &=& N(\mathbf{w}\vert 0,\alpha^{-1}\boldsymbol{I}) \tag{7}
 \end{array}
 \end{equation}$$
 
-那么 $p(\mathbb{t},\mathbb{w}\vert \mathbb{x})$ 最大，由于 $p(\mathbb{t})$ 可以看作一个常数，那么 $p(\mathbb{t},\mathbb{w}\vert \mathbb{x})$ 就等价于
+那么 $p(\mathbf{t},\mathbf{w}\vert \mathbf{x})$ 最大，由于 $p(\mathbf{t})$ 可以看作一个常数，那么 $p(\mathbf{t},\mathbf{w}\vert \mathbf{x})$ 就等价于
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{w}\vert \mathbb{x}, \mathbb{t}, \alpha,\beta)\propto p(\mathbb{t}\vert \mathbb{x},\beta)p(\mathbb{w}\vert \alpha)\tag{8}
+p(\mathbf{w}\vert \mathbf{x}, \mathbf{t}, \alpha,\beta)\propto p(\mathbf{t}\vert \mathbf{x},\beta)p(\mathbf{w}\vert \alpha)\tag{8}
 \end{array}
 \end{equation}$$
 
 $$\begin{equation}
 \begin{array}{rcl}
-\ln\{p(\mathbb{t}\vert \mathbb{x},\beta)p(\mathbb{w}\vert \alpha)\} &=& -\frac{N}{2}\ln{2\pi}+\frac{N}{2}\ln{\beta}-\frac{\beta}{2}\sum_{n=1}^N\{y(x_n, \mathbb{w})-t_n\}^2-\frac{N}{2}\ln{2\pi}+\frac{N}{2}\ln{\alpha}-\frac{\alpha}{2}\vert \vert \mathbb{w}\vert \vert ^2 \tag{9}
+\ln\{p(\mathbf{t}\vert \mathbf{x},\beta)p(\mathbf{w}\vert \alpha)\} &=& -\frac{N}{2}\ln{2\pi}+\frac{N}{2}\ln{\beta}-\frac{\beta}{2}\sum_{n=1}^N\{y(x_n, \mathbf{w})-t_n\}^2-\frac{N}{2}\ln{2\pi}+\frac{N}{2}\ln{\alpha}-\frac{\alpha}{2}\vert \vert \mathbf{w}\vert \vert ^2 \tag{9}
 \end{array}
 \end{equation}$$
 
 
-即等价于最小化 $\frac{\beta}{2}\sum_{n=1}^N\{y(x_n, \mathbb{w})-t_n\}^2+\frac{\alpha}{2}\vert \vert \mathbb{w}\vert \vert ^2$，也就是最小化 $\tilde{E}(W)$ 等价于最大化后验概率。
+即等价于最小化 $\frac{\beta}{2}\sum_{n=1}^N\{y(x_n, \mathbf{w})-t_n\}^2+\frac{\alpha}{2}\vert \vert \mathbf{w}\vert \vert ^2$，也就是最小化 $\tilde{E}(W)$ 等价于最大化后验概率。
 
 ### 3.2 bias和variance
 
 $$\begin{equation}
 \begin{array}{rcl}
-E(L) &=& \int\int{L(y(\mathbb{x}),t)p(\mathbb{x},t)}\mathrm{d}x\mathrm{d}t \\  &=&  \int\int{\{y(x)-t\}^2p(\mathbb{x},t)}\mathrm{d}x\mathrm{d}t \tag{10}
+E(L) &=& \int\int{L(y(\mathbf{x}),t)p(\mathbf{x},t)}\mathrm{d}x\mathrm{d}t \\  &=&  \int\int{\{y(x)-t\}^2p(\mathbf{x},t)}\mathrm{d}x\mathrm{d}t \tag{10}
 \end{array}
 \end{equation}$$
 
@@ -173,7 +173,7 @@ E(L) &=& \int\int{L(y(\mathbb{x}),t)p(\mathbb{x},t)}\mathrm{d}x\mathrm{d}t \\  &
 
 $$\begin{equation}
 \begin{array}{rcl}
-\frac{\partial{E(\boldsymbol{L})}}{\partial{y(\mathbb{x})}} &=& 2\int{\{y(\mathbb{x})-t\}p(\mathbb{x},t)}\mathrm{d}t = 0\tag{11}
+\frac{\partial{E(\boldsymbol{L})}}{\partial{y(\mathbf{x})}} &=& 2\int{\{y(\mathbf{x})-t\}p(\mathbf{x},t)}\mathrm{d}t = 0\tag{11}
 \end{array}
 \end{equation}$$
 
@@ -181,7 +181,7 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-y(\mathbb{x}) &=& \frac{\int{tp(\mathbb{x},t)}\mathrm{d}t}{p(\mathbb{x})}=E_t[t\vert \mathbb{x}]
+y(\mathbf{x}) &=& \frac{\int{tp(\mathbf{x},t)}\mathrm{d}t}{p(\mathbf{x})}=E_t[t\vert \mathbf{x}]
 \end{array}
 \end{equation}$$
 
@@ -189,8 +189,8 @@ y(\mathbb{x}) &=& \frac{\int{tp(\mathbb{x},t)}\mathrm{d}t}{p(\mathbb{x})}=E_t[t\
 
 $$\begin{equation}
 \begin{array}{rcl}
-\{y(\mathbb{x})-t\}^2 &=& \{y(\mathbb{x})-E[t\vert \mathbb{x}]+E[t\vert \mathbb{x}]-t\}^2\\
-&=&\{y(\mathbb{x})-E[t\vert \mathbb{x}]\}^2+2\{y(\mathbb{x})-E[t\vert \mathbb{x}]\}^2\{E[t\vert \mathbb{x}]-t\}+\{t-E[t\vert \mathbb{x}]\}^2\tag{12}
+\{y(\mathbf{x})-t\}^2 &=& \{y(\mathbf{x})-E[t\vert \mathbf{x}]+E[t\vert \mathbf{x}]-t\}^2\\
+&=&\{y(\mathbf{x})-E[t\vert \mathbf{x}]\}^2+2\{y(\mathbf{x})-E[t\vert \mathbf{x}]\}^2\{E[t\vert \mathbf{x}]-t\}+\{t-E[t\vert \mathbf{x}]\}^2\tag{12}
 \end{array}
 \end{equation}$$
 
@@ -198,12 +198,12 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-E(L) &=& \int{\{y(\mathbb{x})-E[t\vert \mathbb{x}]\}^2p(\mathbb{x})}\mathrm{d}\mathbb{x}+\int{\{t-E[t\vert \mathbb{x}]\}^2p(x,t)}\mathrm{d}x\mathrm{d}t \tag{13}
+E(L) &=& \int{\{y(\mathbf{x})-E[t\vert \mathbf{x}]\}^2p(\mathbf{x})}\mathrm{d}\mathbf{x}+\int{\{t-E[t\vert \mathbf{x}]\}^2p(x,t)}\mathrm{d}x\mathrm{d}t \tag{13}
 \end{array}
 \end{equation}$$
 
 ~~式(13)中的第一项可以表示为bias，第二项可以表示为variance，$E(L)=bias+variance$，在polynomial curve fitting中，损失函数只优化了bias项，而variance项则相当于固定误差(对于特定的M)。在其他例子中，我们可以看到，函数的优化相当于trade-off between bias and variance。~~
 
-第二项与 $y(x)$ 无关，是数据的噪声的固定误差，即不管怎么优化， $E(L) \ge \int{\{t-E[t\vert \mathbb{x}]\}^2p(x,t)}\mathrm{d}x\mathrm{d}t$ 。[第三章](chapter3_prml)会详细介绍第一项的意义。
+第二项与 $y(x)$ 无关，是数据的噪声的固定误差，即不管怎么优化， $E(L) \ge \int{\{t-E[t\vert \mathbf{x}]\}^2p(x,t)}\mathrm{d}x\mathrm{d}t$ 。[第三章](chapter3_prml)会详细介绍第一项的意义。
 
 ![bias vs variance](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap1/bias_variance.png?raw=true)

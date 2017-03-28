@@ -4,19 +4,19 @@
 
 ## 3.1 线性基函数模型(Linear Basis Function Models)
 
-最简单的线性回归模型是：$y(\mathbb{x},\mathbb{w})=w_0+w_1x_1+\dots+w_Dx_D$ ，很明显这个模型不足以表达复杂的模型，但是我们能够从这个模型中得出线性回归模型的一般形式
+最简单的线性回归模型是：$y(\mathbf{x},\mathbf{w})=w_0+w_1x_1+\dots+w_Dx_D$ ，很明显这个模型不足以表达复杂的模型，但是我们能够从这个模型中得出线性回归模型的一般形式
 
 $$\begin{equation}
 \begin{array}{rcl}
-y(\mathbb{x},\mathbb{w}) = w_0+\sum_{j=1}^Mw_j\phi_j(\mathbb{x})
+y(\mathbf{x},\mathbf{w}) = w_0+\sum_{j=1}^Mw_j\phi_j(\mathbf{x})
 \end{array}
 \end{equation} \tag{1}$$
 
-其中 $\phi_j(\mathbb{x})$ 即基函数，该函数可以是任意的函数，一般为非线性函数(为了提高模型的表达能力)；$w_0$ 为偏置，假设我们令 $\phi_0(\mathbb{x})=1$ ，那么上式就可以简化成
+其中 $\phi_j(\mathbf{x})$ 即基函数，该函数可以是任意的函数，一般为非线性函数(为了提高模型的表达能力)；$w_0$ 为偏置，假设我们令 $\phi_0(\mathbf{x})=1$ ，那么上式就可以简化成
 
 $$\begin{equation}
 \begin{array}{rcl}
-y(\mathbb{x},\mathbb{w}) = \sum_{j=0}^Mw_j\phi_j(\mathbb{x})=\mathbb{w}^T\boldsymbol{\phi}(\mathbb{x})
+y(\mathbf{x},\mathbf{w}) = \sum_{j=0}^Mw_j\phi_j(\mathbf{x})=\mathbf{w}^T\boldsymbol{\phi}(\mathbf{x})
 \end{array}
 \end{equation}$$
 
@@ -36,11 +36,11 @@ y(\mathbb{x},\mathbb{w}) = \sum_{j=0}^Mw_j\phi_j(\mathbb{x})=\mathbb{w}^T\boldsy
 
 ### 3.1.1 最大似然和最小二乘法
 
-假设目标值t由判别函数与一个额外的噪声给出: $t=y(\mathbb{x},\mathbb{w})+\epsilon$， 其中噪声为一个均值为0、精度为 $\beta$ 的高斯噪声。那么
+假设目标值t由判别函数与一个额外的噪声给出: $t=y(\mathbf{x},\mathbf{w})+\epsilon$， 其中噪声为一个均值为0、精度为 $\beta$ 的高斯噪声。那么
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(t\vert \mathbb{x},\mathbb{w},\beta)=\mathcal{N}(t\vert y(\mathbb{x},\mathbb{w}),\beta^{-1})
+p(t\vert \mathbf{x},\mathbf{w},\beta)=\mathcal{N}(t\vert y(\mathbf{x},\mathbf{w}),\beta^{-1})
 \end{array}
 \end{equation}$$
 
@@ -48,17 +48,17 @@ p(t\vert \mathbb{x},\mathbb{w},\beta)=\mathcal{N}(t\vert y(\mathbb{x},\mathbb{w}
 
 $$\begin{equation}
 \begin{array}{rcl}
-E[t\vert \mathbb{x}]=\int{tp(t\vert \mathbb{x})}dt=y(\mathbb{x}),\mathbb{w}))
+E[t\vert \mathbf{x}]=\int{tp(t\vert \mathbf{x})}dt=y(\mathbf{x}),\mathbf{w}))
 \end{array}
 \end{equation}$$
 
-其中 $p(t\vert \mathbb{x})=p(t\vert \mathbb{x},\mathbb{w},\beta)$ 。需要注意的是高斯噪声假设隐含t在给定x的条件分布是单峰的，这个性质可能对于某些应用不太合适。作为扩展，我们可以采用混合高斯分布。
+其中 $p(t\vert \mathbf{x})=p(t\vert \mathbf{x},\mathbf{w},\beta)$ 。需要注意的是高斯噪声假设隐含t在给定x的条件分布是单峰的，这个性质可能对于某些应用不太合适。作为扩展，我们可以采用混合高斯分布。
 
-$\boldsymbol{X}=\{\mathbb{x}_1,\dots,\mathbb{x}_N\}$ ，其对应的值为 $\mathbb{t}=\{t_1,\dots,t_N\}$ ，那么
+$\boldsymbol{X}=\{\mathbf{x}_1,\dots,\mathbf{x}_N\}$ ，其对应的值为 $\mathbf{t}=\{t_1,\dots,t_N\}$ ，那么
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{t}\vert \boldsymbol{X},\mathbb{w},\beta)=\prod_{n=1}^N\mathcal{N}(t\vert y(\mathbb{x}_n,\mathbb{w}),\beta^{-1})
+p(\mathbf{t}\vert \boldsymbol{X},\mathbf{w},\beta)=\prod_{n=1}^N\mathcal{N}(t\vert y(\mathbf{x}_n,\mathbf{w}),\beta^{-1})
 \end{array}
 \end{equation}$$
 
@@ -66,25 +66,25 @@ p(\mathbb{t}\vert \boldsymbol{X},\mathbb{w},\beta)=\prod_{n=1}^N\mathcal{N}(t\ve
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{t}\vert \mathbb{w},\beta) &=& \prod_{n=1}^N\mathcal{N}(t\vert \mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n),\beta^{-1}) \\
-\ln p(\mathbb{t}\vert \mathbb{w},\beta) &=& \frac{N}{2}\ln\beta-\frac{N}{2}\ln2\pi-\beta E_D(\mathbb{w}) \\
-E_D(\mathbb{w}) &=& \frac{1}{2}\sum_{n=1}^N\left\{t_n-\mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n)\right\}^2
+p(\mathbf{t}\vert \mathbf{w},\beta) &=& \prod_{n=1}^N\mathcal{N}(t\vert \mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}_n),\beta^{-1}) \\
+\ln p(\mathbf{t}\vert \mathbf{w},\beta) &=& \frac{N}{2}\ln\beta-\frac{N}{2}\ln2\pi-\beta E_D(\mathbf{w}) \\
+E_D(\mathbf{w}) &=& \frac{1}{2}\sum_{n=1}^N\left\{t_n-\mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}_n)\right\}^2
 \end{array}
 \end{equation}$$
 
-要使 $p(\mathbb{t}\vert \mathbb{w},\beta)$ 最大，那么
+要使 $p(\mathbf{t}\vert \mathbf{w},\beta)$ 最大，那么
 
 $$\begin{equation}
 \begin{array}{rcl}
-0 &=& \frac{\partial{\ln p(\mathbb{t}\vert \mathbb{w},\beta)}}{\partial{\mathbb{w}}}  \\
-0 &=& \sum_{n=1}^N\left\{t_n-\mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n)\right\}\boldsymbol{\phi}(\mathbb{x}_n)^T \\
-\Rightarrow \mathbb{w}_{ML} &=& (\boldsymbol{\Phi}^T\boldsymbol{\Phi})^{-1}\boldsymbol{\Phi}^T\mathbb{t} \\
+0 &=& \frac{\partial{\ln p(\mathbf{t}\vert \mathbf{w},\beta)}}{\partial{\mathbf{w}}}  \\
+0 &=& \sum_{n=1}^N\left\{t_n-\mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}_n)\right\}\boldsymbol{\phi}(\mathbf{x}_n)^T \\
+\Rightarrow \mathbf{w}_{ML} &=& (\boldsymbol{\Phi}^T\boldsymbol{\Phi})^{-1}\boldsymbol{\Phi}^T\mathbf{t} \\
 \\
 \boldsymbol{\Phi} &=& \begin{bmatrix}
-\phi_0(\mathbb{x}_1) & \cdots & \phi_{M-1}(\mathbb{x}_1) \\
-\phi_0(\mathbb{x}_2) & \cdots & \phi_{M-1}(\mathbb{x}_2) \\
+\phi_0(\mathbf{x}_1) & \cdots & \phi_{M-1}(\mathbf{x}_1) \\
+\phi_0(\mathbf{x}_2) & \cdots & \phi_{M-1}(\mathbf{x}_2) \\
 \vdots & \ddots & \vdots \\
-\phi_0(\mathbb{x}_N) & \cdots & \phi_{M-1}(\mathbb{x}_N) \\
+\phi_0(\mathbf{x}_N) & \cdots & \phi_{M-1}(\mathbf{x}_N) \\
 \end{bmatrix}
 \end{array}
 \end{equation}$$
@@ -93,8 +93,8 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-E_D(\mathbb{w}) &=& \frac{1}{2}\sum_{n=1}^N\left\{t_n-w_0-\sum_{j=1}^{M-1}w_j\phi_j(\mathbb{x}_n)\right\}^2 \\
-\Rightarrow w_0 &=& \frac{1}{N}\sum_{n=1}^Nt_n-\sum_{j=1}^{M-1}w_j\left\{\frac{1}{N}\sum_{n=1}^N\phi_j(\mathbb{x}_n)\right\}
+E_D(\mathbf{w}) &=& \frac{1}{2}\sum_{n=1}^N\left\{t_n-w_0-\sum_{j=1}^{M-1}w_j\phi_j(\mathbf{x}_n)\right\}^2 \\
+\Rightarrow w_0 &=& \frac{1}{N}\sum_{n=1}^Nt_n-\sum_{j=1}^{M-1}w_j\left\{\frac{1}{N}\sum_{n=1}^N\phi_j(\mathbf{x}_n)\right\}
 \end{array}
 \end{equation}$$
 
@@ -102,7 +102,7 @@ E_D(\mathbb{w}) &=& \frac{1}{2}\sum_{n=1}^N\left\{t_n-w_0-\sum_{j=1}^{M-1}w_j\ph
 
 $$\begin{equation}
 \begin{array}{rcl}
-\frac{1}{\beta_{ML}} &=& \frac{1}{N}\sum_{n=1}^N\left\{t_n-\mathbb{w}_{ML}^T\boldsymbol{\phi}(\mathbb{x}_n)\right\}^2 \\
+\frac{1}{\beta_{ML}} &=& \frac{1}{N}\sum_{n=1}^N\left\{t_n-\mathbf{w}_{ML}^T\boldsymbol{\phi}(\mathbf{x}_n)\right\}^2 \\
 \end{array}
 \end{equation}$$
 
@@ -110,9 +110,9 @@ $$\begin{equation}
 
 ### 3.1.2 最小二乘的几何形状
 
-首先考虑坐标轴为 $t_n$ 的N维空间，那么 $\mathbb{t}_n=\{t_1,\dots,t_N\}^T$ 就是这个空间里的一个向量。那么 $\boldsymbol{\varphi}_j=\{\phi_j(\mathbb{x}_1),\dots, \phi_j(\mathbb{x}_N)\}^T$ 也是N为空间里的向量。$\boldsymbol{\mathbb{y}}=\{y(\mathbb{x}_1, \mathbb{w}),\dots,y(\mathbb{x}_N, \mathbb{w})\}^T$
+首先考虑坐标轴为 $t_n$ 的N维空间，那么 $\mathbf{t}_n=\{t_1,\dots,t_N\}^T$ 就是这个空间里的一个向量。那么 $\boldsymbol{\varphi}_j=\{\phi_j(\mathbf{x}_1),\dots, \phi_j(\mathbf{x}_N)\}^T$ 也是N为空间里的向量。$\boldsymbol{\mathbf{y}}=\{y(\mathbf{x}_1, \mathbf{w}),\dots,y(\mathbf{x}_N, \mathbf{w})\}^T$
 
-如果基函数的数量 $M$ 小于训练数据集的数量 $N$，那么我们可以找到一个M维的子空间 $\mathcal{S}$ 来表示 $\boldsymbol{\varphi}_j$ ，而 $\boldsymbol{\mathbb{y}}$ 是 $\boldsymbol{\varphi}_j$ 向量的任意线性组合，所以 $\boldsymbol{\mathbb{y}}$ 可以落在M维子空间 $\mathcal{S}$ 的任意位置上。 所以最小二乘法的解就变成了 $\mathbb{t}$ 在子空间 $\mathcal{S}$ 的投影。
+如果基函数的数量 $M$ 小于训练数据集的数量 $N$，那么我们可以找到一个M维的子空间 $\mathcal{S}$ 来表示 $\boldsymbol{\varphi}_j$ ，而 $\boldsymbol{\mathbf{y}}$ 是 $\boldsymbol{\varphi}_j$ 向量的任意线性组合，所以 $\boldsymbol{\mathbf{y}}$ 可以落在M维子空间 $\mathcal{S}$ 的任意位置上。 所以最小二乘法的解就变成了 $\mathbf{t}$ 在子空间 $\mathcal{S}$ 的投影。
 
 ![geometry_of_least_squares](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/geometry_of_least_squares.png?raw=true)
 
@@ -122,8 +122,8 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-\mathbb{w}^{\tau+1} &=& \mathbb{w}^{\tau}-\eta\nabla E_n \\
-\mathbb{w}^{\tau+1} &=& \mathbb{w}^{\tau}+\eta(t_n-\mathbb{w}^T\phi(\mathbb{x}_n))\phi(\mathbb{x}_n) \\
+\mathbf{w}^{\tau+1} &=& \mathbf{w}^{\tau}-\eta\nabla E_n \\
+\mathbf{w}^{\tau+1} &=& \mathbf{w}^{\tau}+\eta(t_n-\mathbf{w}^T\phi(\mathbf{x}_n))\phi(\mathbf{x}_n) \\
 \end{array}
 \end{equation}$$
 
@@ -133,9 +133,9 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-E(\mathbb{w}) &=& E_D(\mathbb{w}) + \lambda E_W(\mathbb{w})  \\
-E_D(\mathbb{w})  &=& \frac{1}{2}\sum_{n=1}^N\left\{t_n-\mathbb{w}^T\boldsymbol{\phi}(x_n)  \right\}^2 \\
-E_W(\mathbb{w}) &=& \frac{1}{2}\mathbb{w}^T\mathbb{w}
+E(\mathbf{w}) &=& E_D(\mathbf{w}) + \lambda E_W(\mathbf{w})  \\
+E_D(\mathbf{w})  &=& \frac{1}{2}\sum_{n=1}^N\left\{t_n-\mathbf{w}^T\boldsymbol{\phi}(x_n)  \right\}^2 \\
+E_W(\mathbf{w}) &=& \frac{1}{2}\mathbf{w}^T\mathbf{w}
 \end{array}
 \end{equation}$$
 
@@ -143,7 +143,7 @@ E_W(\mathbb{w}) &=& \frac{1}{2}\mathbb{w}^T\mathbb{w}
 
 $$\begin{equation}
 \begin{array}{rcl}
-\frac{1}{2}\sum_{n=1}^N\left\{t_n-\mathbb{w}^T\boldsymbol{\phi}(x_n)  \right\}^2 + \frac{\lambda}{2}\sum_{j=1}^{M-1}\vert w_j\vert^q
+\frac{1}{2}\sum_{n=1}^N\left\{t_n-\mathbf{w}^T\boldsymbol{\phi}(x_n)  \right\}^2 + \frac{\lambda}{2}\sum_{j=1}^{M-1}\vert w_j\vert^q
 \end{array}
 \end{equation}$$
 
@@ -167,50 +167,50 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-E(L) &=& \int{\{y(\mathbb{x})-h(\mathbb{x})\}^2p(\mathbb{x})}\mathrm{d}\mathbb{x}+\int{\{t-h(\mathbb{x})\}^2p(x,t)}\mathrm{d}x\mathrm{d}t \\
-h(\mathbb{x}) &=& \int{tp(t\vert \mathbb{x})}dt=E[t\vert \mathbb{x}]
+E(L) &=& \int{\{y(\mathbf{x})-h(\mathbf{x})\}^2p(\mathbf{x})}\mathrm{d}\mathbf{x}+\int{\{t-h(\mathbf{x})\}^2p(x,t)}\mathrm{d}x\mathrm{d}t \\
+h(\mathbf{x}) &=& \int{tp(t\vert \mathbf{x})}dt=E[t\vert \mathbf{x}]
 \end{array}
 \end{equation}$$
 
-上式的 $h(\mathbb{x})$ 是最佳预测，而 $y(\mathbb{x})$ 是实际预测。其中第二项是固有的噪声，第一项跟我们选取的 $y(\mathbb{x})$ 相关，当我们有充足的训练数据的时候 $y(\mathbb{x})=h(\mathbb{x})$ ，但是往往训练数据集是有限的。
+上式的 $h(\mathbf{x})$ 是最佳预测，而 $y(\mathbf{x})$ 是实际预测。其中第二项是固有的噪声，第一项跟我们选取的 $y(\mathbf{x})$ 相关，当我们有充足的训练数据的时候 $y(\mathbf{x})=h(\mathbf{x})$ ，但是往往训练数据集是有限的。
 
-如果我们用 $y(\mathbb{x},\mathbb{w})$ 来对 $h(\mathbb{x})$ 建模，在贝叶斯方法中，这个模型的不确定性由 $p(\mathbb{w}\vert \mathbb{x})$ 决定；而对于频率方法来说，需要基于一个特定数据集 $\mathcal{D}$ 来对 $\mathbb{w}$ 进行估计。对于任意数据集 $\mathcal{D}$ ，我们能够得到 $y(\mathbb{x};\mathcal{D})$ ，那么评测一个学习算法的性能时采用对所有数据集的集成平均。
+如果我们用 $y(\mathbf{x},\mathbf{w})$ 来对 $h(\mathbf{x})$ 建模，在贝叶斯方法中，这个模型的不确定性由 $p(\mathbf{w}\vert \mathbf{x})$ 决定；而对于频率方法来说，需要基于一个特定数据集 $\mathcal{D}$ 来对 $\mathbf{w}$ 进行估计。对于任意数据集 $\mathcal{D}$ ，我们能够得到 $y(\mathbf{x};\mathcal{D})$ ，那么评测一个学习算法的性能时采用对所有数据集的集成平均。
 
 假设我们有一个数据集 $\mathcal{D}$ ，则第一项的被积函数可以写成
 
 $$\begin{equation}
 \begin{array}{rcl}
-\{y(\mathbb{x};\mathcal{D})-h(\mathbb{x})\}^2
+\{y(\mathbf{x};\mathcal{D})-h(\mathbf{x})\}^2
 \end{array}
 \end{equation}$$
 
-实际预测值 $y(\mathbb{x};\mathcal{D})$ 相对于 $\mathcal{D}$ 的平均值为 $E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]$ ，那么上式可以写成
+实际预测值 $y(\mathbf{x};\mathcal{D})$ 相对于 $\mathcal{D}$ 的平均值为 $E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]$ ，那么上式可以写成
 
 $$\begin{equation}
 \begin{array}{rcl}
-&&\{y(\mathbb{x};\mathcal{D})-E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]+E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]-h(\mathbb{x})\}^2 \\
-&=& \left\{y(\mathbb{x};\mathcal{D})-E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]\right\}^2+ \{E_\mathcal{D}[y(\mathbb{x};\mathcal{D})] -h(\mathbb{x}) \}^2\\
-&+&2\{y(\mathbb{x};\mathcal{D})-E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]\}\{E_\mathcal{D}[y(\mathbb{x};\mathcal{D})] -h(\mathbb{x}) \} \\
+&&\{y(\mathbf{x};\mathcal{D})-E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]+E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]-h(\mathbf{x})\}^2 \\
+&=& \left\{y(\mathbf{x};\mathcal{D})-E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]\right\}^2+ \{E_\mathcal{D}[y(\mathbf{x};\mathcal{D})] -h(\mathbf{x}) \}^2\\
+&+&2\{y(\mathbf{x};\mathcal{D})-E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]\}\{E_\mathcal{D}[y(\mathbf{x};\mathcal{D})] -h(\mathbf{x}) \} \\
 \\
-E_D[\{y(\mathbb{x};\mathcal{D}) -h(\mathbb{x}) \}^2] &=& \begin{matrix}\underbrace{\{E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]-h(\mathbb{x})\}^2}\\\text{(bias)}^2\end{matrix} +\begin{matrix}\underbrace{E_\mathcal{D}[\{y(\mathbb{x};\mathcal{D})-E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]\}^2]}\\\text{variace}\end{matrix}
+E_D[\{y(\mathbf{x};\mathcal{D}) -h(\mathbf{x}) \}^2] &=& \begin{matrix}\underbrace{\{E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]-h(\mathbf{x})\}^2}\\\text{(bias)}^2\end{matrix} +\begin{matrix}\underbrace{E_\mathcal{D}[\{y(\mathbf{x};\mathcal{D})-E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]\}^2]}\\\text{variace}\end{matrix}
 \end{array}
 \end{equation}$$
 
-$h(\mathbb{x})$ 是最佳预测不依赖于 $\mathcal{D}$。偏置(bias)项表示平均值与最佳预测值的差异，方差(variance)表示了个体数据与平均值的震荡程度，即 $y(\mathbb{x};\mathcal{D})$ 对于特殊的数据集敏感度。因此期望平方差可以写成
+$h(\mathbf{x})$ 是最佳预测不依赖于 $\mathcal{D}$。偏置(bias)项表示平均值与最佳预测值的差异，方差(variance)表示了个体数据与平均值的震荡程度，即 $y(\mathbf{x};\mathcal{D})$ 对于特殊的数据集敏感度。因此期望平方差可以写成
 
 $$\begin{equation}
 \begin{array}{rcl}
 \text{expected loss} &=& \text{bias}^2+\text{variance}+\text{noise}\\
-\text{bias}^2 &=& \int\{E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]-h(\mathbb{x})\}^2p(\mathbb{x})d\mathbb{x} \\
-\text{variance} &=& \int E_\mathcal{D}[\{y(\mathbb{x};\mathcal{D})-E_\mathcal{D}[y(\mathbb{x};\mathcal{D})]\}^2] p(\mathbb{x})d\mathbb{x} \\
-\text{noise} &=& \int\{h(\mathbb{x}) - t\}^2p(\mathbb{x},t)d\mathbb{x}dt
+\text{bias}^2 &=& \int\{E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]-h(\mathbf{x})\}^2p(\mathbf{x})d\mathbf{x} \\
+\text{variance} &=& \int E_\mathcal{D}[\{y(\mathbf{x};\mathcal{D})-E_\mathcal{D}[y(\mathbf{x};\mathcal{D})]\}^2] p(\mathbf{x})d\mathbf{x} \\
+\text{noise} &=& \int\{h(\mathbf{x}) - t\}^2p(\mathbf{x},t)d\mathbf{x}dt
 \end{array}
 \end{equation}$$
 
 由于噪声是固有的，因此我们只能优化bias和variance，对于灵活(flexible)模型有较小的偏置极大方差，对于相对刚性(rigid)的模型具有较大的偏置和较小的方差。
 $$\begin{equation}
 \begin{array}{rcl}
-p(t\vert \mathbb{x},\mathbb{w},\beta)=\mathcal{N}(t\vert y(\mathbb{x},\mathbb{w}),\beta)
+p(t\vert \mathbf{x},\mathbf{w},\beta)=\mathcal{N}(t\vert y(\mathbf{x},\mathbf{w}),\beta)
 \end{array}
 \end{equation}$$
 
@@ -228,26 +228,26 @@ p(t\vert \mathbb{x},\mathbb{w},\beta)=\mathcal{N}(t\vert y(\mathbb{x},\mathbb{w}
 
 ### 3.3.1 参数分布
 
-[第二章](chapter2_prml.md)中我们介绍了在贝叶斯方法中最重要的是共轭先验，在线性回归中我们知道似然函数为 $p(\mathbb{t}\vert \mathbb{w},\beta)=\prod_{n=1}^N\mathcal{N}(t\vert \mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n),\beta^{-1})$ 是关于 $\mathbb{w}$ 二项式的指数函数，那么共轭先验是
+[第二章](chapter2_prml.md)中我们介绍了在贝叶斯方法中最重要的是共轭先验，在线性回归中我们知道似然函数为 $p(\mathbf{t}\vert \mathbf{w},\beta)=\prod_{n=1}^N\mathcal{N}(t\vert \mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}_n),\beta^{-1})$ 是关于 $\mathbf{w}$ 二项式的指数函数，那么共轭先验是
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{w}) &=& \mathcal{N}(\mathbb{w} \vert \mathbb{m}_0,\boldsymbol{S}_0) \\
-p(\mathbb{w}\vert \mathbb{t}) &=& \mathcal{N}(\mathbb{w} \vert \mathbb{m}_N,\boldsymbol{S}_N) \\
-\mathbb{m}_N &=& \boldsymbol{S}_N(\boldsymbol{S}_0^{-1}\mathbb{m}_0+\beta\boldsymbol\Phi^T\mathbb{t}) \\
+p(\mathbf{w}) &=& \mathcal{N}(\mathbf{w} \vert \mathbf{m}_0,\boldsymbol{S}_0) \\
+p(\mathbf{w}\vert \mathbf{t}) &=& \mathcal{N}(\mathbf{w} \vert \mathbf{m}_N,\boldsymbol{S}_N) \\
+\mathbf{m}_N &=& \boldsymbol{S}_N(\boldsymbol{S}_0^{-1}\mathbf{m}_0+\beta\boldsymbol\Phi^T\mathbf{t}) \\
 \boldsymbol{S}_N^{-1} &=& \boldsymbol{S}_0^{-1}+\beta\boldsymbol\Phi^T\boldsymbol\Phi
 \end{array}
 \end{equation}$$
 
-上述后验概率的推导可以利用 completing the square方法得出。由于后验概率是高斯分布，因此它的模(mode)即均值(mean)，所以 $\mathbb{w_{MAP}}=\mathbb{m_N}$ 。如果 $\boldsymbol{S_0}=\alpha^{-1} \boldsymbol{I}$ ，当 $\alpha \to 0$ 时，先验概率就表示对整个空间上的参数没有偏向，那么 $\mathbb{m_N}$ 就变成了 $\mathbb{w_{ML}}$ 。
+上述后验概率的推导可以利用 completing the square方法得出。由于后验概率是高斯分布，因此它的模(mode)即均值(mean)，所以 $\mathbf{w_{MAP}}=\mathbf{m_N}$ 。如果 $\boldsymbol{S_0}=\alpha^{-1} \boldsymbol{I}$ ，当 $\alpha \to 0$ 时，先验概率就表示对整个空间上的参数没有偏向，那么 $\mathbf{m_N}$ 就变成了 $\mathbf{w_{ML}}$ 。
 
-考虑一个特殊共轭先验 $p(\mathbb{w}\vert \alpha)=\mathcal{N}(\mathbb{w}\vert \boldsymbol{0},\alpha^{-1}\boldsymbol{I})$ ，那么
+考虑一个特殊共轭先验 $p(\mathbf{w}\vert \alpha)=\mathcal{N}(\mathbf{w}\vert \boldsymbol{0},\alpha^{-1}\boldsymbol{I})$ ，那么
 
 $$\begin{equation}
 \begin{array}{rcl}
-\mathbb{m}_N &=& \beta\boldsymbol{S}_N\boldsymbol\Phi^T\mathbb{t} \\
+\mathbf{m}_N &=& \beta\boldsymbol{S}_N\boldsymbol\Phi^T\mathbf{t} \\
 \boldsymbol{S}_N^{-1} &=& \alpha\boldsymbol{I}+\beta\boldsymbol\Phi^T\boldsymbol\Phi \\
-\Rightarrow \ln p(\mathbb{w}\vert \mathbb{t}) &=& -\frac{\beta}{2}\sum_{n=1}^N\{t_n-\mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n) \}^2 -\frac{\alpha}{2}\mathbb{w}^T\mathbb{w}+\text{const}
+\Rightarrow \ln p(\mathbf{w}\vert \mathbf{t}) &=& -\frac{\beta}{2}\sum_{n=1}^N\{t_n-\mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}_n) \}^2 -\frac{\alpha}{2}\mathbf{w}^T\mathbf{w}+\text{const}
 \end{array}
 \end{equation}$$
 
@@ -258,29 +258,29 @@ $$\begin{equation}
 
 ### 3.3.2 预测分布
 
-但是需要注意到是到目前为止，还是进行了点估计，上面的方法又叫做model selection，即选择后验概率最大的模型；下面我们介绍model averaging，即将多个模型加权平均从而得到预测分布。给定一个新的输入 $\mathbb{x}$ 预测它的值 $t$ ，
+但是需要注意到是到目前为止，还是进行了点估计，上面的方法又叫做model selection，即选择后验概率最大的模型；下面我们介绍model averaging，即将多个模型加权平均从而得到预测分布。给定一个新的输入 $\mathbf{x}$ 预测它的值 $t$ ，
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(t\vert \mathbb{t},\alpha,\beta) &=& \int p(t\vert \mathbb{w},\beta)p(\mathbb{w}\vert \mathbb{t},\alpha,\beta) d\mathbb{w} \\
-p(t\vert \mathbb{w},\beta) &=& \mathcal{N}(t\vert \mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}),\beta^{-1}) \\
-p(\mathbb{w} \vert \mathbb{t},\alpha,\beta) &=& \mathcal{N}(\mathbb{w}\vert \mathbb{m}_N, \boldsymbol{S}_N) \\
+p(t\vert \mathbf{t},\alpha,\beta) &=& \int p(t\vert \mathbf{w},\beta)p(\mathbf{w}\vert \mathbf{t},\alpha,\beta) d\mathbf{w} \\
+p(t\vert \mathbf{w},\beta) &=& \mathcal{N}(t\vert \mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}),\beta^{-1}) \\
+p(\mathbf{w} \vert \mathbf{t},\alpha,\beta) &=& \mathcal{N}(\mathbf{w}\vert \mathbf{m}_N, \boldsymbol{S}_N) \\
 \end{array}
 \end{equation}$$
 
-上面的公式为了简化概念，省略了 $\mathbb{t}$ 相对应的输入值
+上面的公式为了简化概念，省略了 $\mathbf{t}$ 相对应的输入值
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}) &=& \mathcal{N}(\mathbb{x} \vert \mu, \Lambda^{-1}) \\
-p(\mathbb{y} \vert \mathbb{x}) &=& \mathcal{N}(\mathbb{y} \vert \boldsymbol{A}\mathbb{x}+b, L^{-1}) \\
-\Rightarrow p(\mathbb{y}) &=& \mathcal{N}(\mathbb{y} \vert \boldsymbol{A}\mu+b, L^{-1}+\boldsymbol{A}\Lambda^{-1}\boldsymbol{A}^T) \\
-\Rightarrow p(t\vert \mathbb{x},\mathbb{t},\alpha, \beta) &=& \mathcal{N}(t\vert \mathbb{m}_N^T\boldsymbol{\phi}(\mathbb{x}),\sigma^2_N(\mathbb{x})) \\
-\sigma^2_N(\mathbb{x}) &=& \frac{1}{\beta} + \boldsymbol{\phi}(\mathbb{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbb{x})
+p(\mathbf{x}) &=& \mathcal{N}(\mathbf{x} \vert \mu, \Lambda^{-1}) \\
+p(\mathbf{y} \vert \mathbf{x}) &=& \mathcal{N}(\mathbf{y} \vert \boldsymbol{A}\mathbf{x}+b, L^{-1}) \\
+\Rightarrow p(\mathbf{y}) &=& \mathcal{N}(\mathbf{y} \vert \boldsymbol{A}\mu+b, L^{-1}+\boldsymbol{A}\Lambda^{-1}\boldsymbol{A}^T) \\
+\Rightarrow p(t\vert \mathbf{x},\mathbf{t},\alpha, \beta) &=& \mathcal{N}(t\vert \mathbf{m}_N^T\boldsymbol{\phi}(\mathbf{x}),\sigma^2_N(\mathbf{x})) \\
+\sigma^2_N(\mathbf{x}) &=& \frac{1}{\beta} + \boldsymbol{\phi}(\mathbf{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbf{x})
 \end{array}
 \end{equation}$$
 
-$\sigma^2_N(\mathbb{x})$ 的第二项表示相对于参数 $\mathbb{w}$ 的不确定性，当 $N\to\infty$ 时，第二项趋向于0。
+$\sigma^2_N(\mathbf{x})$ 的第二项表示相对于参数 $\mathbf{w}$ 的不确定性，当 $N\to\infty$ 时，第二项趋向于0。
 
 ![predictive distribution](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/bayesian_prediction.png?raw=true)
 
@@ -292,11 +292,11 @@ $\sigma^2_N(\mathbb{x})$ 的第二项表示相对于参数 $\mathbb{w}$ 的不�
 
 ### 3.3.3 等价核(Equivalent Kernel)
 
-在model selection方法中，加入我们将均值代入到 $y(\mathbb{x},\mathbb{w})=\mathbb{w}^T\boldsymbol{\phi}(\mathbb{x})$ ，得到
+在model selection方法中，加入我们将均值代入到 $y(\mathbf{x},\mathbf{w})=\mathbf{w}^T\boldsymbol{\phi}(\mathbf{x})$ ，得到
 
 $$\begin{equation}
 \begin{array}{rcl}
-y(\mathbb{x},\mathbb{m}_N)=\mathbb{m}^T\boldsymbol{\phi}(\mathbb{x})=\beta\boldsymbol{\phi}(\mathbb{x})\boldsymbol{S}_N\boldsymbol{\Phi}^T\mathbb{t}=\sum_{n=1}^N\beta\boldsymbol{\phi}(\mathbb{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbb{x}_n)t_n \\
+y(\mathbf{x},\mathbf{m}_N)=\mathbf{m}^T\boldsymbol{\phi}(\mathbf{x})=\beta\boldsymbol{\phi}(\mathbf{x})\boldsymbol{S}_N\boldsymbol{\Phi}^T\mathbf{t}=\sum_{n=1}^N\beta\boldsymbol{\phi}(\mathbf{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbf{x}_n)t_n \\
 \end{array}
 \end{equation}$$
 
@@ -304,12 +304,12 @@ y(\mathbb{x},\mathbb{m}_N)=\mathbb{m}^T\boldsymbol{\phi}(\mathbb{x})=\beta\bolds
 
 $$\begin{equation}
 \begin{array}{rcl}
-y(\mathbb{x},\mathbb{m}_N) &=& \sum_{n=1}^Nk(\mathbb{x},\mathbb{x}_n)t_n \\
-k(\mathbb{x},\mathbb{x}') &=& \beta\boldsymbol{\phi}(\mathbb{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbb{x}')
+y(\mathbf{x},\mathbf{m}_N) &=& \sum_{n=1}^Nk(\mathbf{x},\mathbf{x}_n)t_n \\
+k(\mathbf{x},\mathbf{x}') &=& \beta\boldsymbol{\phi}(\mathbf{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbf{x}')
 \end{array}
 \end{equation}$$
 
-上式 $k$ 即equivalent kernel。我们可以将 $k(\mathbb{x},\mathbb{x}_n)$ 看成 $t_n$ 相对应的权值。
+上式 $k$ 即equivalent kernel。我们可以将 $k(\mathbf{x},\mathbf{x}_n)$ 看成 $t_n$ 相对应的权值。
 
 ![equivalent kernel](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/equivalent_kernel.png?raw=true)
 
@@ -317,8 +317,8 @@ weight local evidence more strongly than distant evidence。
 
 $$\begin{equation}
 \begin{array}{rcl}
-\text{cov}[y(\mathbb{x}),y(\mathbb{x}')] &=& \text{cov}[\boldsymbol{\phi}(\mathbb{x})^T\mathbb{w},\mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}')] \\
-&=& \boldsymbol{\phi}(\mathbb{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbb{x}') =\beta^{-1}k(\mathbb{x},\mathbb{x}')
+\text{cov}[y(\mathbf{x}),y(\mathbf{x}')] &=& \text{cov}[\boldsymbol{\phi}(\mathbf{x})^T\mathbf{w},\mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}')] \\
+&=& \boldsymbol{\phi}(\mathbf{x})^T\boldsymbol{S}_N\boldsymbol{\phi}(\mathbf{x}') =\beta^{-1}k(\mathbf{x},\mathbf{x}')
 \end{array}
 \end{equation}$$
 
@@ -340,23 +340,23 @@ $p(\mathcal{D} \vert \mathcal{M}_i)$ 是模型的证据(model evidence)，即表
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(t\vert \mathbb{x},\mathcal{D}) = \sum_{i=1}^Lp(t\vert \mathbb{x}, \mathcal{M}_i,\mathcal{D})p(\mathcal{M}_i \vert \mathcal{D})
+p(t\vert \mathbf{x},\mathcal{D}) = \sum_{i=1}^Lp(t\vert \mathbf{x}, \mathcal{M}_i,\mathcal{D})p(\mathcal{M}_i \vert \mathcal{D})
 \end{array}
 \end{equation}$$
 
-很明显对于model averaging来说，计算量是一个比较大的限制，因此有时候我们可以用最大后验概率的模型来近似model averaging，这叫做model selection。模型由参数 $\mathbb{w}$ 控制，那么
+很明显对于model averaging来说，计算量是一个比较大的限制，因此有时候我们可以用最大后验概率的模型来近似model averaging，这叫做model selection。模型由参数 $\mathbf{w}$ 控制，那么
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathcal{D} \vert \mathcal{M}_i) = \int p(\mathcal{D} \vert \mathbb{w}, \mathcal{M}_i) p(\mathbb{w} \vert \mathcal{M}_i) d\mathbb{w}
+p(\mathcal{D} \vert \mathcal{M}_i) = \int p(\mathcal{D} \vert \mathbf{w}, \mathcal{M}_i) p(\mathbf{w} \vert \mathcal{M}_i) d\mathbf{w}
 \end{array}
 \end{equation}$$
 
-$\mathcal{M}_i$ 相当于模型的超参数(hyper-parameter)，比如线性回归中基函数与基函数的个数；而 $\mathbb{w}$ 则是这个模型学到的参数，很明显在相同的超参数下，参数 $\mathbb{w}$ 有多重可能性。
+$\mathcal{M}_i$ 相当于模型的超参数(hyper-parameter)，比如线性回归中基函数与基函数的个数；而 $\mathbf{w}$ 则是这个模型学到的参数，很明显在相同的超参数下，参数 $\mathbf{w}$ 有多重可能性。
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{w} \vert \mathcal{D} , \mathcal{M}_i) =\frac{p(\mathcal{D} \vert \mathbb{w}, \mathcal{M}_i) p(\mathbb{w} \vert \mathcal{M}_i) }{p(\mathcal{D} \vert  \mathcal{M}_i)}
+p(\mathbf{w} \vert \mathcal{D} , \mathcal{M}_i) =\frac{p(\mathcal{D} \vert \mathbf{w}, \mathcal{M}_i) p(\mathbf{w} \vert \mathcal{M}_i) }{p(\mathcal{D} \vert  \mathcal{M}_i)}
 \end{array}
 \end{equation}$$
 
@@ -377,11 +377,11 @@ p(\mathcal{D}) &=& \int p(\mathcal{D}\vert w)p(w) dw \simeq p(\mathcal{D}\vert w
 
 $$\begin{equation}
 \begin{array}{rcl}
-\Rightarrow \ln p(\mathcal{D}) &\simeq& \ln p(\mathcal{D}\vert \mathbb{w}_{MAP})+M\ln\left(\frac{\Delta w_{posterior}}{\Delta w_{prior}}\right)
+\Rightarrow \ln p(\mathcal{D}) &\simeq& \ln p(\mathcal{D}\vert \mathbf{w}_{MAP})+M\ln\left(\frac{\Delta w_{posterior}}{\Delta w_{prior}}\right)
 \end{array}
 \end{equation}$$
 
-此时模型的复杂性由M控制，当M增加时，第一项增加，当模型越复杂，它能更好的拟合数据，从而 $p(\mathcal{D}\vert \mathbb{w_{MAP}})$ 增加，故第一项增加；第二项减小，这是因为 $\ln\left(\frac{\Delta w_{posterior}}{\Delta w_{prior}}\right)$ 为负，故M增加，第二项减小，从而最优解是这两项的平衡点(trade-off)。
+此时模型的复杂性由M控制，当M增加时，第一项增加，当模型越复杂，它能更好的拟合数据，从而 $p(\mathcal{D}\vert \mathbf{w_{MAP}})$ 增加，故第一项增加；第二项减小，这是因为 $\ln\left(\frac{\Delta w_{posterior}}{\Delta w_{prior}}\right)$ 为负，故M增加，第二项减小，从而最优解是这两项的平衡点(trade-off)。
 
 ![models comparison which have different complexity](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/three_models_comparison.png?raw=true)
 
@@ -403,39 +403,39 @@ Fully Bayesian中要求边缘化hyper-parameter，但是这往往是analytically
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(t\vert \mathbb{t}) = \int\int\int p(t\vert \mathbb{w}, \beta) p(\mathbb{w} \vert \mathbb{t}, \alpha, \beta) p(\alpha,\beta\vert \mathbb{t}) d\mathbb{w}d\alpha d\beta \\
+p(t\vert \mathbf{t}) = \int\int\int p(t\vert \mathbf{w}, \beta) p(\mathbf{w} \vert \mathbf{t}, \alpha, \beta) p(\alpha,\beta\vert \mathbf{t}) d\mathbf{w}d\alpha d\beta \\
 \end{array}
 \end{equation}$$
 
-如果后验分布 $p(\alpha,\beta\vert \mathbb{t})$ 集中分布在 $\hat{\alpha},\hat{\beta}$ 上，那么上式近似于
+如果后验分布 $p(\alpha,\beta\vert \mathbf{t})$ 集中分布在 $\hat{\alpha},\hat{\beta}$ 上，那么上式近似于
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(t\vert \mathbb{t}) \simeq p(t\vert \mathbb{t}, \hat{\alpha},\hat{\beta}) = \int p(t\vert \mathbb{w}, \hat{\beta}) p(\mathbb{w} \vert \mathbb{t}, \hat{\alpha},\hat{\beta}) d\mathbb{w} \\
+p(t\vert \mathbf{t}) \simeq p(t\vert \mathbf{t}, \hat{\alpha},\hat{\beta}) = \int p(t\vert \mathbf{w}, \hat{\beta}) p(\mathbf{w} \vert \mathbf{t}, \hat{\alpha},\hat{\beta}) d\mathbf{w} \\
 \end{array}
 \end{equation}$$
 
-所以现在我们的目标最变成了如何确定 $\hat{\alpha},\hat{\beta}$ ，由于 $p(\alpha,\beta\vert \mathbb{t})\propto p(\mathbb{t}\vert \alpha,\beta )p(\alpha,\beta)$，如果我们对 $p(\alpha,\beta)$ 没有偏向，那么变成了 $p(\alpha,\beta\vert \mathbb{t})\propto p(\mathbb{t}\vert \alpha,\beta )$，从而目标变成了求 $p(\mathbb{t}\vert \alpha,\beta )$
+所以现在我们的目标最变成了如何确定 $\hat{\alpha},\hat{\beta}$ ，由于 $p(\alpha,\beta\vert \mathbf{t})\propto p(\mathbf{t}\vert \alpha,\beta )p(\alpha,\beta)$，如果我们对 $p(\alpha,\beta)$ 没有偏向，那么变成了 $p(\alpha,\beta\vert \mathbf{t})\propto p(\mathbf{t}\vert \alpha,\beta )$，从而目标变成了求 $p(\mathbf{t}\vert \alpha,\beta )$
 
 ### 3.5.1 Evalution of Evidence Function
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{t}\vert \alpha,\beta) &=& \int p(\mathbb{t}\vert \mathbb{w},\beta)p(\mathbb{w} \vert \alpha) d\mathbb{w} \\
-p(\mathbb{t}\vert \mathbb{w},\beta) &=& \sum_{n=1}^N\mathcal{N}(t_n\vert \mathbb{w}^T\boldsymbol{\phi}(\mathbb{x}_n),\beta^{-1}) \\
-p(\mathbb{w}\vert \alpha) &=& \mathcal{N}(\mathbb{w}\vert \boldsymbol{0}, \alpha^{-1}\boldsymbol{I}) \\
-\Rightarrow p(\mathbb{t}\vert \alpha,\beta) &=& \left(\frac{\beta}{2\pi} \right)^{N/2} \left(\frac{\alpha}{2\pi} \right)^{M/2}\int \exp\{-E(\mathbb{w})\} d\mathbb{w} \\
-E(\mathbb{w}) &=& \beta E_D(\mathbb{w})+\alpha E_W(\mathbb{w}) = \frac{\beta}{2}\|\mathbb{t}-\boldsymbol{\Phi}\mathbb{w}\|^2+\frac{\alpha}{2}\mathbb{w}^T\mathbb{w}
+p(\mathbf{t}\vert \alpha,\beta) &=& \int p(\mathbf{t}\vert \mathbf{w},\beta)p(\mathbf{w} \vert \alpha) d\mathbf{w} \\
+p(\mathbf{t}\vert \mathbf{w},\beta) &=& \sum_{n=1}^N\mathcal{N}(t_n\vert \mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}_n),\beta^{-1}) \\
+p(\mathbf{w}\vert \alpha) &=& \mathcal{N}(\mathbf{w}\vert \boldsymbol{0}, \alpha^{-1}\boldsymbol{I}) \\
+\Rightarrow p(\mathbf{t}\vert \alpha,\beta) &=& \left(\frac{\beta}{2\pi} \right)^{N/2} \left(\frac{\alpha}{2\pi} \right)^{M/2}\int \exp\{-E(\mathbf{w})\} d\mathbf{w} \\
+E(\mathbf{w}) &=& \beta E_D(\mathbf{w})+\alpha E_W(\mathbf{w}) = \frac{\beta}{2}\|\mathbf{t}-\boldsymbol{\Phi}\mathbf{w}\|^2+\frac{\alpha}{2}\mathbf{w}^T\mathbf{w}
 \end{array}
 \end{equation}$$
 
-我们想得到高斯函数的指数形式即 $E(\mathbb{w})=\frac{1}{2}(\mathbb{w}-\mathbb{m}_N)^T\boldsymbol{A}(\mathbb{w}-\mathbb{m}_N)+E(\mathbb{m}_N)$，第二项是与 $\mathbb{w}$ 无关的项，根据completing the square方法，我们得到
+我们想得到高斯函数的指数形式即 $E(\mathbf{w})=\frac{1}{2}(\mathbf{w}-\mathbf{m}_N)^T\boldsymbol{A}(\mathbf{w}-\mathbf{m}_N)+E(\mathbf{m}_N)$，第二项是与 $\mathbf{w}$ 无关的项，根据completing the square方法，我们得到
 
 $$\begin{equation}
 \begin{array}{rcl}
 \boldsymbol{A} &=& \alpha\boldsymbol{I}+\beta \boldsymbol{\Phi}^T\boldsymbol{\Phi} \\
-\mathbb{m}_N &=& \beta \boldsymbol{A}^{-1}\boldsymbol{\Phi}^T\mathbb{t} \\
-E(\mathbb{m}_N) &=& \frac{\beta}{2}\|\mathbb{t}-\boldsymbol{\Phi}\mathbb{m}_N\|^2+\frac{\alpha}{2}\mathbb{m}_N^T\mathbb{m}_N
+\mathbf{m}_N &=& \beta \boldsymbol{A}^{-1}\boldsymbol{\Phi}^T\mathbf{t} \\
+E(\mathbf{m}_N) &=& \frac{\beta}{2}\|\mathbf{t}-\boldsymbol{\Phi}\mathbf{m}_N\|^2+\frac{\alpha}{2}\mathbf{m}_N^T\mathbf{m}_N
 \end{array}
 \end{equation}$$
 
@@ -443,9 +443,9 @@ E(\mathbb{m}_N) &=& \frac{\beta}{2}\|\mathbb{t}-\boldsymbol{\Phi}\mathbb{m}_N\|^
 
 $$\begin{equation}
 \begin{array}{rcl}
-\int \exp\{-E(\mathbb{w})\} d\mathbb{w} &=& \exp\{-E(\mathbb{m}_N)\}\int \exp\left\{-\frac{1}{2}(\mathbb{w}-\mathbb{m}_N)^T\boldsymbol{A}(\mathbb{w}-\mathbb{m}_N) \right\} d\mathbb{w} \\
-&=& \exp\{-E(\mathbb{m}_N) \}(2\pi)^{M/2}\vert \boldsymbol{A} \vert^{-1/2} \\
-\Rightarrow \ln  p(\mathbb{t}\vert \alpha,\beta) &=& \frac{M}{2}\ln\alpha+\frac{N}{2}\ln\beta - E(\mathbb{m}_N)-\frac{1}{2}\ln\boldsymbol{\vert A\vert}-\frac{N}{2}\ln 2\pi
+\int \exp\{-E(\mathbf{w})\} d\mathbf{w} &=& \exp\{-E(\mathbf{m}_N)\}\int \exp\left\{-\frac{1}{2}(\mathbf{w}-\mathbf{m}_N)^T\boldsymbol{A}(\mathbf{w}-\mathbf{m}_N) \right\} d\mathbf{w} \\
+&=& \exp\{-E(\mathbf{m}_N) \}(2\pi)^{M/2}\vert \boldsymbol{A} \vert^{-1/2} \\
+\Rightarrow \ln  p(\mathbf{t}\vert \alpha,\beta) &=& \frac{M}{2}\ln\alpha+\frac{N}{2}\ln\beta - E(\mathbf{m}_N)-\frac{1}{2}\ln\boldsymbol{\vert A\vert}-\frac{N}{2}\ln 2\pi
 \end{array}
 \end{equation}$$
 
@@ -455,26 +455,26 @@ $$\begin{equation}
 
 ### 3.5.2 Maximizing the evidence function
 
-首先我们考虑 $p(\mathbb{t}\vert \alpha,\beta)$ 相对于 $\alpha$ 的偏导，在这之前我们定义 $(\beta \boldsymbol{\Phi}^T\boldsymbol{\Phi})\mathbb{u}_i =\lambda_i\mathbb{u}_i$，那么 $A$ 的特征值即为 $\alpha+\lambda_i$。
+首先我们考虑 $p(\mathbf{t}\vert \alpha,\beta)$ 相对于 $\alpha$ 的偏导，在这之前我们定义 $(\beta \boldsymbol{\Phi}^T\boldsymbol{\Phi})\mathbf{u}_i =\lambda_i\mathbf{u}_i$，那么 $A$ 的特征值即为 $\alpha+\lambda_i$。
 
 $$\begin{equation}
 \begin{array}{rcl}
 \frac{d}{d\alpha}\ln\boldsymbol{\vert A\vert} &=& \frac{d}{d\alpha}\prod_{i}\ln(\lambda_i+\alpha)=\sum_i\frac{1}{\lambda_i+\alpha} \\
-\Rightarrow 0 &=& \frac{M}{2\alpha}-\frac{1}{2}\mathbb{m}_N^T\mathbb{m}_N-\frac{1}{2}\sum_i\frac{1}{\lambda_i+\alpha} \\
-\Rightarrow \alpha\mathbb{m}_N^T\mathbb{m}_N &=& M-\alpha\sum_i\frac{1}{\lambda_i+\alpha} = \gamma \\
+\Rightarrow 0 &=& \frac{M}{2\alpha}-\frac{1}{2}\mathbf{m}_N^T\mathbf{m}_N-\frac{1}{2}\sum_i\frac{1}{\lambda_i+\alpha} \\
+\Rightarrow \alpha\mathbf{m}_N^T\mathbf{m}_N &=& M-\alpha\sum_i\frac{1}{\lambda_i+\alpha} = \gamma \\
 \Rightarrow \gamma &=& \sum_i\frac{\lambda_i}{\lambda_i+\alpha} \\
-\Rightarrow \alpha &=& \frac{\gamma}{\mathbb{m}_N^T\mathbb{m}_N}
+\Rightarrow \alpha &=& \frac{\gamma}{\mathbf{m}_N^T\mathbf{m}_N}
 \end{array}
 \end{equation}$$
 
-需要注意的是 $\alpha = \frac{\gamma}{\mathbb{m}_N^T\mathbb{m}_N}$ 并不是 $\alpha$ 的直接解，因为 $\gamma,\mathbb{m}_N$ 都依赖于 $\alpha$。我们采用迭代过程来对 $\alpha$ 进行求解，首先任意初始化 $\alpha$，然后求 $\mathbb{m}_N=\beta\boldsymbol{S}_N\boldsymbol{\Phi}^T\mathbb{t}$，再求 $\gamma$，递归求解 $\alpha$
+需要注意的是 $\alpha = \frac{\gamma}{\mathbf{m}_N^T\mathbf{m}_N}$ 并不是 $\alpha$ 的直接解，因为 $\gamma,\mathbf{m}_N$ 都依赖于 $\alpha$。我们采用迭代过程来对 $\alpha$ 进行求解，首先任意初始化 $\alpha$，然后求 $\mathbf{m}_N=\beta\boldsymbol{S}_N\boldsymbol{\Phi}^T\mathbf{t}$，再求 $\gamma$，递归求解 $\alpha$
 
 同理求 $\beta$ 的偏导
 
 $$\begin{equation}
 \begin{array}{rcl}
 \frac{d}{d\beta}\ln\boldsymbol{\vert A\vert} &=& \frac{d}{d\beta}\prod_{i}\ln(\lambda_i+\alpha)=\frac{1}{\beta}\sum_i\frac{\lambda_i}{\lambda_i+\alpha}=\frac{\gamma}{\beta} \\
-\Rightarrow \frac{1}{\beta} &=& \frac{1}{N-\gamma}\sum_{n=1}^N\{\mathbb{t}_n-\mathbb{m}_N^T\boldsymbol{\phi}(\mathbb{x}_n)\}^2
+\Rightarrow \frac{1}{\beta} &=& \frac{1}{N-\gamma}\sum_{n=1}^N\{\mathbf{t}_n-\mathbf{m}_N^T\boldsymbol{\phi}(\mathbf{x}_n)\}^2
 \end{array}
 \end{equation}$$
 
@@ -484,15 +484,15 @@ $$\begin{equation}
 
 ![parameters measurement](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap3/interpretation_alpha.png?raw=true)
 
-当 $\alpha\to0$ 时，此时的模是似然函数的解，而 $A=\beta \boldsymbol{\Phi}^T\boldsymbol{\Phi}$，也就是说 $\lambda_i$ 是一个参数被数据决定的程度( $\lambda_i$ measures how strongly one parameter is determined by the data)。那么 $\alpha$ 就是所有参数被先验决定的程度。 $\mathbb{w_{MAP_i}} = \frac{\lambda_i}{\lambda_i+\alpha}\mathbb{w_{ML_i}}$，如果 $\lambda_i\ll\alpha$，那么 $w_i\to0$ ，即数据对这个参数不敏感，由上面分析可以知道 $\gamma_i=\frac{\lambda_i}{\lambda_i+\alpha}$ 能够估量有效参数的数量。
+当 $\alpha\to0$ 时，此时的模是似然函数的解，而 $A=\beta \boldsymbol{\Phi}^T\boldsymbol{\Phi}$，也就是说 $\lambda_i$ 是一个参数被数据决定的程度( $\lambda_i$ measures how strongly one parameter is determined by the data)。那么 $\alpha$ 就是所有参数被先验决定的程度。 $\mathbf{w_{MAP_i}} = \frac{\lambda_i}{\lambda_i+\alpha}\mathbf{w_{ML_i}}$，如果 $\lambda_i\ll\alpha$，那么 $w_i\to0$ ，即数据对这个参数不敏感，由上面分析可以知道 $\gamma_i=\frac{\lambda_i}{\lambda_i+\alpha}$ 能够估量有效参数的数量。
 
-现在我们考虑 $\beta$，在贝叶斯分析中 $\frac{1}{\beta_{MAP}} = \frac{1}{N-\gamma}\sum_{n=1}^N\{\mathbb{t_n}-\mathbb{m_N^T}\boldsymbol{\phi}(\mathbb{x_n})\}^2$，而在最大似然估计中 $\frac{1}{\beta_{ML}} = \frac{1}{N}\sum_{n=1}^N\{\mathbb{t_n}-\mathbb{w_{ML}^T}\boldsymbol{\phi}(\mathbb{x_n})\}^2$，因为在贝叶斯分析中的参数有效数量取决于 $\gamma$，因此要补偿最大似然估计从而使其无偏。
+现在我们考虑 $\beta$，在贝叶斯分析中 $\frac{1}{\beta_{MAP}} = \frac{1}{N-\gamma}\sum_{n=1}^N\{\mathbf{t_n}-\mathbf{m_N^T}\boldsymbol{\phi}(\mathbf{x_n})\}^2$，而在最大似然估计中 $\frac{1}{\beta_{ML}} = \frac{1}{N}\sum_{n=1}^N\{\mathbf{t_n}-\mathbf{w_{ML}^T}\boldsymbol{\phi}(\mathbf{x_n})\}^2$，因为在贝叶斯分析中的参数有效数量取决于 $\gamma$，因此要补偿最大似然估计从而使其无偏。
 
 当 $N\gg M$ 时，$r=M$，此时
 
 $$\begin{equation}
 \begin{array}{rcl}
-\beta &=& \frac{N}{2E_D(\mathbb{m}_N)} =  \frac{N}{\sum_{n=1}^N\{\mathbb{t}_n-\mathbb{m}_N^T\boldsymbol{\phi}(\mathbb{x}_n)\}^2}\\
-\alpha &=& \frac{M}{2E_W(\mathbb{m}_N)} = \frac{M}{\mathbb{m}_N^T\mathbb{m}_N} \\
+\beta &=& \frac{N}{2E_D(\mathbf{m}_N)} =  \frac{N}{\sum_{n=1}^N\{\mathbf{t}_n-\mathbf{m}_N^T\boldsymbol{\phi}(\mathbf{x}_n)\}^2}\\
+\alpha &=& \frac{M}{2E_W(\mathbf{m}_N)} = \frac{M}{\mathbf{m}_N^T\mathbf{m}_N} \\
 \end{array}
 \end{equation}$$

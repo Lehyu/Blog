@@ -131,19 +131,19 @@ p(\mu\vert m_1,l_1,m_0,l_0,a_0,b_0) &=& \frac{\Gamma(a_0+b_0+l_0+m_0+l_1+m_1)}{\
 
 ## 2. 多元变量
 
-前面一节我们介绍的是变量只有两个状态(要么是1，要么是0)，当变量有多个状态的时候，我们可以扩展成 $\mathbb{x} = (0,\dots,1,\dots,0)^T,\sum_{k=1}^Kx_k=1,p(x_k)=\mu_k$，那么
+前面一节我们介绍的是变量只有两个状态(要么是1，要么是0)，当变量有多个状态的时候，我们可以扩展成 $\mathbf{x} = (0,\dots,1,\dots,0)^T,\sum_{k=1}^Kx_k=1,p(x_k)=\mu_k$，那么
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}\vert \mathbb{\mu})=\prod_{k=1}^K\mu_k^{x_k}
+p(\mathbf{x}\vert \mathbf{\mu})=\prod_{k=1}^K\mu_k^{x_k}
 \end{array}
 \end{equation}$$
 
-其中 $\mathbb{\mu}=(\mu_1,\dots,\mu_K)^T,\sum_{k=1}^K\mu_k=1$，同之前的伯努利分布一样，对于 $\mathcal{D}=\{\mathbb{x}_1,\dots,\mathbb{x}_N\}$ 的似然函数有
+其中 $\mathbf{\mu}=(\mu_1,\dots,\mu_K)^T,\sum_{k=1}^K\mu_k=1$，同之前的伯努利分布一样，对于 $\mathcal{D}=\{\mathbf{x}_1,\dots,\mathbf{x}_N\}$ 的似然函数有
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathcal{D}\vert \mathbb{\mu}) &=& \prod_{n=1}^{N}\prod_{k=1}^K\mu_k^{x_{nk}} \\
+p(\mathcal{D}\vert \mathbf{\mu}) &=& \prod_{n=1}^{N}\prod_{k=1}^K\mu_k^{x_{nk}} \\
 &=& \prod_{k=1}^K\mu_k^{\sum_{n=1}^{N}(x_{nk})} \\
 &=& \prod_{k=1}^K\mu_k^{m_k} \\
 \end{array}
@@ -153,7 +153,7 @@ p(\mathcal{D}\vert \mathbb{\mu}) &=& \prod_{n=1}^{N}\prod_{k=1}^K\mu_k^{x_{nk}} 
 
 $$\begin{equation}
 \begin{array}{rcl}
-L(\mathbb{\mu},\lambda) &=& \sum_{k=1}^K m_k\ln\mu_k+\lambda(\sum_{k=1}^K\mu_k-1) \\
+L(\mathbf{\mu},\lambda) &=& \sum_{k=1}^K m_k\ln\mu_k+\lambda(\sum_{k=1}^K\mu_k-1) \\
 \frac{\partial{L}}{\partial{\mu_k}} &=& 0 \\
 \Rightarrow \frac{m_k}{\mu_k}+\lambda &=& 0 \\
 \Rightarrow \mu_k &=& -m_k/\lambda \\
@@ -167,7 +167,7 @@ L(\mathbb{\mu},\lambda) &=& \sum_{k=1}^K m_k\ln\mu_k+\lambda(\sum_{k=1}^K\mu_k-1
 
 $$\begin{equation}
 \begin{array}{rcl}
-Mult(m_1,m_2,\dots,m_K\vert \mathbb{\mu},N) &=& \binom{N}{m_1m_2\dotsm_K}\prod_{k=1}^K\mu_k^{m_k} \\
+Mult(m_1,m_2,\dots,m_K\vert \mathbf{\mu},N) &=& \binom{N}{m_1m_2\dotsm_K}\prod_{k=1}^K\mu_k^{m_k} \\
 \binom{N}{m_1m_2\dotsm_K} &=& \frac{N!}{m_1!m_2!\dots m_K!} \\
 \sum_{k=1}^Km_k=N
 \end{array}
@@ -179,8 +179,8 @@ Mult(m_1,m_2,\dots,m_K\vert \mathbb{\mu},N) &=& \binom{N}{m_1m_2\dotsm_K}\prod_{
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{\mu}\vert \mathbb{\alpha}) &\propto& \prod_{k=1}^K\mu_k^{\alpha_k-1} \\
-Dir(\mathbb{\mu}\vert \mathbb{\alpha}) &=& \frac{\Gamma(\alpha_0)}{\Gamma(\alpha_1)\dotsm\Gamma(\alpha_K)}\prod_{k=1}^K\mu_k^{\alpha_k-1} \\
+p(\mathbf{\mu}\vert \mathbf{\alpha}) &\propto& \prod_{k=1}^K\mu_k^{\alpha_k-1} \\
+Dir(\mathbf{\mu}\vert \mathbf{\alpha}) &=& \frac{\Gamma(\alpha_0)}{\Gamma(\alpha_1)\dotsm\Gamma(\alpha_K)}\prod_{k=1}^K\mu_k^{\alpha_k-1} \\
 \alpha_0 &=& \sum_{k=1}^K\alpha_k \\
 \end{array}
 \end{equation}$$
@@ -189,8 +189,8 @@ Dir(\mathbb{\mu}\vert \mathbb{\alpha}) &=& \frac{\Gamma(\alpha_0)}{\Gamma(\alpha
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{\mu}\vert \mathcal{D},\mathbb{\alpha}) &\propto& p(\mathcal{D}\vert \mathbb{\mu})p(\mathbb{\mu}\vert \mathbb{\alpha}) \propto \prod_{k=1}^K\mu_k^{\alpha_k+m_k-1} \\
-p(\mathbb{\mu}\vert \mathcal{D},\mathbb{\alpha}) &=& \frac{\Gamma(\alpha_0+N)}{\Gamma(\alpha_1+m_1)\dotsm\Gamma(\alpha_K+m_K)}\prod_{k=1}^K\mu_k^{\alpha_k+m_k-1} \\
+p(\mathbf{\mu}\vert \mathcal{D},\mathbf{\alpha}) &\propto& p(\mathcal{D}\vert \mathbf{\mu})p(\mathbf{\mu}\vert \mathbf{\alpha}) \propto \prod_{k=1}^K\mu_k^{\alpha_k+m_k-1} \\
+p(\mathbf{\mu}\vert \mathcal{D},\mathbf{\alpha}) &=& \frac{\Gamma(\alpha_0+N)}{\Gamma(\alpha_1+m_1)\dotsm\Gamma(\alpha_K+m_K)}\prod_{k=1}^K\mu_k^{\alpha_k+m_k-1} \\
 \end{array}
 \end{equation}$$
 
@@ -200,7 +200,7 @@ p(\mathbb{\mu}\vert \mathcal{D},\mathbb{\alpha}) &=& \frac{\Gamma(\alpha_0+N)}{\
 
 对于单一变量：$\mathcal{N}(x\vert \mu,\sigma^2) =\frac{1}{\sqrt{2\pi \sigma^2}}\exp\{-\frac{(x-\mu)^2}{2\sigma^2}\}$
 
-对于D维向量 $\mathbb{x}$：$\mathcal{N}(\mathbb{x}\vert \mathbb{\mu},\mathbb{\Sigma}) =\frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} }\exp\{-\frac{1}{2}(\mathbb{x}-\mathbb{\mu})^T\Sigma^{-1}(\mathbb{x}-\mathbb{\mu})\}$，其中 $\mathbb{\mu},\mathbb{\Sigma}$ 分别是D维均值向量和 $D\times D$ 协方差矩阵，$\vert \mathbb{\Sigma}\vert $ 是协方差矩阵的行列式。
+对于D维向量 $\mathbf{x}$：$\mathcal{N}(\mathbf{x}\vert \mathbf{\mu},\mathbf{\Sigma}) =\frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} }\exp\{-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^T\Sigma^{-1}(\mathbf{x}-\mathbf{\mu})\}$，其中 $\mathbf{\mu},\mathbf{\Sigma}$ 分别是D维均值向量和 $D\times D$ 协方差矩阵，$\vert \mathbf{\Sigma}\vert $ 是协方差矩阵的行列式。
 
 对于单一变量，使其熵最大化的分布是高斯分布(PRML p54)，这个性质同样适用于多元(multivariate)高斯分布。[中心极限定理](http://baike.baidu.com/link?url=eu7GA-AAQONj-xzc01eMKpiM6zuLpBQPrSFfQXKKG0fhJ0lAJNB_7zkMYINL1Gw_3mEmh2d9XZ5uyAtyo37r-WlX8ddEsMI5sXKnOkHjbSIZdXiIsk87XohFBWLWbzhWvulkaaF2mSPLYDcyt3N7u_)告诉我们独立同分布的随机变量序列的和近似高斯分布。
 
@@ -210,24 +210,24 @@ p(\mathbb{\mu}\vert \mathcal{D},\mathbb{\alpha}) &=& \frac{\Gamma(\alpha_0+N)}{\
 
 $$\begin{equation}
 \begin{array}{rcl}
-\Delta^2 &=& (\mathbb{x}-\mathbb{\mu})^T\mathbb{\Sigma}^{-1}(\mathbb{x}-\mathbb{\mu})
+\Delta^2 &=& (\mathbf{x}-\mathbf{\mu})^T\mathbf{\Sigma}^{-1}(\mathbf{x}-\mathbf{\mu})
 \end{array}
 \end{equation}$$
 
-概率相等的点分布在一个 $\mathbb{x}$ 空间的曲面上。 需要注意的是 $\Sigma$ 是一个对称矩阵，那么其特征向量形成一个正交向量集
+概率相等的点分布在一个 $\mathbf{x}$ 空间的曲面上。 需要注意的是 $\Sigma$ 是一个对称矩阵，那么其特征向量形成一个正交向量集
 
 $$\begin{equation}
 \begin{array}{rcl}
-\Sigma\mathbb{u}_i &=& \lambda_i\mathbb{u}_i \\
-\mathbb{u}_i^T\mathbb{u}_j &=& I_{ij} \\
-\Rightarrow \Sigma &=& \sum_{i=1}^D\lambda_i\mathbb{u}_i^T\mathbb{u}_i \\
-\Rightarrow \Sigma^{-1} &=& \sum_{i=1}^D\frac{1}{\lambda_i}\mathbb{u}_i\mathbb{u}_i^T \\
-\overset{y_i=\mathbb{u}_i^T(\mathbb{x}-\mathbb{\mu})}\Rightarrow \Delta^2 &=& \sum_{i=1}^D\frac{y_i^2}{\lambda_i} \\
-\overset{\mathbb{y}=(y_1,\dots,y_D)^T}\Rightarrow\mathbb{y} &=& \mathbb{U}(\mathbb{x}-\mathbb{\mu})
+\Sigma\mathbf{u}_i &=& \lambda_i\mathbf{u}_i \\
+\mathbf{u}_i^T\mathbf{u}_j &=& I_{ij} \\
+\Rightarrow \Sigma &=& \sum_{i=1}^D\lambda_i\mathbf{u}_i^T\mathbf{u}_i \\
+\Rightarrow \Sigma^{-1} &=& \sum_{i=1}^D\frac{1}{\lambda_i}\mathbf{u}_i\mathbf{u}_i^T \\
+\overset{y_i=\mathbf{u}_i^T(\mathbf{x}-\mathbf{\mu})}\Rightarrow \Delta^2 &=& \sum_{i=1}^D\frac{y_i^2}{\lambda_i} \\
+\overset{\mathbf{y}=(y_1,\dots,y_D)^T}\Rightarrow\mathbf{y} &=& \mathbf{U}(\mathbf{x}-\mathbf{\mu})
 \end{array}
 \end{equation}$$
 
-其中: $\mathbb{U}$ 第i行为 $\mathbb{u}_i^T$，$\mathbb{U}^T\mathbb{U}=\mathbb{I}$
+其中: $\mathbf{U}$ 第i行为 $\mathbf{u}_i^T$，$\mathbf{U}^T\mathbf{U}=\mathbf{I}$
 
 ![gaussian_geo_form](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/gaussian_geo_form.png?raw=true)
 
@@ -237,9 +237,9 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}
-y_i &=& \mathbb{u}_i^T(\mathbb{x}-\mathbb{\mu}) \\
+y_i &=& \mathbf{u}_i^T(\mathbf{x}-\mathbf{\mu}) \\
 J_{ij} &=& \frac{\partial{x_i}}{\partial{x_j}} = U_{ij} \\
-\vert \mathbb{J}\vert ^2 &=& \vert \mathbb{U}^T\mathbb{U}\vert =\vert \mathbb{I}\vert =1
+\vert \mathbf{J}\vert ^2 &=& \vert \mathbf{U}^T\mathbf{U}\vert =\vert \mathbf{I}\vert =1
 \end{array}
 \end{equation}$$
 
@@ -247,7 +247,7 @@ J_{ij} &=& \frac{\partial{x_i}}{\partial{x_j}} = U_{ij} \\
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{y}) &=& p(\mathbb{x})\vert \mathbb{J}\vert =\prod_{j=1}^D\frac{1}{\sqrt{2\pi\lambda_j}}\exp\{-\frac{y_j^2}{2\lambda_j} \}
+p(\mathbf{y}) &=& p(\mathbf{x})\vert \mathbf{J}\vert =\prod_{j=1}^D\frac{1}{\sqrt{2\pi\lambda_j}}\exp\{-\frac{y_j^2}{2\lambda_j} \}
 \end{array}
 \end{equation}$$
 
@@ -255,25 +255,25 @@ p(\mathbb{y}) &=& p(\mathbb{x})\vert \mathbb{J}\vert =\prod_{j=1}^D\frac{1}{\sqr
 
 $$\begin{equation}
 \begin{array}{rcl}
-E[\mathbb{x}] &=& \frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \int{\mathbb{x}\exp\{-\frac{1}{2}(\mathbb{x}-\mathbb{\mu})^T\Sigma^{-1}(\mathbb{x}-\mathbb{\mu})\}}d\mathbb{x} \\
-&\overset{\mathbb{z}=\mathbb{x}-\mathbb{\mu}}=& \frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \int{(\mathbb{z}+\mathbb{\mu})\exp\{-\frac{1}{2}\mathbb{z}^T\Sigma^{-1}\mathbb{z}\}}d\mathbb{z} \\
-&\overset{odd}=&\frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \int{\mathbb{\mu}\exp\{-\frac{1}{2}\mathbb{z}^T\Sigma^{-1}\mathbb{z}\}}d\mathbb{z} \\
-&=& \mathbb{\mu} \\
-E[\mathbb{x}\mathbb{x}^T] &=& \frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \int{\mathbb{x}\mathbb{x}^T\exp\{-\frac{1}{2}(\mathbb{x}-\mathbb{\mu})^T\Sigma^{-1}(\mathbb{x}-\mathbb{\mu})\}}d\mathbb{x} \\
-&\overset{\mathbb{z}=\mathbb{x}-\mathbb{\mu}}=& \frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \int{(\mathbb{z}+\mathbb{\mu})(\mathbb{z}+\mathbb{\mu})^T\exp\{-\frac{1}{2}\mathbb{z}^T\Sigma^{-1}\mathbb{z}\}}d\mathbb{z} \\
-&\overset{odd}=&\frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \int{(\mathbb{\mu}\mathbb{\mu}^T+\mathbb{z}\mathbb{z}^T)\exp\{-\frac{1}{2}\mathbb{z}^T\Sigma^{-1}\mathbb{z}\}}d\mathbb{z} \\
-&=& \mathbb{\mu}\mathbb{\mu}^T+\frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \int{\mathbb{z}\mathbb{z}^T\exp\{-\frac{1}{2}\mathbb{z}^T\Sigma^{-1}\mathbb{z}\}}d\mathbb{z} \\
-&\overset{y_i=\mathbb{u_i}^T\mathbb{z}}=& \mathbb{\mu}\mathbb{\mu}^T+\frac{1}{(2\pi)^{D/2 }\vert \mathbb{\Sigma}\vert ^{1/2} } \sum_{i=1}^D\sum_{j=1}^D \mathbb{u}_i\mathbb{u}_j^T\int{\exp\{-\sum_{k=1}^D\frac{y_k^2}{2\lambda_k}\}}y_iy_jd\mathbb{y} \\
-&=& \mathbb{\mu}\mathbb{\mu}^T+\sum_{i=1}^D\lambda_i\mathbb{u}_i\mathbb{u}_i^T \\
-&=& \mathbb{\mu}\mathbb{\mu}^T+\Sigma \\
-cov[\mathbb{x}] &=& E[(\mathbb{x}-E[\mathbb{x}])(\mathbb{x}-E[\mathbb{x}])^T]\\
+E[\mathbf{x}] &=& \frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \int{\mathbf{x}\exp\{-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^T\Sigma^{-1}(\mathbf{x}-\mathbf{\mu})\}}d\mathbf{x} \\
+&\overset{\mathbf{z}=\mathbf{x}-\mathbf{\mu}}=& \frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \int{(\mathbf{z}+\mathbf{\mu})\exp\{-\frac{1}{2}\mathbf{z}^T\Sigma^{-1}\mathbf{z}\}}d\mathbf{z} \\
+&\overset{odd}=&\frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \int{\mathbf{\mu}\exp\{-\frac{1}{2}\mathbf{z}^T\Sigma^{-1}\mathbf{z}\}}d\mathbf{z} \\
+&=& \mathbf{\mu} \\
+E[\mathbf{x}\mathbf{x}^T] &=& \frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \int{\mathbf{x}\mathbf{x}^T\exp\{-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^T\Sigma^{-1}(\mathbf{x}-\mathbf{\mu})\}}d\mathbf{x} \\
+&\overset{\mathbf{z}=\mathbf{x}-\mathbf{\mu}}=& \frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \int{(\mathbf{z}+\mathbf{\mu})(\mathbf{z}+\mathbf{\mu})^T\exp\{-\frac{1}{2}\mathbf{z}^T\Sigma^{-1}\mathbf{z}\}}d\mathbf{z} \\
+&\overset{odd}=&\frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \int{(\mathbf{\mu}\mathbf{\mu}^T+\mathbf{z}\mathbf{z}^T)\exp\{-\frac{1}{2}\mathbf{z}^T\Sigma^{-1}\mathbf{z}\}}d\mathbf{z} \\
+&=& \mathbf{\mu}\mathbf{\mu}^T+\frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \int{\mathbf{z}\mathbf{z}^T\exp\{-\frac{1}{2}\mathbf{z}^T\Sigma^{-1}\mathbf{z}\}}d\mathbf{z} \\
+&\overset{y_i=\mathbf{u_i}^T\mathbf{z}}=& \mathbf{\mu}\mathbf{\mu}^T+\frac{1}{(2\pi)^{D/2 }\vert \mathbf{\Sigma}\vert ^{1/2} } \sum_{i=1}^D\sum_{j=1}^D \mathbf{u}_i\mathbf{u}_j^T\int{\exp\{-\sum_{k=1}^D\frac{y_k^2}{2\lambda_k}\}}y_iy_jd\mathbf{y} \\
+&=& \mathbf{\mu}\mathbf{\mu}^T+\sum_{i=1}^D\lambda_i\mathbf{u}_i\mathbf{u}_i^T \\
+&=& \mathbf{\mu}\mathbf{\mu}^T+\Sigma \\
+cov[\mathbf{x}] &=& E[(\mathbf{x}-E[\mathbf{x}])(\mathbf{x}-E[\mathbf{x}])^T]\\
 &=& \Sigma
 \end{array}
 \end{equation}$$
 
-$\mathbb{\mu},\Sigma$共同控制了高斯分布的形态，在D维空间中，一般情况下，$\mathbb{\mu}$ 有D个参数，而 $\Sigma$ 有 $D(D+1)/2$ 个参数(对称矩阵)，那么为了决定一个高斯分布的形态我们要有 $D(D+3)/2$ 个参数。对于低维空间来说这个参数是可以接受的；但是对于非常大的 $D$，计算量就会变得十分昂贵(协方差的逆矩阵)。
+$\mathbf{\mu},\Sigma$共同控制了高斯分布的形态，在D维空间中，一般情况下，$\mathbf{\mu}$ 有D个参数，而 $\Sigma$ 有 $D(D+1)/2$ 个参数(对称矩阵)，那么为了决定一个高斯分布的形态我们要有 $D(D+3)/2$ 个参数。对于低维空间来说这个参数是可以接受的；但是对于非常大的 $D$，计算量就会变得十分昂贵(协方差的逆矩阵)。
 
-一个方法是**限制**协方差矩阵的形态：1. $\Sigma=diag(\sigma_i^2)$，此时只有 $2D$ 个参数；2. $\Sigma=\sigma^2\mathbb{I}$，此时有 $D+1$ 个参数。
+一个方法是**限制**协方差矩阵的形态：1. $\Sigma=diag(\sigma_i^2)$，此时只有 $2D$ 个参数；2. $\Sigma=\sigma^2\mathbf{I}$，此时有 $D+1$ 个参数。
 
 ![confined_gaussian](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/confined_gaussian.png?raw=true)
 
@@ -285,91 +285,91 @@ $\mathbb{\mu},\Sigma$共同控制了高斯分布的形态，在D维空间中，�
 
 $$\begin{equation}
 \begin{array}{rcl}
-\mathbb{x} &=& \begin{pmatrix}  \mathbb{x}_a \\ \mathbb{x}_b \end{pmatrix} \\
-\mathbb{\mu} &=& \begin{pmatrix}  \mathbb{\mu}_a \\ \mathbb{\mu}_b \end{pmatrix} \\
-\mathbb{\Sigma} &=& \begin{pmatrix}  \mathbb{\Sigma}_{aa} & \mathbb{\Sigma}_{ab} \\ \mathbb{\Sigma}_{ba} &\mathbb{\Sigma}_{bb} \end{pmatrix} \\
-\mathbb{\Lambda} &=& \begin{pmatrix}  \mathbb{\Lambda}_{aa} & \mathbb{\Lambda}_{ab} \\ \mathbb{\Lambda}_{ba} &\mathbb{\Lambda}_{bb} \end{pmatrix} \\
+\mathbf{x} &=& \begin{pmatrix}  \mathbf{x}_a \\ \mathbf{x}_b \end{pmatrix} \\
+\mathbf{\mu} &=& \begin{pmatrix}  \mathbf{\mu}_a \\ \mathbf{\mu}_b \end{pmatrix} \\
+\mathbf{\Sigma} &=& \begin{pmatrix}  \mathbf{\Sigma}_{aa} & \mathbf{\Sigma}_{ab} \\ \mathbf{\Sigma}_{ba} &\mathbf{\Sigma}_{bb} \end{pmatrix} \\
+\mathbf{\Lambda} &=& \begin{pmatrix}  \mathbf{\Lambda}_{aa} & \mathbf{\Lambda}_{ab} \\ \mathbf{\Lambda}_{ba} &\mathbf{\Lambda}_{bb} \end{pmatrix} \\
 \end{array}
 \end{equation}$$
 
-$p(\mathbb{x}) = p(\mathbb{x}_a,\mathbb{x}_b)$，当我们固定 $\mathbb{x}_b$ 就得到 $\mathbb{x}_a$ 关于 $\mathbb{x}_b$ 的条件概率
+$p(\mathbf{x}) = p(\mathbf{x}_a,\mathbf{x}_b)$，当我们固定 $\mathbf{x}_b$ 就得到 $\mathbf{x}_a$ 关于 $\mathbf{x}_b$ 的条件概率
 
 $$\begin{equation}
 \begin{array}{rcl}
--\frac{1}{2}(\mathbb{x}-\mathbb{\mu})^T\mathbb{\Sigma}^{-1}(\mathbb{x}-\mathbb{\mu}) &=& -\frac{1}{2}(\mathbb{x}_a-\mathbb{\mu}_a)^T\mathbb{\Lambda}_{aa}(\mathbb{x}_a-\mathbb{\mu}_a) \\ && -\frac{1}{2}(\mathbb{x}_a-\mathbb{\mu}_a)^T\mathbb{\Lambda}_{ab}(\mathbb{x}_b-\mathbb{\mu}_b) \\ &&-\frac{1}{2}(\mathbb{x}_b-\mathbb{\mu}_b)^T\mathbb{\Lambda}_{ba}(\mathbb{x}_a-\mathbb{\mu}_a) \\
-&&-\frac{1}{2}(\mathbb{x}_b-\mathbb{\mu}_b)^T\mathbb{\Lambda}_{bb}(\mathbb{x}_b-\mathbb{\mu}_b)
+-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^T\mathbf{\Sigma}^{-1}(\mathbf{x}-\mathbf{\mu}) &=& -\frac{1}{2}(\mathbf{x}_a-\mathbf{\mu}_a)^T\mathbf{\Lambda}_{aa}(\mathbf{x}_a-\mathbf{\mu}_a) \\ && -\frac{1}{2}(\mathbf{x}_a-\mathbf{\mu}_a)^T\mathbf{\Lambda}_{ab}(\mathbf{x}_b-\mathbf{\mu}_b) \\ &&-\frac{1}{2}(\mathbf{x}_b-\mathbf{\mu}_b)^T\mathbf{\Lambda}_{ba}(\mathbf{x}_a-\mathbf{\mu}_a) \\
+&&-\frac{1}{2}(\mathbf{x}_b-\mathbf{\mu}_b)^T\mathbf{\Lambda}_{bb}(\mathbf{x}_b-\mathbf{\mu}_b)
 \end{array}
 \end{equation}$$
 
-由上面的推导我们知道，当 $\mathbb{x}_b$ 固定时，上式是关于 $\mathbb{x}_a$ 的二项式，因此 $p(\mathbb{x}_a\vert \mathbb{x}_b)$ 是干死分布。下面介绍知道一个高斯分布的指数的二项式之后，求它的期望与协方差矩阵。
+由上面的推导我们知道，当 $\mathbf{x}_b$ 固定时，上式是关于 $\mathbf{x}_a$ 的二项式，因此 $p(\mathbf{x}_a\vert \mathbf{x}_b)$ 是干死分布。下面介绍知道一个高斯分布的指数的二项式之后，求它的期望与协方差矩阵。
 
 $$\begin{equation}
 \begin{array}{rcl}
--\frac{1}{2}(\mathbb{x}-\mathbb{\mu})^T\mathbb{\Sigma}^{-1}(\mathbb{x}-\mathbb{\mu}) &=& -\frac{1}{2}\mathbb{x}^T\Sigma^{-1}\mathbb{x}+\mathbb{x}^T\Sigma^{-1}\mathbb{\mu}+const
+-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^T\mathbf{\Sigma}^{-1}(\mathbf{x}-\mathbf{\mu}) &=& -\frac{1}{2}\mathbf{x}^T\Sigma^{-1}\mathbf{x}+\mathbf{x}^T\Sigma^{-1}\mathbf{\mu}+const
 \end{array}
 \end{equation}$$
 
-上式的const是指与 $\mathbb{x}$ 无关的项。根据上式我们就得到 $p(\mathbb{x}_a\vert \mathbb{x}_b)$ 的均值与协方差矩阵
+上式的const是指与 $\mathbf{x}$ 无关的项。根据上式我们就得到 $p(\mathbf{x}_a\vert \mathbf{x}_b)$ 的均值与协方差矩阵
 
 $$\begin{equation}
 \begin{array}{rcl}
--\frac{1}{2}(\mathbb{x}-\mathbb{\mu})^T\mathbb{\Sigma}^{-1}(\mathbb{x}-\mathbb{\mu}) &=& -\frac{1}{2}(\mathbb{x}_a-\mathbb{\mu}_a)^T\mathbb{\Lambda}_{aa}(\mathbb{x}_a-\mathbb{\mu}_a) \\ && -\frac{1}{2}(\mathbb{x}_a-\mathbb{\mu}_a)^T\mathbb{\Lambda}_{ab}(\mathbb{x}_b-\mathbb{\mu}_b) \\ &&-\frac{1}{2}(\mathbb{x}_b-\mathbb{\mu}_b)^T\mathbb{\Lambda}_{ba}(\mathbb{x}_a-\mathbb{\mu}_a) \\
-&&-\frac{1}{2}(\mathbb{x}_b-\mathbb{\mu}_b)^T\mathbb{\Lambda}_{bb}(\mathbb{x}_b-\mathbb{\mu}_b) \\
-&=& -\frac{1}{2}\mathbb{x}_a^T\Lambda_{aa}\mathbb{x}_a+\mathbb{x}_a^T(\Lambda_{aa}\mathbb{\mu}_{aa}-\Lambda_{ab}(\mathbb{x}_b-\mathbb{\mu}_b))+const \\
+-\frac{1}{2}(\mathbf{x}-\mathbf{\mu})^T\mathbf{\Sigma}^{-1}(\mathbf{x}-\mathbf{\mu}) &=& -\frac{1}{2}(\mathbf{x}_a-\mathbf{\mu}_a)^T\mathbf{\Lambda}_{aa}(\mathbf{x}_a-\mathbf{\mu}_a) \\ && -\frac{1}{2}(\mathbf{x}_a-\mathbf{\mu}_a)^T\mathbf{\Lambda}_{ab}(\mathbf{x}_b-\mathbf{\mu}_b) \\ &&-\frac{1}{2}(\mathbf{x}_b-\mathbf{\mu}_b)^T\mathbf{\Lambda}_{ba}(\mathbf{x}_a-\mathbf{\mu}_a) \\
+&&-\frac{1}{2}(\mathbf{x}_b-\mathbf{\mu}_b)^T\mathbf{\Lambda}_{bb}(\mathbf{x}_b-\mathbf{\mu}_b) \\
+&=& -\frac{1}{2}\mathbf{x}_a^T\Lambda_{aa}\mathbf{x}_a+\mathbf{x}_a^T(\Lambda_{aa}\mathbf{\mu}_{aa}-\Lambda_{ab}(\mathbf{x}_b-\mathbf{\mu}_b))+const \\
 \Rightarrow \Sigma_{a\vert b}^{-1} &=& \Lambda_{aa} \\
-\Rightarrow \Sigma_{a\vert b}^{-1}\mathbb{\mu}_{a\vert b} &=& \Lambda_{aa}\mathbb{\mu}_{aa}-\Lambda_{ab}(\mathbb{x}_b-\mathbb{\mu}_b) \\
-\Rightarrow \mathbb{\mu}_{a\vert b} &=& \mathbb{\mu}_{aa}-\Lambda_{aa}^{-1}\Lambda_{ab}(\mathbb{x}_b-\mathbb{\mu}_b)
+\Rightarrow \Sigma_{a\vert b}^{-1}\mathbf{\mu}_{a\vert b} &=& \Lambda_{aa}\mathbf{\mu}_{aa}-\Lambda_{ab}(\mathbf{x}_b-\mathbf{\mu}_b) \\
+\Rightarrow \mathbf{\mu}_{a\vert b} &=& \mathbf{\mu}_{aa}-\Lambda_{aa}^{-1}\Lambda_{ab}(\mathbf{x}_b-\mathbf{\mu}_b)
 \end{array}
 \end{equation}$$
 
-条件高斯分布 $p(\mathbb{x}_a\vert \mathbb{x}_b)$ 的均值是 $\mathbb{x}_b$ 的线性函数
+条件高斯分布 $p(\mathbf{x}_a\vert \mathbf{x}_b)$ 的均值是 $\mathbf{x}_b$ 的线性函数
 
-至于边缘函数则可以由积分求得: $p(\mathbb{x}_a)=\int{p(\mathbb{x}_a,\mathbb{x}_b)}d\mathbb{x}_b$，与条件高斯分布的推导基本类似都是，详细请看书P88，下面只给出结果
+至于边缘函数则可以由积分求得: $p(\mathbf{x}_a)=\int{p(\mathbf{x}_a,\mathbf{x}_b)}d\mathbf{x}_b$，与条件高斯分布的推导基本类似都是，详细请看书P88，下面只给出结果
 
 $$\begin{equation}
 \begin{array}{rcl}
-E[\mathbb{x}_a] &=& \mathbb{\mu}_a \\
-cov[\mathbb{x}_a] &=& \Sigma_{aa}
+E[\mathbf{x}_a] &=& \mathbf{\mu}_a \\
+cov[\mathbf{x}_a] &=& \Sigma_{aa}
 \end{array}
 \end{equation}$$
 
-高斯条件分布 $p(\mathbb{y}\vert \mathbb{x})$ 的均值是 $\mathbb{x}$ 的线性函数那么，
+高斯条件分布 $p(\mathbf{y}\vert \mathbf{x})$ 的均值是 $\mathbf{x}$ 的线性函数那么，
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}) &=& \mathcal{N}(\mathbb{x}\vert \mathbb{\mu},\Lambda^{-1}) \\
-p(\mathbb{y}\vert \mathbb{x}) &=& \mathcal{N}(\mathbb{y}\vert \mathbb{A}\mathbb{x}+\mathbb{b},L^{-1}) \\
-\Rightarrow p(\mathbb{y}) &=& \mathcal{N}(\mathbb{y}\vert \mathbb{A}\mathbb{\mu}+\mathbb{b},L^{-1}+\mathbb{A}\Lambda^{-1}\mathbb{A}^T) \\
-\Rightarrow p(\mathbb{x}\vert \mathbb{y}) &=& \mathcal{N}(\mathbb{y}\vert \Sigma\{\mathbb{A}^TL(\mathbb{y}-\mathbb{b})+\Lambda\mathbb{\mu} \},\Sigma) \\
-\Sigma &=& (\Sigma+\mathbb{A}L\mathbb{A})^{-1}
+p(\mathbf{x}) &=& \mathcal{N}(\mathbf{x}\vert \mathbf{\mu},\Lambda^{-1}) \\
+p(\mathbf{y}\vert \mathbf{x}) &=& \mathcal{N}(\mathbf{y}\vert \mathbf{A}\mathbf{x}+\mathbf{b},L^{-1}) \\
+\Rightarrow p(\mathbf{y}) &=& \mathcal{N}(\mathbf{y}\vert \mathbf{A}\mathbf{\mu}+\mathbf{b},L^{-1}+\mathbf{A}\Lambda^{-1}\mathbf{A}^T) \\
+\Rightarrow p(\mathbf{x}\vert \mathbf{y}) &=& \mathcal{N}(\mathbf{y}\vert \Sigma\{\mathbf{A}^TL(\mathbf{y}-\mathbf{b})+\Lambda\mathbf{\mu} \},\Sigma) \\
+\Sigma &=& (\Sigma+\mathbf{A}L\mathbf{A})^{-1}
 \end{array}
 \end{equation}$$
 
-需要注意的是，书中的推导是先求出 $p(\mathbb{x},\mathbb{y})$ ，然后再根据高斯条件分布与高斯边缘分布的结论直接得出 $p(\mathbb{y}),p(\mathbb{x}\vert \mathbb{y})$
+需要注意的是，书中的推导是先求出 $p(\mathbf{x},\mathbf{y})$ ，然后再根据高斯条件分布与高斯边缘分布的结论直接得出 $p(\mathbf{y}),p(\mathbf{x}\vert \mathbf{y})$
 
 ### 3.3 高斯分布的最大似然
 
-$\mathbb{X}=\{\mathbb{x}_1,\dots,\mathbb{x}_N\},\{\mathbb{x}_n\}$ 独立同分布。
+$\mathbf{X}=\{\mathbf{x}_1,\dots,\mathbf{x}_N\},\{\mathbf{x}_n\}$ 独立同分布。
 
 $$\begin{equation}
 \begin{array}{rcl}
-\ln{p(\mathbb{X}\vert \mathbb{\mu},\mathbb{\Sigma})} &=& -\frac{ND}{2}\ln(2\pi)-\frac{N}{2}\ln\vert \Sigma\vert +\frac{1}{2}\sum_{n=1}^N(\mathbb{x}_n-\mathbb{\mu})^T\Sigma^{-1}(\mathbb{x}_n-\mathbb{\mu}) \\
-\overset{\frac{\partial{\ln p}}{\partial\mathbb{\mu}}=0}\Rightarrow
-0 &=& -\frac{1}{2}\sum_{n=1}^T\{\Sigma^{-1}(\mathbb{x}_n-\mathbb{\mu})+\{(\mathbb{x}_n-\mathbb{\mu})\Sigma^{-1}\}^T\} \\
-\Rightarrow \mathbb{\mu}_{ML} &=& \frac{1}{N}\sum_{n=1}^N\mathbb{x}_n \\
+\ln{p(\mathbf{X}\vert \mathbf{\mu},\mathbf{\Sigma})} &=& -\frac{ND}{2}\ln(2\pi)-\frac{N}{2}\ln\vert \Sigma\vert +\frac{1}{2}\sum_{n=1}^N(\mathbf{x}_n-\mathbf{\mu})^T\Sigma^{-1}(\mathbf{x}_n-\mathbf{\mu}) \\
+\overset{\frac{\partial{\ln p}}{\partial\mathbf{\mu}}=0}\Rightarrow
+0 &=& -\frac{1}{2}\sum_{n=1}^T\{\Sigma^{-1}(\mathbf{x}_n-\mathbf{\mu})+\{(\mathbf{x}_n-\mathbf{\mu})\Sigma^{-1}\}^T\} \\
+\Rightarrow \mathbf{\mu}_{ML} &=& \frac{1}{N}\sum_{n=1}^N\mathbf{x}_n \\
 \overset{\frac{\partial{\ln p}}{\partial{\Sigma}}=0}\Rightarrow
-0 &=& -\frac{N}{2}\Sigma^{-1}-\frac{1}{2}\sum_{n=1}^T\{(\mathbb{x}_n-\mathbb{\mu})(\mathbb{x}_n-\mathbb{\mu})^T(-\Sigma^{-2})\} \\
-\Rightarrow \Sigma_{ML} &=& \frac{1}{N}\sum_{n=1}^N(\mathbb{x}_n-\mathbb{\mu}_{ML})(\mathbb{x}_n-\mathbb{\mu}_{ML})^T \\
+0 &=& -\frac{N}{2}\Sigma^{-1}-\frac{1}{2}\sum_{n=1}^T\{(\mathbf{x}_n-\mathbf{\mu})(\mathbf{x}_n-\mathbf{\mu})^T(-\Sigma^{-2})\} \\
+\Rightarrow \Sigma_{ML} &=& \frac{1}{N}\sum_{n=1}^N(\mathbf{x}_n-\mathbf{\mu}_{ML})(\mathbf{x}_n-\mathbf{\mu}_{ML})^T \\
 \end{array}
 \end{equation}$$
 
-由于 $\mathbb{\mu}_{ML}$ 不依赖于 $\Sigma_{ML}$ ，可以先求 $\mathbb{\mu}_{ML}$ 再求 $\Sigma_{ML}$。
+由于 $\mathbf{\mu}_{ML}$ 不依赖于 $\Sigma_{ML}$ ，可以先求 $\mathbf{\mu}_{ML}$ 再求 $\Sigma_{ML}$。
 
 $$\begin{equation}
 \begin{array}{rcl}
-E[\mathbb{\mu}_{ML}] &=& E[\frac{1}{N}\sum_{n=1}^N\mathbb{x}_{n}] \\
+E[\mathbf{\mu}_{ML}] &=& E[\frac{1}{N}\sum_{n=1}^N\mathbf{x}_{n}] \\
 p(x,y)=p(x)p(y) &\Rightarrow& E[x+y]=E[x]+E[y] \\
-E[\mathbb{\mu}_{ML}] &=& \frac{1}{N}\sum_{n=1}^NE[\mathbb{x}_n] = \mathbb{\mu} \\
+E[\mathbf{\mu}_{ML}] &=& \frac{1}{N}\sum_{n=1}^NE[\mathbf{x}_n] = \mathbf{\mu} \\
 p(x_m,x_n)=p(x_n)p(x_m),p(x)\sim N(x\vert \mu,\sigma^2) &\Rightarrow& E[x_nx_m]=\mu^2+\sigma^2I_{nm} \\
 E[\Sigma_{ML}] &=& \frac{N-1}{N}\Sigma
 \end{array}
@@ -377,18 +377,18 @@ E[\Sigma_{ML}] &=& \frac{N-1}{N}\Sigma
 
 ### 3.4 顺序估计(sequential estimation)
 
-首先对于高斯分布的均值(mean)估计：$\mathbb{\mu}_{ML} = \frac{1}{N}\sum_{n=1}^N\mathbb{x}_n$
+首先对于高斯分布的均值(mean)估计：$\mathbf{\mu}_{ML} = \frac{1}{N}\sum_{n=1}^N\mathbf{x}_n$
 
 $$\begin{equation}
 \begin{array}{rcl}
-\mathbb{\mu}_{ML}^N &=& \frac{1}{N}\sum_{n=1}^N\mathbb{x}_n \\
-&=& \frac{1}{N}\mathbb{x}_N+\frac{1}{N}\sum_{n=1}^{N-1}\mathbb{x}_n \\
-&=& \frac{1}{N}\mathbb{x}_N+\frac{N-1}{N}\mathbb{\mu}_{ML}^{N-1} \\
-&=& \mathbb{\mu}_{ML}^{N-1}+\frac{1}{N}(\mathbb{x}_N-\mathbb{\mu}_{ML}^{N-1} )\\
+\mathbf{\mu}_{ML}^N &=& \frac{1}{N}\sum_{n=1}^N\mathbf{x}_n \\
+&=& \frac{1}{N}\mathbf{x}_N+\frac{1}{N}\sum_{n=1}^{N-1}\mathbf{x}_n \\
+&=& \frac{1}{N}\mathbf{x}_N+\frac{N-1}{N}\mathbf{\mu}_{ML}^{N-1} \\
+&=& \mathbf{\mu}_{ML}^{N-1}+\frac{1}{N}(\mathbf{x}_N-\mathbf{\mu}_{ML}^{N-1} )\\
 \end{array}
 \end{equation}$$
 
-在我们估计了 $N-1$ 个观测值的 $\mathbb{\mu}_{ML}^{N-1}$ 后又来了一个新的观测数据，我们能够很轻松的利用先前的 $\mathbb{\mu}_{ML}^{N-1}$ 来估计  $\mathbb{\mu}_{ML}^{N}$，大大减小了计算量。对于拥有 $\mathbb{\mu}_{ML}\propto \sum_{n=1}^N\mathbb{x}_n$，我们可以利用上式来进行sequential estimation。如果更一般的话，我们可以利用[Robbins-Monro算法](todo)推导更一般的形式
+在我们估计了 $N-1$ 个观测值的 $\mathbf{\mu}_{ML}^{N-1}$ 后又来了一个新的观测数据，我们能够很轻松的利用先前的 $\mathbf{\mu}_{ML}^{N-1}$ 来估计  $\mathbf{\mu}_{ML}^{N}$，大大减小了计算量。对于拥有 $\mathbf{\mu}_{ML}\propto \sum_{n=1}^N\mathbf{x}_n$，我们可以利用上式来进行sequential estimation。如果更一般的话，我们可以利用[Robbins-Monro算法](todo)推导更一般的形式
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -424,14 +424,14 @@ p(\mu,\lambda) &=& \mathcal{N}(\mu\vert \mu_0,(\beta\lambda)^{-1})Gam(\lambda\ve
 
 共轭先验的选取主要是考察似然函数的形式，这个推导就不详细叙述。对于D维变量的高斯分布的共轭先验，大致与单一变量的高斯分布一样
 
- 1 $\Lambda$ 已知，$\mathbb{\mu}$ 未知：取高斯分布作为先验 $\mathcal{N}(\mathbb{\mu}\vert \mathbb{\mu_0},\Lambda)$
+ 1 $\Lambda$ 已知，$\mathbf{\mu}$ 未知：取高斯分布作为先验 $\mathcal{N}(\mathbf{\mu}\vert \mathbf{\mu_0},\Lambda)$
 
 2 $\Lambda$ 未知，$\mu$ 已知：取Wishart分布作为先验
 
 $$\begin{equation}
 \begin{array}{rcl}
-\mathcal{W}(\Lambda\vert \mathbb{W},\nu) &=& B\vert \Lambda\vert ^{(\nu-D-1)/2}\exp(-\frac{1}{2}Tr(\mathbb{W}^{-1}\Lambda ))\\
-B(\mathbb{W},\nu) &=& \vert \mathbb{W}\vert ^{-\nu/2}(2^{\nu D/2}\pi^{D(D-1)/4}\prod_{i=1}^D\Gamma(\frac{\nu+1-i}{2}))^{-1}
+\mathcal{W}(\Lambda\vert \mathbf{W},\nu) &=& B\vert \Lambda\vert ^{(\nu-D-1)/2}\exp(-\frac{1}{2}Tr(\mathbf{W}^{-1}\Lambda ))\\
+B(\mathbf{W},\nu) &=& \vert \mathbf{W}\vert ^{-\nu/2}(2^{\nu D/2}\pi^{D(D-1)/4}\prod_{i=1}^D\Gamma(\frac{\nu+1-i}{2}))^{-1}
 \end{array}
 \end{equation}$$
 
@@ -439,7 +439,7 @@ B(\mathbb{W},\nu) &=& \vert \mathbb{W}\vert ^{-\nu/2}(2^{\nu D/2}\pi^{D(D-1)/4}\
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mu,\lambda) &=& \mathcal{N}(\mu\vert \mu_0,(\beta\Lambda)^{-1})\mathcal{W}(\Lambda\vert \mathbb{W},\nu) \\
+p(\mu,\lambda) &=& \mathcal{N}(\mu\vert \mu_0,(\beta\Lambda)^{-1})\mathcal{W}(\Lambda\vert \mathbf{W},\nu) \\
 \end{array}
 \end{equation}$$
 
@@ -462,11 +462,11 @@ t-分布是由无穷个具有相同 $\mu$ 不同 $\lambda$ 的高斯分布累加
 
 $$\begin{equation}
 \begin{array}{rcl}
-St(\mathbb{x}\vert \mathbb{\mu},\Lambda,\nu) &=& \frac{\Gamma(\nu/2+D/2)}{\Gamma(\nu/2)}(\frac{\vert \Lambda\vert ^{1/2}}{(\pi\nu)^{D/2}})[1+\frac{\Delta^2}{\nu}]^{-\nu/2-D/2} \\
-\Delta^2 &=& (\mathbb{x}-\mathbb{\mu})^T\Lambda(\mathbb{x}-\mathbb{\mu}) \\
-E[\mathbb{x}] &=& \mathbb{\mu}, ~~~~~~~~~~~~~~~~~if ~~~~\nu>1 \\
-cov[\mathbb{x}] &=& \frac{\nu}{\nu-2}\Lambda^{-1},~~if~~~~\nu>2 \\
-mode[\mathbb{x}] &=& \mathbb{\mu}
+St(\mathbf{x}\vert \mathbf{\mu},\Lambda,\nu) &=& \frac{\Gamma(\nu/2+D/2)}{\Gamma(\nu/2)}(\frac{\vert \Lambda\vert ^{1/2}}{(\pi\nu)^{D/2}})[1+\frac{\Delta^2}{\nu}]^{-\nu/2-D/2} \\
+\Delta^2 &=& (\mathbf{x}-\mathbf{\mu})^T\Lambda(\mathbf{x}-\mathbf{\mu}) \\
+E[\mathbf{x}] &=& \mathbf{\mu}, ~~~~~~~~~~~~~~~~~if ~~~~\nu>1 \\
+cov[\mathbf{x}] &=& \frac{\nu}{\nu-2}\Lambda^{-1},~~if~~~~\nu>2 \\
+mode[\mathbf{x}] &=& \mathbf{\mu}
 \end{array}
 \end{equation}$$
 
@@ -491,7 +491,7 @@ I_0(m) &=& \frac{1}{2\pi}\int_0^{2\pi}{\exp(m\cos\theta) }d\theta
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}) &=& \sum_{k=1}^K\pi_k\mathcal{N}(\mathbb{x}\vert \mathbb{\mu}_k,\Sigma_k) \\
+p(\mathbf{x}) &=& \sum_{k=1}^K\pi_k\mathcal{N}(\mathbf{x}\vert \mathbf{\mu}_k,\Sigma_k) \\
 \sum_{k=1}^K\pi_k &=& 1
 \end{array}
 \end{equation}$$
@@ -504,8 +504,8 @@ p(\mathbb{x}) &=& \sum_{k=1}^K\pi_k\mathcal{N}(\mathbb{x}\vert \mathbb{\mu}_k,\S
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}) &=& \sum_{k=1}^Kp(k)p(\mathbb{x}\vert k) \\
-\gamma_k(\mathbb{x}) &\equiv& p(k\vert \mathbb{x}) =\frac{p(k)p(\mathbb{x}\vert k)}{\sum_lp(l)p(\mathbb{x}\vert l)}
+p(\mathbf{x}) &=& \sum_{k=1}^Kp(k)p(\mathbf{x}\vert k) \\
+\gamma_k(\mathbf{x}) &\equiv& p(k\vert \mathbf{x}) =\frac{p(k)p(\mathbf{x}\vert k)}{\sum_lp(l)p(\mathbf{x}\vert l)}
 \end{array}
 \end{equation}$$
 
@@ -517,8 +517,8 @@ p(\mathbb{x}) &=& \sum_{k=1}^Kp(k)p(\mathbb{x}\vert k) \\
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}\vert \boldsymbol{\eta}) &=& h(\mathbb{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\} \\
-1 &=& \int h(\mathbb{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\}d\mathbb{x}
+p(\mathbf{x}\vert \boldsymbol{\eta}) &=& h(\mathbf{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\} \\
+1 &=& \int h(\mathbf{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\}d\mathbf{x}
 \end{array}
 \end{equation}$$
 
@@ -552,8 +552,8 @@ g(\eta) &=& \sigma(-\eta)
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}\vert \mathbb{\mu}) &=& \prod_{k=1}^K\mu_k^{x_k} = \exp\{\sum_{k=1}^Kx_k\ln\mu_k \} \\
-\overset{\eta_k=\ln\mu_k}\Rightarrow  p(\mathbb{x}\vert \boldsymbol\eta) &=& \exp(\boldsymbol{\eta}^T\mathbb{x}) \\
+p(\mathbf{x}\vert \mathbf{\mu}) &=& \prod_{k=1}^K\mu_k^{x_k} = \exp\{\sum_{k=1}^Kx_k\ln\mu_k \} \\
+\overset{\eta_k=\ln\mu_k}\Rightarrow  p(\mathbf{x}\vert \boldsymbol\eta) &=& \exp(\boldsymbol{\eta}^T\mathbf{x}) \\
 u(x) &=& x \\
 h(x) &=& 1 \\
 g(\eta) &=& 1
@@ -568,7 +568,7 @@ $$\begin{equation}
 &=& \exp\{\sum_{k=1}^{K-1}x_k\ln{\frac{\mu_k}{1-\sum_{k=1}^{K-1}\mu_k} }+\ln(1-\sum_{k=1}^{K-1}\mu_k) \} \\
 \overset{\eta_k=\ln{\frac{\mu_k}{1-\sum_{k=1}^{K-1}\mu_k} }}\Rightarrow
 \mu_k &=& \frac{\exp(\eta_k)}{1+\sum_{j=1}^{K-1}\exp(\eta_j)}\\
-p(\mathbb{x}\vert \boldsymbol\eta) &=& (1+\sum_{j=1}^{K-1}\exp(\eta_j))^{-1}\exp(\boldsymbol{\eta}^T\mathbb{x}) \\
+p(\mathbf{x}\vert \boldsymbol\eta) &=& (1+\sum_{j=1}^{K-1}\exp(\eta_j))^{-1}\exp(\boldsymbol{\eta}^T\mathbf{x}) \\
 u(x) &=& x \\
 h(x) &=& 1 \\
 g(\eta) &=& (1+\sum_{j=1}^{K-1}\exp(\eta_j))^{-1}
@@ -596,7 +596,7 @@ g(\eta) &=& (-2\eta_2)^{1/2}\exp(\frac{\eta_1^2}{4\eta_2})
 
 $$\begin{equation}
 \begin{array}{rcl}\
-\int h(\mathbb{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\}d\mathbb{x} &=& 1
+\int h(\mathbf{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\}d\mathbf{x} &=& 1
 \end{array}
 \end{equation}$$
 
@@ -604,18 +604,18 @@ $$\begin{equation}
 
 $$\begin{equation}
 \begin{array}{rcl}\
-\nabla g(\boldsymbol{\eta}) \int h(\mathbb{x})\exp\{\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\}d\mathbb{x}+\int h(\mathbb{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\}\mathbb{u}(\mathbb{x})d\mathbb{x} &=& 0 \\
-\Rightarrow -\nabla\ln g(\boldsymbol{\eta}) = \int h(\mathbb{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\}\mathbb{u}(\mathbb{x})d\mathbb{x} &=& \mathbb{E}[\mathbb{u}(\mathbb{x})]
+\nabla g(\boldsymbol{\eta}) \int h(\mathbf{x})\exp\{\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\}d\mathbf{x}+\int h(\mathbf{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\}\mathbf{u}(\mathbf{x})d\mathbf{x} &=& 0 \\
+\Rightarrow -\nabla\ln g(\boldsymbol{\eta}) = \int h(\mathbf{x})g(\boldsymbol{\eta})\exp\{\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\}\mathbf{u}(\mathbf{x})d\mathbf{x} &=& \mathbf{E}[\mathbf{u}(\mathbf{x})]
 \end{array}
 \end{equation}$$
 
-当 $\mathbb{X} = \{\mathbb{x}_1,\dots,\mathbb{x}_N \}, p(\mathbb{x}_n\vert \boldsymbol{\eta})=h(\mathbb{x}_n)g(\boldsymbol{\eta})\exp(\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\}$，那么它的似然函数为
+当 $\mathbf{X} = \{\mathbf{x}_1,\dots,\mathbf{x}_N \}, p(\mathbf{x}_n\vert \boldsymbol{\eta})=h(\mathbf{x}_n)g(\boldsymbol{\eta})\exp(\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\}$，那么它的似然函数为
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{X}\vert \boldsymbol{\eta}) &=& \{\prod_{n=1}^Nh(\mathbb{x}_n)\}g(\boldsymbol{\eta})^N\exp\{\sum_{n=1}^N\{\boldsymbol{\eta}^T\mathbb{u}(\mathbb{x})\}\} \\
+p(\mathbf{X}\vert \boldsymbol{\eta}) &=& \{\prod_{n=1}^Nh(\mathbf{x}_n)\}g(\boldsymbol{\eta})^N\exp\{\sum_{n=1}^N\{\boldsymbol{\eta}^T\mathbf{u}(\mathbf{x})\}\} \\
 \overset{\frac{\partial{\ln p}}{\partial{\boldsymbol{\eta}} }=0 }\Rightarrow
--\nabla\ln g(\boldsymbol{\eta}_{ML}) &=& \frac{1}{N}\sum_{n=1}^N\mathbb{u}(\mathbb{x})
+-\nabla\ln g(\boldsymbol{\eta}_{ML}) &=& \frac{1}{N}\sum_{n=1}^N\mathbf{u}(\mathbf{x})
 \end{array}
 \end{equation}$$
 从而当 $N\to\infty$时，$\boldsymbol{\eta}_{ML}$ 等于真实的  $\boldsymbol{\eta}$ 。
@@ -626,15 +626,15 @@ p(\mathbb{X}\vert \boldsymbol{\eta}) &=& \{\prod_{n=1}^Nh(\mathbb{x}_n)\}g(\bold
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\boldsymbol{\eta}\vert \mathbb{\chi},\nu) &=& f(\mathbb{\chi},\nu)g(\boldsymbol{\eta})^{\nu}\exp\{\nu \boldsymbol{\eta}^T\mathbb{\chi} \}
+p(\boldsymbol{\eta}\vert \mathbf{\chi},\nu) &=& f(\mathbf{\chi},\nu)g(\boldsymbol{\eta})^{\nu}\exp\{\nu \boldsymbol{\eta}^T\mathbf{\chi} \}
 \end{array}
 \end{equation}$$
 
-其中 $f(\mathbb{\chi},\nu)$ 是归一化系数
+其中 $f(\mathbf{\chi},\nu)$ 是归一化系数
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\boldsymbol{\eta}\vert \mathbb{X},\mathbb{\chi},\nu) &\propto& g(\boldsymbol{\eta})^{\nu+N}\exp\{\boldsymbol{\eta}^T(\sum_{n=1}^N\mathbb{x}_n+\nu \mathbb{\chi}) \}
+p(\boldsymbol{\eta}\vert \mathbf{X},\mathbf{\chi},\nu) &\propto& g(\boldsymbol{\eta})^{\nu+N}\exp\{\boldsymbol{\eta}^T(\sum_{n=1}^N\mathbf{x}_n+\nu \mathbf{\chi}) \}
 \end{array}
 \end{equation}$$
 
@@ -646,15 +646,15 @@ p(\boldsymbol{\eta}\vert \mathbb{X},\mathbb{\chi},\nu) &\propto& g(\boldsymbol{\
 
 之前的概率分布都是一些具有特定形式的函数，并且能有少数的参数来控制这个函数的形态，但是采用这种方法会很大的局限性，因为我们选取的概率分布函数有可能不能捕捉数据的潜在概率分布。比如说高斯分布中，数据的潜在概率分布可能具有多个峰值，但是高斯分布是个单峰函数，因此在预测新的数据的时候，预测性能会很差，这种问题可以用混合高斯分布等扩展方法来解决。我们下面介绍另一个方法：非参数法。
 
-假设观测值是从一个未知的概率分布 $p(\mathbb{x})$ 中选取的，$\mathbb{x}$ 是D维空间的点，那么对于一个很小的区域 $\mathcal{R}$ ，这个区域的概率质量为
+假设观测值是从一个未知的概率分布 $p(\mathbf{x})$ 中选取的，$\mathbf{x}$ 是D维空间的点，那么对于一个很小的区域 $\mathcal{R}$ ，这个区域的概率质量为
 
 $$\begin{equation}
 \begin{array}{rcl}
-P &=& \int_\mathcal{R}p(\mathbb{x})d\mathbb{x}
+P &=& \int_\mathcal{R}p(\mathbf{x})d\mathbf{x}
 \end{array}
 \end{equation}$$
 
-现在假设我们从 $p(\mathbb{x})$ 中选取N个观测值，那么落在区域 $\mathcal{R}$ 的观测值个数 $K$ 服从二项分布
+现在假设我们从 $p(\mathbf{x})$ 中选取N个观测值，那么落在区域 $\mathcal{R}$ 的观测值个数 $K$ 服从二项分布
 
 $$\begin{equation}
 \begin{array}{rcl}
@@ -666,34 +666,34 @@ var[K/N] &=& P(1-P)/N &(var[K]=NP(1-P)) \\
 
 当N很大的时候，由 $var[K/N] = P(1-P)/N$ 知道分布会集中分布中均值上，此时的均值 $K\simeq NP$
 
-当 $\mathcal{R}$ 足够小，那么在这个区域上 $p(\mathbb{x})$ 近似为一个常数，那么 $P\simeq p(\mathbb{x})V$。从而有 $p(\mathbb{x})=\frac{K}{NV}$ (两个假设，在实际应用中会不会导致结果相差太大?)。这个估计公式主要由 $K,V$ 两个值决定
+当 $\mathcal{R}$ 足够小，那么在这个区域上 $p(\mathbf{x})$ 近似为一个常数，那么 $P\simeq p(\mathbf{x})V$。从而有 $p(\mathbf{x})=\frac{K}{NV}$ (两个假设，在实际应用中会不会导致结果相差太大?)。这个估计公式主要由 $K,V$ 两个值决定
 
 ### 5.1 核密度估计(kernel density estimation)
 
-固定 $V$，从数据中决定 $K$。为了简化，我们使 $\mathcal{R}$ 是待估计值 $\mathbb{x}$ 上的边长为h超立方体(hypercube)在。当 $\mathbb{x}_n$ 与 $\mathbb{x}$ 满足一定条件时，$\mathbb{x}_n$ 就落在该超立方体里。我们介绍Parzen window
+固定 $V$，从数据中决定 $K$。为了简化，我们使 $\mathcal{R}$ 是待估计值 $\mathbf{x}$ 上的边长为h超立方体(hypercube)在。当 $\mathbf{x}_n$ 与 $\mathbf{x}$ 满足一定条件时，$\mathbf{x}_n$ 就落在该超立方体里。我们介绍Parzen window
 
 $$\begin{equation}
 \begin{array}{rcl}
-k(\mathbb{u}) &=& \begin{cases} 1,&\vert u_i\vert \le1/2,i=1,\dots,D, \\
+k(\mathbf{u}) &=& \begin{cases} 1,&\vert u_i\vert \le1/2,i=1,\dots,D, \\
 0,&otherwise
 \end{cases}
 \end{array}
 \end{equation}$$
 
-我们取 $k((\mathbb{x}-\mathbb{x}_n)/h)$，那么 $K=\sum_{n=1}^Nk(\frac{\mathbb{x}-\mathbb{x}_n}{h})$，那么对于 $p(\mathbb{x})$，我们就得到
+我们取 $k((\mathbf{x}-\mathbf{x}_n)/h)$，那么 $K=\sum_{n=1}^Nk(\frac{\mathbf{x}-\mathbf{x}_n}{h})$，那么对于 $p(\mathbf{x})$，我们就得到
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}) &=& \frac{1}{Nh^D}\sum_{n=1}^Nk(\frac{\mathbb{x}-\mathbb{x}_n}{h})
+p(\mathbf{x}) &=& \frac{1}{Nh^D}\sum_{n=1}^Nk(\frac{\mathbf{x}-\mathbf{x}_n}{h})
 \end{array}
 \end{equation}$$
 
-Parzen window核函数会导致求出的 $p'(\mathbb{x})$ 人为的不连续性，而不是因为 $p(\mathbb{x})$ 本身引起的。因此采用另一个核函数——高斯核函数
+Parzen window核函数会导致求出的 $p'(\mathbf{x})$ 人为的不连续性，而不是因为 $p(\mathbf{x})$ 本身引起的。因此采用另一个核函数——高斯核函数
 
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}) &=& \frac{1}{N\sqrt{2\pi h^2}}\sum_{n=1}^N \exp(-\frac{\vert \vert \mathbb{x}-\mathbb{x}_n\vert \vert ^2}{2h^2})
+p(\mathbf{x}) &=& \frac{1}{N\sqrt{2\pi h^2}}\sum_{n=1}^N \exp(-\frac{\vert \vert \mathbf{x}-\mathbf{x}_n\vert \vert ^2}{2h^2})
 \end{array}
 \end{equation}$$
 
@@ -707,14 +707,14 @@ p(\mathbb{x}) &=& \frac{1}{N\sqrt{2\pi h^2}}\sum_{n=1}^N \exp(-\frac{\vert \vert
 
 ![nearest_neighbour](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap2/nearest_neighbour.png?raw=true)
 
-假设一个数据集一共有N个实例，其中有 $N_k$ 个属于类 $C_k$，$\sum_{k}N_k=N$。如果我们想分类一个新的实例 $\mathbb{x}$ ，我们以 $\mathbb{x}$ 为中心选取 $K$ 个实例。那么在这里面有 $K_k$ 个实例属于类 $C_k$。
+假设一个数据集一共有N个实例，其中有 $N_k$ 个属于类 $C_k$，$\sum_{k}N_k=N$。如果我们想分类一个新的实例 $\mathbf{x}$ ，我们以 $\mathbf{x}$ 为中心选取 $K$ 个实例。那么在这里面有 $K_k$ 个实例属于类 $C_k$。
 
 $$\begin{equation}
 \begin{array}{rcl}
-p(\mathbb{x}\vert C_k) &=& \frac{K_k}{N_kV} \\
-p(\mathbb{x}) &=& \frac{K}{NV} \\
+p(\mathbf{x}\vert C_k) &=& \frac{K_k}{N_kV} \\
+p(\mathbf{x}) &=& \frac{K}{NV} \\
 p(C_k) &=& \frac{K_k}{N_k} \\
-\Rightarrow p(C_k\vert \mathbb{x}) &=& \frac{p(\mathbb{x}\vert C_k)p(C_k)}{p(\mathbb{x})} = \frac{K_k}{K} \\
+\Rightarrow p(C_k\vert \mathbf{x}) &=& \frac{p(\mathbf{x}\vert C_k)p(C_k)}{p(\mathbf{x})} = \frac{K_k}{K} \\
 \end{array}
 \end{equation}$$
 K-近邻算法的概率解释，通俗解释就是选取与测试实例最近的 $K$ 个实例，如果这 $K$ 个实例大多数都属于某个类 $C_k$，就讲测试实例分类到 $C_k$。
