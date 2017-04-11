@@ -45,7 +45,7 @@ r &=& \frac{y(\mathbf{x})}{\|\mathbf{w}\|}
 \end{array}
 \end{equation}$$
 
-如果令 $x_0=1,\tilde{\mathbf{w}}=\{w_0,\mathbf{w}\},\tilde{\mathbf{x}}=\{x_0,\mathbf{x}\}$，那么 $y(\mathbf{x})=\tilde{\mathbf{w}}^T\tilde{\mathbf{x}}$
+如果令 $x_0=1,\tilde{\mathbf{w}}=[w_0,\mathbf{w}],\tilde{\mathbf{x}}=[x_0,\mathbf{x}]$，那么 $y(\mathbf{x})=\tilde{\mathbf{w}}^T\tilde{\mathbf{x}}$
 
 ### 4.1.2 多类别
 
@@ -61,7 +61,7 @@ y_k(\mathbf{x}) &=& \mathbf{w}_k^T\mathbf{x}+w_{k0}
 \end{array}
 \end{equation}$$
 
-虽然形式上有点类似前两种方法，但是只有当所有 $j\neq k,y_k(\mathbf{x})>y_j(\mathbf{x})$ 时，才分类到 $\mathcal{C}_k$ ，那么 $\mathcal{C}_k$ 与 $\mathcal{C}_j$ 的决策边界(平面) 就变成了 $y_k(\mathbf{x})=y_j(\mathbf{x})\Rightarrow (\mathbf{w}_k-\mathbf{w}_j)^T\mathbf{x}+(w_{k0}-w_{j0})=0$，这与二分类的决策平面一致。
+虽然形式上有点类似前两种方法，但是只有当所有 $j\neq k,y_k(\mathbf{x})>y_j(\mathbf{x})$ 时，才分类到 $\mathcal{C_k}$ ，那么 $\mathcal{C_k}$ 与 $\mathcal{C_j}$ 的决策边界(平面) 就变成了 $y_k(\mathbf{x})=y_j(\mathbf{x})\Rightarrow (\mathbf{w}_k-\mathbf{w}_j)^T\mathbf{x}+(w_{k0}-w_{j0})=0$，这与二分类的决策平面一致。
 
 ![multiclass linear discriminant](https://github.com/Lehyu/lehyu.cn/blob/master/image/PRML/chap4/multi_LDF.png?raw=true)
 
@@ -270,7 +270,7 @@ w_{k0} &=& -\frac{1}{2}\mathbf{\mu}_k^T\Sigma^{-1}\mathbf{\mu}_k+\ln p(\mathcal{
 $$\begin{equation}
 \begin{array}{rcl}
 p(\mathbf{x}_n,\mathcal{C}_1) &=& p(\mathcal{C}_1)p(\mathbf{x}_n\vert \mathcal{C}_1) = \pi\mathcal{N}(\mathbf{x}\vert \mathbf{\mu}_1,\Sigma) \\
-p(\mathbf{x}_n,\mathcal{C}_20) &=& p(\mathcal{C}_2)p(\mathbf{x}_n\vert \mathcal{C}_2) = (1-\pi)\mathcal{N}(\mathbf{x}\vert \mathbf{\mu}_2,\Sigma) \\
+p(\mathbf{x}_n,\mathcal{C}_2) &=& p(\mathcal{C}_2)p(\mathbf{x}_n\vert \mathcal{C}_2) = (1-\pi)\mathcal{N}(\mathbf{x}\vert \mathbf{\mu}_2,\Sigma) \\
 \Rightarrow p(\mathbf{t}\vert \pi,\mathbf{\mu}_1,\mathbf{\mu}_2,\Sigma) &=& \prod_{n=1}^N[p(\mathcal{C}_1\vert\mathbf{x}_n)]^{t_n}[p(\mathcal{C}_2\vert\mathbf{x}_n)]^{1-t_n} \\
 &\propto& \prod_{n=1}^N[\pi\mathcal{N}(\mathbf{x}\vert \mathbf{\mu}_1,\Sigma)]^{t_n}[(1-\pi)\mathcal{N}(\mathbf{x}\vert \mathbf{\mu}_2,\Sigma)]^{1-t_n}
 \end{array}
