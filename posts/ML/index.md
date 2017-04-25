@@ -6,6 +6,10 @@
 
 [PRML读书笔记(四)](chapter4_prml.md)
 
+[SVM](svm.md)
+
+[AdaBoost](AdaBoost.md)
+
 [最小二乘法](最小二乘法.md)
 
 [生成模型与判别模型](生成模型与判别方法.md)
